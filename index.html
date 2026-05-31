@@ -177,7 +177,7 @@
             border: 1px solid rgba(59,130,246,0.2);
             text-align: center;
         }
-        /* Transformation Card - SIMPLE AND WORKING */
+        /* HORIZONTAL TRANSFORMATION CARD */
         .transformation-section {
             padding: 20px 0 60px;
         }
@@ -200,80 +200,107 @@
             margin-bottom: 30px;
             color: #1e3a5f;
         }
-        .dual-chart-container {
+        .horizontal-flow {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            position: relative;
+            justify-content: space-between;
             gap: 20px;
+            position: relative;
+            flex-wrap: wrap;
         }
-        .chart-box {
-            width: 100%;
+        .flow-box {
+            flex: 1;
             background: #f9fbfd;
             border-radius: 24px;
             padding: 20px;
             border: 1px solid rgba(59,130,246,0.3);
-            position: relative;
-            z-index: 1;
-        }
-        .chart-box h3 {
             text-align: center;
+            min-width: 200px;
+        }
+        .flow-box h3 {
             margin-bottom: 15px;
             font-size: 1.2rem;
-            font-weight: 600;
         }
-        canvas {
-            width: 100%;
-            height: 180px;
-            display: block;
-            background: #ffffff;
-            border-radius: 16px;
-        }
-        .center-hub {
+        .center-hub-h {
             background: linear-gradient(145deg, #1e3a5f, #2c6e9e);
             color: white;
             padding: 12px 24px;
             border-radius: 60px;
             font-weight: bold;
-            font-size: 1.2rem;
-            text-align: center;
-            display: inline-block;
+            font-size: 1rem;
+            white-space: nowrap;
             z-index: 10;
             box-shadow: 0 6px 14px rgba(0,0,0,0.1);
-            margin: 0 auto;
         }
-        .flow-line {
+        .bars-group {
+            display: flex;
+            justify-content: space-around;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .bar-item {
+            flex: 1;
+            text-align: center;
+        }
+        .bar-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        .bar-bg {
+            background-color: #e2e8f0;
+            border-radius: 12px;
+            height: 100px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .bar-fill {
             position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            background: linear-gradient(to bottom, #3b82b6, #1e3a5f);
-            top: 140px;
-            bottom: 140px;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            transition: height 0.3s ease;
+            border-radius: 12px;
+        }
+        .bar-value {
+            margin-top: 6px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        .flow-line-h {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82b6, #1e3a5f);
+            transform: translateY(-50%);
             z-index: 0;
             border-radius: 2px;
         }
-        .flow-particle {
+        .flow-particle-h {
             position: absolute;
-            width: 14px;
-            height: 14px;
+            width: 16px;
+            height: 16px;
             background: #ffd966;
             border-radius: 50%;
-            left: 50%;
-            transform: translateX(-50%);
             box-shadow: 0 0 12px gold;
             z-index: 20;
+            transition: left 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            top: 50%;
+            transform: translate(-50%, -50%);
             display: none;
         }
         .metric-badge {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 30px;
             font-size: 1rem;
             font-weight: 600;
             color: #1e3a5f;
             background: #eef2ff;
             display: inline-block;
-            padding: 6px 18px;
+            padding: 8px 24px;
             border-radius: 40px;
             width: auto;
             margin-left: auto;
@@ -298,6 +325,18 @@
                 width: 100%;
                 background: white;
                 padding: 30px;
+            }
+            .horizontal-flow {
+                flex-direction: column;
+            }
+            .flow-line-h {
+                display: none;
+            }
+            .flow-particle-h {
+                display: none !important;
+            }
+            .center-hub-h {
+                margin: 10px 0;
             }
         }
         /* Other sections */
@@ -443,30 +482,39 @@
                         <a href="#contact" class="btn btn-secondary">Schedule Consultation →</a>
                     </div>
                 </div>
-                
+                <div class="hero-visual">
+                    <i class="fas fa-chart-line" style="font-size: 3rem; color:#1e3a5f;"></i>
+                    <i class="fas fa-arrow-right"></i>
+                    <i class="fas fa-rocket" style="font-size: 3rem; color:#3b82b6;"></i>
+                    <p style="margin-top: 16px;">Analysis → Strategy → Execution</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- WORKING ANIMATION CARD -->
+    <!-- HORIZONTAL WORKING ANIMATION CARD -->
     <section class="transformation-section">
         <div class="container">
             <div class="transform-card">
                 <div class="transform-title">⚡ The Farid Transformation Engine</div>
-                <div class="dual-chart-container" id="animationContainer">
-                    <div class="flow-line"></div>
-                    <div class="chart-box">
+                <div class="horizontal-flow" id="horizontalFlow">
+                    <div class="flow-line-h"></div>
+                    <div id="particleH" class="flow-particle-h"></div>
+                    <!-- Before Box -->
+                    <div class="flow-box" id="beforeBox">
                         <h3>📉 Before Analysis</h3>
-                        <canvas id="topCanvas" width="600" height="160" style="width:80%; height:160px"></canvas>
+                        <div id="beforeBars" class="bars-group"></div>
                     </div>
-                    <div class="center-hub">🔍 Farid Analysis</div>
-                    <div class="chart-box">
-                        <h3>📈 After Strategy </h3>
-                        <canvas id="bottomCanvas" width="600" height="180" style="width:100%; height:180px"></canvas>
+                    <!-- Center Hub -->
+                    <div class="center-hub-h">🔍 Farid Analysis</div>
+                    <!-- After Box -->
+                    <div class="flow-box" id="afterBox">
+                        <h3>📈 After Strategy</h3>
+                        <div id="afterBars" class="bars-group"></div>
                     </div>
-                    <div id="particle" class="flow-particle"></div>
                 </div>
-                <div class="metric-badge" id="metricLabel">Tangible Results</div>
-                <p style="text-align:center; margin-top: 20px; font-size:0.85rem;"></p>
+                <div class="metric-badge" id="metricLabel">Current: Revenue Growth</div>
+                <p style="text-align:center; margin-top: 20px; font-size:0.85rem;">⬇️ Every 1 second, a new metric flows through Farid Analysis and boosts results ⬇️</p>
             </div>
         </div>
     </section>
@@ -568,130 +616,93 @@
     </footer>
 
     <script>
-        // Mobile menu
-        const toggle = document.getElementById('mobileToggle');
-        const menu = document.getElementById('navMenu');
-        if (toggle) toggle.onclick = () => menu.classList.toggle('active');
+        // Mobile menu toggle
+        const toggleBtn = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+        if (toggleBtn) toggleBtn.onclick = () => navMenu.classList.toggle('active');
 
-        // ----- WORKING ANIMATION (EVERY 1 SECOND) -----
-        const topCanvas = document.getElementById('topCanvas');
-        const bottomCanvas = document.getElementById('bottomCanvas');
-        let ctxTop, ctxBottom;
-
-        // Metric data: low (before), high (after)
+        // ----- HORIZONTAL ANIMATION WITH CSS BARS -----
         const metrics = [
-            { name: "Revenue Growth", low: [42, 32, 24], high: [98, 82, 74] },
-            { name: "Operational Efficiency", low: [45, 48, 40], high: [88, 91, 85] },
-            { name: "Market Share", low: [15, 20, 18], high: [58, 63, 60] }
+            { name: "Revenue Growth", before: [28, 32, 24], after: [78, 82, 74] },
+            { name: "Operational Efficiency", before: [45, 48, 40], after: [88, 91, 85] },
+            { name: "Market Share", before: [15, 20, 18], after: [58, 63, 60] }
         ];
-        let currentIndex = 0;
+        let currentIdx = 0;
+        let isMoving = false;
 
-        function drawBars(ctx, data, colors, width, height) {
-            ctx.clearRect(0, 0, width, height);
-            const barWidth = (width - 80) / 3 - 8;
-            for (let i = 0; i < data.length; i++) {
-                let barHeight = (data[i] / 100) * (height - 50);
-                let x = 40 + i * (barWidth + 20);
-                let y = height - barHeight - 20;
-                ctx.fillStyle = colors[i];
-                ctx.fillRect(x, y, barWidth, barHeight);
-                ctx.fillStyle = "#1e293b";
-                ctx.font = "bold 12px Inter";
-                ctx.fillText(data[i] + "%", x + 5, y - 5);
-                ctx.fillStyle = "#475569";
-                ctx.font = "10px Inter";
-                ctx.fillText(["Profit", "Market Shares", "Adoptabbility"][i], x + barWidth/2 - 4, height - 8);
+        function createBarElement(label, value, color, isAfter = false) {
+            const div = document.createElement('div');
+            div.className = 'bar-item';
+            div.innerHTML = `
+                <div class="bar-label">${label}</div>
+                <div class="bar-bg">
+                    <div class="bar-fill" style="height: ${value}%; background: ${color};"></div>
+                </div>
+                <div class="bar-value">${value}%</div>
+            `;
+            return div;
+        }
+
+        function updateBars(containerId, values, colors) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            const labels = ['Profit', 'Market', 'Adoption'];
+            for (let i = 0; i < values.length; i++) {
+                const bar = createBarElement(labels[i], values[i], colors[i]);
+                container.appendChild(bar);
             }
         }
 
-        function updateCharts() {
-            const rect = topCanvas.getBoundingClientRect();
-            const w = Math.max(rect.width, 300);
-            const h = 180;
-            topCanvas.width = w;
-            topCanvas.height = h;
-            bottomCanvas.width = w;
-            bottomCanvas.height = h;
-            ctxTop = topCanvas.getContext('2d');
-            ctxBottom = bottomCanvas.getContext('2d');
-            const metric = metrics[currentIndex];
-            drawBars(ctxTop, metric.low, ["#a0aec0", "#94a3b8", "#8896a8"], w, h);
-            drawBars(ctxBottom, metric.high, ["#1e3a5f", "#2c6e9e", "#3b82b6"], w, h);
+        function refreshCharts() {
+            const metric = metrics[currentIdx];
+            updateBars('beforeBars', metric.before, ['#a0aec0', '#94a3b8', '#8896a8']);
+            updateBars('afterBars', metric.after, ['#1e3a5f', '#2c6e9e', '#3b82b6']);
             document.getElementById('metricLabel').innerHTML = `⚡ Current focus: ${metric.name}`;
         }
 
-        // Particle movement and cycling
-        const particle = document.getElementById('particle');
-        const container = document.getElementById('animationContainer');
-        const topBox = document.querySelector('.chart-box:first-child');
-        const centerHub = document.getElementById('centerHub');
-        const bottomBox = document.querySelector('.chart-box:last-child');
+        // Horizontal particle movement
+        const particle = document.getElementById('particleH');
+        const container = document.getElementById('horizontalFlow');
+        const beforeBox = document.getElementById('beforeBox');
+        const centerHub = document.querySelector('.center-hub-h');
+        const afterBox = document.getElementById('afterBox');
 
-        function getRelativeCenterY(element) {
+        function getRelativeLeft(element) {
             const elRect = element.getBoundingClientRect();
             const contRect = container.getBoundingClientRect();
-            return elRect.top + elRect.height / 2 - contRect.top;
+            return elRect.left + elRect.width / 2 - contRect.left;
         }
 
-        let isMoving = false;
-        function startParticleAndSwitch() {
+        function moveParticle() {
             if (isMoving) return;
             isMoving = true;
-            const startY = getRelativeCenterY(topBox);
-            const midY = getRelativeCenterY(centerHub);
-            const endY = getRelativeCenterY(bottomBox);
+            const startX = getRelativeLeft(beforeBox);
+            const midX = getRelativeLeft(centerHub);
+            const endX = getRelativeLeft(afterBox);
             particle.style.display = 'block';
-            particle.style.top = startY + 'px';
-            let startTime = null;
-            const duration = 800; // 0.8 seconds for full travel
-
-            function animate(timestamp) {
-                if (!startTime) startTime = timestamp;
-                const elapsed = timestamp - startTime;
-                let progress = Math.min(1, elapsed / duration);
-                let currentY;
-                if (progress <= 0.5) {
-                    const subProgress = progress / 0.5;
-                    currentY = startY + (midY - startY) * subProgress;
-                } else {
-                    const subProgress = (progress - 0.5) / 0.5;
-                    currentY = midY + (endY - midY) * subProgress;
-                }
-                particle.style.top = currentY + 'px';
-                if (progress < 1) {
-                    requestAnimationFrame(animate);
-                } else {
-                    particle.style.display = 'none';
-                    isMoving = false;
-                    // After particle reaches bottom, switch to next metric
-                    currentIndex = (currentIndex + 1) % metrics.length;
-                    updateCharts();
-                    // Schedule next cycle after 200ms pause
-                    setTimeout(() => startParticleAndSwitch(), 200);
-                }
-            }
-            requestAnimationFrame(animate);
-        }
-
-        // Initial draw and start the 1-second cycle (every second we call the particle)
-        function init() {
-            updateCharts();
-            // Wait for layout then start the first cycle
+            particle.style.left = startX + 'px';
+            particle.style.transition = 'none';
+            particle.offsetHeight; // force reflow
+            particle.style.transition = 'left 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1)';
+            particle.style.left = endX + 'px';
             setTimeout(() => {
-                startParticleAndSwitch();
-                // Also set an interval to ensure it keeps running every 1 second
-                setInterval(() => {
-                    if (!isMoving) {
-                        startParticleAndSwitch();
-                    }
-                }, 1000);
-            }, 500);
+                particle.style.display = 'none';
+                isMoving = false;
+                currentIdx = (currentIdx + 1) % metrics.length;
+                refreshCharts();
+                setTimeout(() => moveParticle(), 200);
+            }, 800);
         }
 
-        window.addEventListener('resize', () => {
-            updateCharts();
-        });
-        init();
+        // Initialize
+        refreshCharts();
+        // Wait for layout then start
+        setTimeout(() => {
+            moveParticle();
+            setInterval(() => {
+                if (!isMoving) moveParticle();
+            }, 1000);
+        }, 500);
     </script>
 </body>
 </html>
