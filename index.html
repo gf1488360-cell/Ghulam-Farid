@@ -106,16 +106,34 @@
         .skills-ring { display: flex; flex-wrap: wrap; justify-content: center; gap: 35px; margin: 50px 0 30px; }
         .ring-item { text-align: center; flex: 1; min-width: 100px; }
         .ring-canvas { width: 110px; height: 110px; display: block; margin: 0 auto; }
-        .expertise-grid, .services-grid, .labs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 48px; }
-        .expertise-card, .service-card, .lab-card { height: 100%; display: flex; flex-direction: column; }
-        .expertise-icon, .service-icon, .lab-icon { font-size: 2rem; color: var(--light-blue); margin-bottom: 20px; }
-        .contact-form input, .contact-form textarea { width: 100%; padding: 14px 18px; border: 1px solid var(--gray-light); border-radius: 24px; margin-bottom: 16px; font-family: 'Inter', sans-serif; }
-        .contact-form button { background: var(--light-blue); color: white; border: none; padding: 14px; border-radius: 40px; font-weight: 600; cursor: pointer; width: 100%; }
+        .expertise-grid, .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 48px; }
+        .expertise-card, .service-card { height: 100%; display: flex; flex-direction: column; }
+        .expertise-icon, .service-icon { font-size: 2rem; color: var(--light-blue); margin-bottom: 20px; }
+        
+        /* Labs & Analysis - Centered cards with flex */
+        .labs-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 48px;
+        }
+        .lab-card {
+            flex: 0 0 380px;
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .lab-icon { font-size: 2rem; color: var(--light-blue); margin-bottom: 20px; }
         .lab-link { margin-top: auto; padding-top: 20px; color: var(--light-blue); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: var(--transition); }
         .lab-link:hover { gap: 12px; color: var(--gold-accent); }
+        
+        .contact-form input, .contact-form textarea { width: 100%; padding: 14px 18px; border: 1px solid var(--gray-light); border-radius: 24px; margin-bottom: 16px; font-family: 'Inter', sans-serif; }
+        .contact-form button { background: var(--light-blue); color: white; border: none; padding: 14px; border-radius: 40px; font-weight: 600; cursor: pointer; width: 100%; }
         footer { background: var(--navy-deep); color: rgba(255,255,255,0.7); padding: 48px 0 24px; }
-        @media (max-width: 1024px) { .container { padding: 0 32px; } .impact-charts, .dynamic-dashboard { grid-template-columns: 1fr 1fr; } .expertise-grid, .services-grid, .labs-grid { grid-template-columns: 1fr 1fr; } }
-        @media (max-width: 800px) { .container { padding: 0 20px; } .nav-list { display: none; } .mobile-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; } .mobile-toggle span { width: 24px; height: 2px; background: var(--navy-deep); } .step-progression { flex-direction: column; } .progress-line { display: none; } .hero-title { font-size: 2.2rem; } .impact-charts, .dynamic-dashboard, .expertise-grid, .services-grid, .labs-grid { grid-template-columns: 1fr; } .hero-stats { flex-direction: column; gap: 20px; } }
+        @media (max-width: 1024px) { .container { padding: 0 32px; } .impact-charts, .dynamic-dashboard { grid-template-columns: 1fr 1fr; } .expertise-grid, .services-grid { grid-template-columns: 1fr 1fr; } .lab-card { flex: 0 0 340px; } }
+        @media (max-width: 800px) { .container { padding: 0 20px; } .nav-list { display: none; } .mobile-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; } .mobile-toggle span { width: 24px; height: 2px; background: var(--navy-deep); } .step-progression { flex-direction: column; } .progress-line { display: none; } .hero-title { font-size: 2.2rem; } .impact-charts, .dynamic-dashboard, .expertise-grid, .services-grid { grid-template-columns: 1fr; } .hero-stats { flex-direction: column; gap: 20px; } .lab-card { flex: 0 0 100%; } }
         .mobile-menu-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(10,28,47,0.97); z-index:2000; display:none; justify-content: flex-end; }
         .mobile-menu-panel { background: white; width: 80%; max-width: 300px; padding: 40px 28px; position: relative; }
         .close-menu { position: absolute; top:20px; right:20px; background:none; border:none; font-size:1.5rem; cursor: pointer; }
@@ -185,14 +203,12 @@
                     <div class="step-item"><div class="step-icon"><i class="fas fa-play-circle"></i></div><div class="step-label">Execution</div><div class="step-desc">Agile deployment</div></div>
                     <div class="step-item"><div class="step-icon"><i class="fas fa-chart-line"></i></div><div class="step-label">Growth</div><div class="step-desc">Scale & optimize</div></div>
                 </div>
-                <div class="growth-badge" id="dynamicGrowthMessage">🚀 PKR Growth Intelligence Active</div>
+                <div class="growth-badge" id="dynamicGrowthMessage">🚀  Growth Intelligence Active</div>
                 <div style="margin-top: 15px; font-size:0.7rem; color:var(--gray-mid);">Data-backed decisions → Exponential outcomes</div>
             </div>
         </div>
     </div>
 </section>
-
-
 
 <!-- Strategic Edge Skills Rings -->
 <section id="strategic-edge" style="padding: 20px 0 40px;">
@@ -237,7 +253,7 @@
     </div>
 </section>
 
-<!-- NEW: Labs & Analysis Section -->
+<!-- Labs & Analysis Section - Centered & Linked -->
 <section id="labs-analysis" style="padding: 60px 0; background: rgba(245,247,251,0.5);">
     <div class="container">
         <div style="text-align: center;" class="fade-up">
@@ -250,7 +266,7 @@
                 <i class="fas fa-flask lab-icon"></i>
                 <h3>FaridEx Labs</h3>
                 <p>Validation lab for digital products, feature concepts, and market assumptions. Reduce risk before engineering deployment — PKR-based feasibility, A/B testing frameworks, and rapid iteration cycles.</p>
-                <a href="#" class="lab-link">Explore lab <i class="fas fa-arrow-right"></i></a>
+                <a href="FaridEx_Labs.html" class="lab-link">Explore lab <i class="fas fa-arrow-right"></i></a>
             </div>
             <div class="lab-card glass-card fade-up">
                 <i class="fas fa-chart-simple lab-icon"></i>
@@ -344,23 +360,14 @@
     drawRing('ringAnalytics', 90, '#3B82F6');
     drawRing('ringLeadership', 87, '#1E3A5F');
 
-    // Live PKR and metrics simulation
-    let pkr = 308.5;
-    setInterval(() => { pkr += (Math.random() - 0.5) * 0.8; document.getElementById('livePKR').innerText = pkr.toFixed(2); }, 4000);
-    let adoption = 73, cac = 12450, nps = 68;
-    setInterval(() => {
-        adoption += (Math.random() - 0.5) * 1.2;
-        cac += (Math.random() - 0.5) * 180;
-        nps += (Math.random() - 0.5) * 1;
-        document.getElementById('liveAdoption').innerHTML = Math.floor(adoption) + '%';
-        document.getElementById('liveCAC').innerText = '₨ ' + Math.floor(Math.abs(cac)).toLocaleString();
-        document.getElementById('liveNPS').innerText = Math.floor(nps);
-    }, 4500);
-
     // Rotating growth message
     const msgs = ["🚀 PKR Growth Intelligence Active", "📈 Strategy → 2.3x ROI", "🎯 Execution Excellence", "📊 Data-Driven Scale"];
     let msgIdx = 0;
-    setInterval(() => { document.getElementById('dynamicGrowthMessage').innerHTML = msgs[msgIdx]; msgIdx = (msgIdx+1)%msgs.length; }, 3000);
+    setInterval(() => { 
+        const badge = document.getElementById('dynamicGrowthMessage');
+        if(badge) badge.innerHTML = msgs[msgIdx]; 
+        msgIdx = (msgIdx+1)%msgs.length; 
+    }, 3000);
 
     // Charts initialization (Chart.js)
     new Chart(document.getElementById('kpiBarChart'), {
