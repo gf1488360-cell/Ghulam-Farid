@@ -174,108 +174,123 @@
             .nav-cta { display: none; }
         }
         
-        /* Hero */
-        /* Make Hero background Navy Blue */
-.hero {
-    background: var(--navy-deep);
-    color: white;
-}
-.hero .hero-badge {
-    background: rgba(255,255,255,0.15);
-    color: var(--gold-accent);
-}
-.hero .hero-description {
-    color: rgba(255,255,255,0.85);
-}
-.hero .hero-stats {
-    border-top-color: rgba(255,255,255,0.2);
-}
-.hero .stat-number {
-    color: var(--gold-accent);
-}
-.hero .btn-outline {
-    border-color: white;
-    color: white;
-}
-.hero .btn-outline:hover {
-    background: white;
-    color: var(--navy-deep);
-}
-.hero .hero-visual.glass-card {
-    background: rgba(255,255,255,0.1);
-    border-color: rgba(255,255,255,0.2);
-}
-.hero .step-icon {
-    background: rgba(255,255,255,0.15);
-    color: var(--gold-accent);
-}
-.hero .step-label, .hero .step-desc {
-    color: white;
-}
-        @media (max-width: 900px) {
-            .hero-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
-            .hero-title { font-size: 2rem; }
-            .hero-stats { justify-content: center; }
-            .btn-group { justify-content: center; }
+        /* Hero Section - Navy Background */
+        .hero {
+            background: var(--navy-deep);
+            color: white;
+            padding: 60px 0 50px;
         }
-        .hero-title {
-            font-size: 3rem;
-            background: linear-gradient(130deg, #0A1C2F 20%, #3B82F6 70%, #D4AF37 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
+        .hero .hero-badge {
+            background: rgba(255,255,255,0.15);
+            color: var(--gold-accent);
+            display: block;
+            margin: 0 auto 24px auto;
+            text-align: center;
+            width: fit-content;
         }
-        @media (max-width: 640px) { .hero-title { font-size: 2rem; } }
-        .btn-primary, .btn-outline {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 24px;
-            border-radius: 40px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
+        .hero .hero-description {
+            color: rgba(255,255,255,0.85);
+            margin: 20px 0;
         }
-        .btn-primary { background: var(--navy-deep); color: white; }
-        .btn-primary:hover { background: var(--light-blue); transform: translateY(-2px); }
-        .btn-outline { border: 1px solid var(--navy-deep); background: transparent; color: var(--navy-deep); }
-        .hero-stats {
+        .hero .hero-stats {
+            border-top-color: rgba(255,255,255,0.2);
             display: flex;
             gap: 32px;
             margin-top: 30px;
             padding-top: 20px;
-            border-top: 1px solid var(--gray-light);
             flex-wrap: wrap;
         }
-        .stat-number { font-size: 1.8rem; font-weight: 800; font-family: 'Playfair Display', serif; color: var(--navy-deep); }
-        @media (max-width: 640px) { .hero-stats { gap: 20px; justify-content: center; } }
-        
-        /* Glass card */
-        .glass-card {
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.6);
-            border-radius: 24px;
-            box-shadow: var(--shadow-elegant);
-            transition: var(--transition);
+        .hero .stat-number {
+            color: var(--gold-accent);
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+        .hero .btn-outline {
+            border-color: white;
+            color: white;
+        }
+        .hero .btn-outline:hover {
+            background: white;
+            color: var(--navy-deep);
+        }
+        .hero .hero-visual.glass-card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 28px;
             padding: 24px;
         }
-        /* Step progression */
+        .hero .step-icon {
+            background: rgba(255,255,255,0.12);
+            color: var(--gold-accent);
+            border-color: rgba(255,255,255,0.2);
+        }
+        .hero .step-label, .hero .step-desc {
+            color: white;
+        }
+        .hero .step-desc {
+            color: rgba(255,255,255,0.7);
+        }
+        .hero .growth-badge {
+            background: linear-gradient(135deg, var(--gold-accent), #B8860B);
+            color: var(--navy-deep);
+        }
+        /* Hero Title: where/meets white, Data Science/Corporate Strategy gold */
+        .hero-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+        .hero-title .gold {
+            color: var(--gold-accent);
+        }
+        .hero-title .white {
+            color: white;
+        }
+        @media (max-width: 640px) { 
+            .hero-title { font-size: 2rem; }
+        }
+        
+        /* Hero Grid: left content + right steps (horizontal) */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 0.9fr;
+            gap: 50px;
+            align-items: center;
+        }
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            .hero-stats {
+                justify-content: center;
+            }
+            .btn-group {
+                justify-content: center;
+            }
+            .hero-title {
+                text-align: center;
+            }
+        }
+        
+        /* Step progression - horizontal row on desktop */
         .step-progression {
             display: flex;
-            align-items: flex-start;
+            flex-direction: row;
             justify-content: space-between;
-            margin: 20px 0;
-            position: relative;
-            flex-wrap: wrap;
+            align-items: flex-start;
             gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
         }
-        @media (max-width: 700px) {
-            .step-progression { flex-direction: column; align-items: center; gap: 20px; }
-            .progress-line { display: none; }
-            .step-item { width: 100%; text-align: center; }
+        .step-item {
+            text-align: center;
+            flex: 1;
+            min-width: 80px;
         }
-        .step-item { text-align: center; flex: 1; min-width: 80px; z-index: 2; }
         .step-icon {
             width: 55px;
             height: 55px;
@@ -286,35 +301,63 @@
             justify-content: center;
             margin: 0 auto 10px;
             font-size: 1.3rem;
-            color: var(--light-blue);
-            border: 1px solid rgba(59,130,246,0.3);
+            transition: var(--transition);
         }
-        .progress-line {
-            position: absolute;
-            top: 27px;
-            left: 12%;
-            width: 76%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--light-blue), var(--gold-accent));
-            transform: scaleX(0);
-            transform-origin: left;
-            animation: growLine 1.5s ease-out forwards;
-            z-index: 1;
+        .step-label {
+            font-weight: 600;
+            font-size: 0.8rem;
         }
-        @keyframes growLine { 100% { transform: scaleX(1); } }
-        .growth-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--gold-accent), #B8860B);
-            color: var(--navy-deep);
-            padding: 5px 14px;
-            border-radius: 30px;
+        .step-desc {
             font-size: 0.7rem;
-            font-weight: 700;
-            margin-top: 15px;
-            animation: pulseGold 1.5s infinite;
+            opacity: 0.8;
+        }
+        @media (max-width: 700px) {
+            .step-progression {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            .step-item {
+                width: 100%;
+                max-width: 200px;
+            }
         }
         
-        /* Dynamic Dashboard */
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .btn-primary, .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .btn-primary {
+            background: var(--light-blue);
+            color: white;
+        }
+        .btn-primary:hover {
+            background: var(--gold-accent);
+            color: var(--navy-deep);
+            transform: translateY(-2px);
+        }
+        
+        /* Rest of the sections */
+        .glass-card {
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: 24px;
+            box-shadow: var(--shadow-elegant);
+            transition: var(--transition);
+            padding: 24px;
+        }
         .dynamic-dashboard {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -333,7 +376,6 @@
         }
         .metric-value { font-size: 1.5rem; font-weight: 800; color: var(--navy-deep); }
         
-        /* Skills rings */
         .skills-ring {
             display: flex;
             flex-wrap: wrap;
@@ -345,7 +387,6 @@
         .ring-canvas { width: 90px; height: 90px; display: block; margin: 0 auto; }
         @media (max-width: 640px) { .ring-canvas { width: 75px; height: 75px; } }
         
-        /* Expertise and Services grids */
         .expertise-grid, .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -361,9 +402,8 @@
             flex-direction: column;
             padding: 24px;
         }
-        .expertise-icon, .service-icon, .lab-icon { font-size: 1.8rem; margin-bottom: 16px; }
+        .expertise-icon, .service-icon, .lab-icon { font-size: 1.8rem; margin-bottom: 16px; color: var(--light-blue); }
         
-        /* Impact Charts */
         .impact-charts {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -375,7 +415,6 @@
         .chart-container { height: 200px; position: relative; }
         canvas { max-width: 100%; height: auto !important; }
         
-        /* Labs grid */
         .labs-grid {
             display: flex;
             justify-content: center;
@@ -385,6 +424,7 @@
         }
         .lab-card { flex: 0 0 340px; max-width: 100%; }
         @media (max-width: 750px) { .lab-card { flex: 0 0 100%; } }
+        .lab-link { margin-top: auto; padding-top: 20px; color: var(--light-blue); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: var(--transition); }
         
         .contact-grid {
             display: grid;
@@ -392,7 +432,6 @@
             gap: 40px;
         }
         @media (max-width: 800px) { .contact-grid { grid-template-columns: 1fr; } }
-        
         .contact-form input, .contact-form textarea {
             width: 100%;
             padding: 12px 16px;
@@ -403,20 +442,41 @@
         }
         .contact-form button { background: var(--light-blue); color: white; border: none; padding: 12px; border-radius: 40px; font-weight: 600; cursor: pointer; width: 100%; }
         
-        /* Footer - all white text */
         footer {
             background: var(--navy-deep);
             color: white !important;
             padding: 40px 0 24px;
         }
-        footer, footer a, footer span, footer p, footer h3, footer h4 {
-            color: white !important;
-        }
+        footer, footer a, footer span, footer p, footer h3, footer h4 { color: white !important; }
         footer a:hover { text-decoration: underline; opacity: 0.85; }
         .footer-links a { display: block; margin-bottom: 8px; font-size: 0.8rem; }
         .footer-bottom { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.7rem; }
         
-        /* Mobile Menu Overlay */
+        #strategic-edge {
+            background: var(--navy-deep);
+            color: white;
+        }
+        #strategic-edge .section-title { background: none; color: white; }
+        #strategic-edge .section-label { background: rgba(255,255,255,0.15); color: var(--gold-accent); }
+        #strategic-edge p { color: rgba(255,255,255,0.7); }
+        #strategic-edge .ring-label, #strategic-edge .ring-percent { color: white; }
+        
+        #services {
+            background: var(--navy-deep);
+            color: white;
+        }
+        #services .section-title { background: none; color: white; }
+        #services .section-label { background: rgba(255,255,255,0.15); color: var(--gold-accent); }
+        #services .services-grid .service-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+        }
+        #services .service-card h4 { color: var(--gold-accent); }
+        #services .service-card p { color: rgba(255,255,255,0.8); }
+        #services .service-icon { color: var(--gold-accent); }
+        
         .mobile-menu-overlay {
             position: fixed;
             top: 0;
@@ -450,59 +510,15 @@
         .mobile-nav-list li { margin-bottom: 24px; }
         .mobile-nav-list a { text-decoration: none; font-size: 1.1rem; font-weight: 500; color: var(--navy-deep); }
         
-        /* Fade-up */
         .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
-        
-        /* Strategic Edge Navy Background */
-        #strategic-edge {
-            background: var(--navy-deep);
-            color: white;
-        }
-        #strategic-edge .section-title { background: none; color: white; }
-        #strategic-edge .section-label { background: rgba(255,255,255,0.15); color: var(--gold-accent); }
-        #strategic-edge p { color: rgba(255,255,255,0.7); }
-        #strategic-edge .ring-label, #strategic-edge .ring-percent { color: white; }
-        
-        /* WHAT I DELIVER section - Navy Background with Contrast */
-        #services {
-            background: var(--navy-deep);
-            color: white;
-        }
-        #services .section-title {
-            background: none;
-            color: white;
-        }
-        #services .section-label {
-            background: rgba(255,255,255,0.15);
-            color: var(--gold-accent);
-        }
-        #services .services-grid .service-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: white;
-        }
-        #services .service-card h4 {
-            color: var(--gold-accent);
-        }
-        #services .service-card p {
-            color: rgba(255,255,255,0.8);
-        }
-        #services .service-icon {
-            color: var(--gold-accent);
-        }
-        #services .service-card:hover {
-            background: rgba(255,255,255,0.2);
-            border-color: var(--gold-accent);
-        }
     </style>
 </head>
 <body>
 <div class="animated-bg"></div>
 <div class="floating-orb orb1"></div><div class="floating-orb orb2"></div>
 
-<div class="top-bar"><div class="container"> Strategic advisory for emerging markets |  Data-led corporate strategy & Product Advisory</div></div>
+<div class="top-bar"><div class="container">🇵🇰 Strategic advisory for emerging markets | PKR-native impact modeling | Data-led corporate strategy</div></div>
 
 <nav class="main-nav">
     <div class="container nav-wrapper">
@@ -538,29 +554,48 @@
     <div class="container">
         <div class="hero-grid">
             <div class="fade-up">
-                <div class="hero-badge" style="background: rgba(59,130,246,0.12); display: inline-block;">INTELLIGENT GROWTH PARTNER</div>
-                <h1 class="hero-title">Where <span style="color: var(--gold-accent);">Data Science</span> meets <span style="color: var(--light-blue);">Corporate Strategy</span></h1>
-                <p class="hero-description" style="margin: 20px 0;">I help organizations in emerging markets navigate complexity, align product vision with market realities, and build roadmaps that deliver measurable outcomes — elite analytical rigor with PKR-native ROI modeling.</p>
-                <div class="btn-group"><a href="#contact" class="btn-primary">Strategic dialogue <i class="fas fa-arrow-right"></i></a><a href="#expertise-combined" class="btn-outline">Explore edge <i class="fas fa-chart-line"></i></a></div>
-                <div class="hero-stats"><div><span class="stat-number" data-count="22">0</span><span>+</span><div>Engagements</div></div><div><span class="stat-number" data-count="92">0</span><span>%</span><div>Success Rate</div></div><div><span class="stat-number" data-count="4.2">0</span><span>x</span><div>ROI Multiplier</div></div></div>
+                <div class="hero-badge">INTELLIGENT GROWTH PARTNER</div>
+                <h1 class="hero-title">
+                    <span class="white">where</span> 
+                    <span class="gold">Data Science</span> 
+                    <span class="white">meets</span> 
+                    <span class="gold">Corporate Strategy</span>
+                </h1>
+                <p class="hero-description">I help organizations in emerging markets navigate complexity, align product vision with market realities, and build roadmaps that deliver measurable outcomes — elite analytical rigor with PKR-native ROI modeling.</p>
+                <div class="btn-group">
+                    <a href="#contact" class="btn-primary">Strategic dialogue <i class="fas fa-arrow-right"></i></a>
+                    <a href="#expertise-combined" class="btn-outline">Explore edge <i class="fas fa-chart-line"></i></a>
+                </div>
+                <div class="hero-stats">
+                    <div><span class="stat-number" data-count="22">0</span><span>+</span><div>Engagements</div></div>
+                    <div><span class="stat-number" data-count="92">0</span><span>%</span><div>Success Rate</div></div>
+                    <div><span class="stat-number" data-count="4.2">0</span><span>x</span><div>ROI Multiplier</div></div>
+                </div>
             </div>
             <div class="hero-visual glass-card fade-up" style="text-align: center;">
-                <i class="fas fa-chart-line" style="font-size: 2rem; color: var(--light-blue);"></i>
+                <i class="fas fa-chart-line" style="font-size: 2rem; color: var(--gold-accent);"></i>
                 <div class="step-progression">
-                    <div class="progress-line"></div>
                     <div class="step-item"><div class="step-icon"><i class="fas fa-search"></i></div><div class="step-label">Analysis</div><div class="step-desc">Deep-dive & data</div></div>
                     <div class="step-item"><div class="step-icon"><i class="fas fa-map"></i></div><div class="step-label">Strategy</div><div class="step-desc">Roadmap & alignment</div></div>
                     <div class="step-item"><div class="step-icon"><i class="fas fa-play-circle"></i></div><div class="step-label">Execution</div><div class="step-desc">Agile deployment</div></div>
                     <div class="step-item"><div class="step-icon"><i class="fas fa-chart-line"></i></div><div class="step-label">Growth</div><div class="step-desc">Scale & optimize</div></div>
                 </div>
                 <div class="growth-badge" id="dynamicGrowthMessage">🚀 PKR Growth Intelligence Active</div>
-                <div style="margin-top: 15px; font-size:0.7rem; color:var(--gray-mid);">Data-backed decisions → Exponential outcomes</div>
+                <div style="margin-top: 15px; font-size:0.7rem; opacity:0.8;">Data-backed decisions → Exponential outcomes</div>
             </div>
         </div>
     </div>
 </section>
 
-
+<!-- Live PKR Dashboard -->
+<div class="container">
+    <div class="dynamic-dashboard">
+        <div class="metric-card"><div class="metric-value" id="livePKR">308.50</div><div>🇵🇰 USD/PKR</div><span style="font-size:0.65rem; color:#10B981;">LIVE</span></div>
+        <div class="metric-card"><div class="metric-value" id="liveAdoption">73<span>%</span></div><div>Product Adoption</div><span>↑ +5.2%</span></div>
+        <div class="metric-card"><div class="metric-value" id="liveCAC">₨ 12,450</div><div>CAC (PKR)</div><span>↓ -6%</span></div>
+        <div class="metric-card"><div class="metric-value" id="liveNPS">68</div><div>Net Promoter Score</div><span>↑ +12 pts</span></div>
+    </div>
+</div>
 
 <!-- Combined Expertise -->
 <div id="expertise-combined">
@@ -584,6 +619,7 @@
     <section id="the-farid-advantage" style="padding: 50px 0 30px;">
         <div class="container">
             <div style="text-align: center;" class="fade-up">
+                <span class="section-label">THE FARID ADVANTAGE</span>
                 <h2 class="section-title">Analytical depth. Strategic clarity.</h2>
                 <p style="color: var(--gray-mid);">A rare blend of data science rigor and corporate strategy execution.</p>
             </div>
@@ -598,7 +634,7 @@
     <section id="strategic-impact" style="padding: 30px 0 50px;">
         <div class="container">
             <div style="text-align: center;" class="fade-up">
-              
+                <span class="section-label">STRATEGIC IMPACT ANALYSIS</span>
                 <h2 class="section-title">How my strategy accelerates your growth</h2>
                 <p style="color: var(--gray-mid);">Measurable improvements across key business dimensions — before vs. after strategic intervention.</p>
             </div>
@@ -611,7 +647,6 @@
     </section>
 </div>
 
-<!-- WHAT I DELIVER - Navy Background with Contrast -->
 <section id="services" style="padding: 50px 0;">
     <div class="container">
         <div style="text-align: center;" class="fade-up">
@@ -647,7 +682,7 @@
 <section id="about" style="background: var(--navy-deep); padding: 60px 0; color: white;">
     <div class="container">
         <div class="about-content fade-up" style="max-width: 800px; margin: 0 auto; text-align: center;">
-            <span class="section-label" style="background: rgba(255,255,255,0.15); color: var(--gold-accent);">INSIGHT-LED LEADERSHIP & Advisory</span>
+            <span class="section-label" style="background: rgba(255,255,255,0.15); color: var(--gold-accent);">INSIGHT-LED LEADERSHIP</span>
             <h2 class="section-title" style="color: white;">Ghulam Farid</h2>
             <div style="color: var(--gold-accent); font-style: italic; font-size: 1.1rem; margin: 20px 0;">“Data Science × Business Knowledge = Intelligent Growth”</div>
             <p>I operate at the intersection of business strategy and product execution — helping companies in Pakistan and emerging markets turn data into a competitive weapon. With a BS in Data Science and hands-on consulting experience, I develop strategic roadmaps for SaaS exports, e-commerce, hyperlocal platforms, and market entry frameworks with PKR-native financial modeling.</p>
@@ -684,7 +719,7 @@
 </section>
 
 <footer>
-    <div class="container"><div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px;"><div><h3 style="font-family: 'Playfair Display';">Ghulam Farid</h3><p>Corporate Strategy & Product Consultant<br>Data Science × Corporate Strategy = Intelligent Growth</p></div><div style="display: flex; gap: 40px; flex-wrap: wrap;"><div><h4>Explore</h4><a href="#expertise-combined" class="footer-links">Expertise</a><a href="#services" class="footer-links">Services</a><a href="#labs-analysis" class="footer-links">Labs</a></div><div><h4>Connect</h4><a href="#contact" class="footer-links">Contact</a><span style="display: block;">gf1488360@gmail.com</span><span>+92 308 6007904</span></div></div></div><div class="footer-bottom"><p>© 2026 Ghulam Farid — Corporate Strategy & Product Advisory </p></div></div>
+    <div class="container"><div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px;"><div><h3 style="font-family: 'Playfair Display';">Ghulam Farid</h3><p>Corporate Strategy & Product Consultant<br>Data Science × Corporate Strategy = Intelligent Growth</p></div><div style="display: flex; gap: 40px; flex-wrap: wrap;"><div><h4>Explore</h4><a href="#expertise-combined" class="footer-links">Expertise</a><a href="#services" class="footer-links">Services</a><a href="#labs-analysis" class="footer-links">Labs</a></div><div><h4>Connect</h4><a href="#contact" class="footer-links">Contact</a><span style="display: block;">gf1488360@gmail.com</span><span>+92 308 6007904</span></div></div></div><div class="footer-bottom"><p>© 2026 Ghulam Farid — Corporate Strategy & Product Advisory | PKR-native analytics</p></div></div>
 </footer>
 
 <script>
@@ -718,7 +753,7 @@
         document.getElementById('liveNPS').innerText = Math.floor(nps);
     }, 4500);
     
-    const msgs = ["🚀  Growth Intelligence ", "📈 Strategy → 2.3x ROI", "🎯 Execution Excellence", "📊 Data-Driven Scale"];
+    const msgs = ["🚀 PKR Growth Intelligence Active", "📈 Strategy → 2.3x ROI", "🎯 Execution Excellence", "📊 Data-Driven Scale"];
     let msgIdx = 0;
     setInterval(() => { const b = document.getElementById('dynamicGrowthMessage'); if(b) b.innerHTML = msgs[msgIdx]; msgIdx = (msgIdx+1)%msgs.length; }, 3000);
     
