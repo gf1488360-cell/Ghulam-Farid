@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>FaridEx Labs — Decision Intelligence for Product Teams</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    /* EXECUTIVE STRUCTURE & DESIGN TOKENS */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #F8FAFC; 
+      background-image: radial-gradient(circle at 100% 0%, rgba(30, 58, 138, 0.04) 0%, transparent 45%),
+                        radial-gradient(circle at 0% 100%, rgba(15, 23, 42, 0.02) 0%, transparent 40%);
+      color: #0F172A; 
+      line-height: 1.65;
+      padding-top: 135px;
+      -webkit-font-smoothing: antialiased;
+      letter-spacing: -0.01em;
+    }
+
+    h1, h2, h3, h4, .serif-heading {
+      font-family: 'Playfair Display', Georgia, serif;
+      color: #0F172A;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+
+    /* ELITE DARK NAV SYSTEM */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #0A192F; 
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .nav-main-tier {
+      padding: 1.1rem 0;
+    }
+
+    .navbar .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-area {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+    }
+
+    .logo-main {
+      font-size: 1.4rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+
+    .logo-main .ex {
+      color: #38BDF8; 
+      font-style: italic;
+    }
+
+    .logo-area .tagline {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.62rem;
+      color: #94A3B8;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a, .nav-links button {
+      color: #CBD5E1;
+      text-decoration: none;
+      background: none;
+      border: none;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover, .nav-links button:hover {
+      color: #38BDF8;
+    }
+
+    /* GLOBAL CONTENT SYSTEM */
+    .content-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    section {
+      padding: 60px 0 50px 0;
+    }
+
+    /* HERO ASYMMETRIC GRID ARCHITECTURE */
+    .hero-grid-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .hero-left-content .section-label {
+      color: #2563EB;
+      background: rgba(37, 99, 235, 0.06);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      padding: 5px 12px;
+      border-radius: 4px;
+      border: 1px solid rgba(37, 99, 235, 0.12);
+    }
+
+    .hero-title {
+      font-size: 3.3rem;
+      line-height: 1.2;
+      margin-bottom: 1.75rem;
+      color: #0F172A;
+    }
+
+    .hero-title em {
+      font-weight: 400;
+      color: #2563EB; 
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: #475569;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+
+    .hero-action-row {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-shine-premium {
+      position: relative;
+      background: linear-gradient(135deg, #1E3A8A 0%, #0F172A 100%);
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      padding: 1.1rem 2.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      border: none;
+      box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.3);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .btn-shine-premium::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 30%;
+      height: 200%;
+      background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+      transform: rotate(25deg);
+      animation: buttonShineRay 4.5s infinite ease-in-out;
+    }
+
+    @keyframes buttonShineRay {
+      0% { left: -60%; }
+      15% { left: 140%; }
+      100% { left: 140%; }
+    }
+
+    .btn-shine-premium:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px -5px rgba(30, 58, 138, 0.4);
+      background: linear-gradient(135deg, #2563EB 0%, #1E3A8A 100%);
+    }
+
+    .btn-outline-executive {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      color: #334155;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      padding: 1.1rem 2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+    
+    .btn-outline-executive:hover {
+      background: #F8FAFC;
+      border-color: #94A3B8;
+      color: #0F172A;
+    }
+
+    /* PIPELINE DASHBOARD */
+    .pipeline-dashboard-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.06);
+      position: relative;
+    }
+
+    .source-cards-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      z-index: 2;
+    }
+
+    .pipeline-source-card {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 1rem 0.75rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .pipeline-source-card i {
+      font-size: 1.25rem;
+      color: #475569;
+      margin-bottom: 0.5rem;
+    }
+
+    .pipeline-source-card h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .pipeline-source-card p {
+      font-size: 0.68rem;
+      color: #64748B;
+      margin-top: 2px;
+    }
+
+    .pipeline-source-card:hover, .pipeline-source-card.active {
+      background: #FFFFFF;
+      border-color: #2563EB;
+      box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.15);
+      transform: translateY(-3px);
+    }
+
+    .pipeline-source-card:hover i, .pipeline-source-card.active i {
+      color: #2563EB;
+      transform: scale(1.1);
+    }
+
+    .conduit-channel {
+      height: 80px;
+      position: relative;
+    }
+
+    .stream-line-conduit {
+      position: absolute;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(to bottom, #E2E8F0, rgba(56, 189, 248, 0.6), #2563EB);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .user-pc-watcher {
+      position: absolute;
+      top: -12px; 
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      pointer-events: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #0F172A;
+      color: #F59E0B;
+      border: 1px solid rgba(245, 158, 11, 0.7);
+      padding: 4px 6px;
+      border-radius: 5px;
+      font-size: 0.65rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .dynamic-packet {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #38BDF8;
+      border-radius: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 10px #38BDF8;
+      animation: rapidDrop 0.25s linear forwards;
+    }
+
+    @keyframes rapidDrop {
+      0% { top: 0%; opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+
+    .faridex-processing-bucket {
+      background: linear-gradient(135deg, #0A192F 0%, #1E293B 100%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      color: #FFFFFF;
+      position: relative;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3), 0 12px 24px -10px rgba(10, 25, 47, 0.4);
+    }
+
+    .bucket-header-zone {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .bucket-title-meta h5 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .bucket-title-meta p {
+      font-size: 0.7rem;
+      color: #38BDF8;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .engine-status-puck {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      padding: 3px 8px;
+      border-radius: 4px;
+      color: #10B981;
+    }
+
+    .telemetry-output-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .growth-bars-display {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      height: 85px;
+      padding: 0 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .growth-chart-bar {
+      width: 15%;
+      border-radius: 3px 3px 0 0;
+      height: 50%;
+      transition: height 0.35s cubic-bezier(0.1, 0.8, 0.2, 1);
+    }
+
+    .bar-cyan   { background: linear-gradient(to top, #0E7490, #22D3EE); }
+    .bar-blue   { background: linear-gradient(to top, #1E40AF, #60A5FA); }
+    .bar-green  { background: linear-gradient(to top, #065F46, #34D399); }
+    .bar-purple { background: linear-gradient(to top, #6B21A8, #C084FC); }
+    .bar-indigo { background: linear-gradient(to top, #3730A3, #818CF8); }
+
+    .metric-readout-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      text-align: right;
+    }
+
+    .metric-readout-panel .value-node {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1;
+    }
+
+    .delta-status-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .delta-status-row.positive { color: #10B981; }
+    .delta-status-row.negative { color: #EF4444; }
+
+    .metric-readout-panel .label-node {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #94A3B8;
+      margin-top: 2px;
+    }
+
+    /* PRODUCTS SECTION */
+    .products-grid-section {
+      border-top: 1px solid #E2E8F0;
+      padding-top: 60px;
+    }
+
+    .section-header-area {
+      margin-bottom: 3rem;
+    }
+
+    .section-title-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 3rem;
+      margin-top: 2.5rem;
+    }
+
+    .premium-product-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px; 
+      padding: 3rem 2.5rem;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05);
+    }
+
+    .premium-product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: #CBD5E1;
+      transition: background 0.3s ease;
+    }
+
+    .premium-product-card:hover {
+      transform: translateY(-6px);
+      border-color: #CBD5E1;
+      box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.1);
+    }
+
+    .premium-product-card:hover::before {
+      background: #1E3A8A;
+    }
+
+    .product-headline {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .product-meta-sub {
+      color: #1E3A8A;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .product-description-text {
+      color: #475569;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .btn-card-primary {
+      background: #0F172A;
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      padding: 1.1rem 2rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      transition: all 0.2s ease;
+      border: none;
+      width: 100%;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .btn-card-primary:hover {
+      background: #1E3A8A;
+    }
+
+    /* MODAL STYLES (simplified) */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0.25s, opacity 0.25s ease;
+    }
+
+    .modal-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .modal-container {
+      background: #FFFFFF;
+      border-top: 6px solid #1E3A8A;
+      max-width: 650px;
+      width: 90%;
+      border-radius: 4px;
+      box-shadow: 0 40px 80px -15px rgba(15, 23, 42, 0.3);
+      padding: 3.5rem;
+      position: relative;
+      transform: scale(0.98);
+      transition: transform 0.25s ease;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.active .modal-container {
+      transform: scale(1);
+    }
+
+    .modal-header-centered {
+      position: relative;
+      text-align: center;
+      border-bottom: 1px solid #E2E8F0;
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .close-modal-absolute {
+      position: absolute;
+      top: -1.5rem;
+      right: -1.5rem;
+      background: none;
+      border: none;
+      font-size: 1.25rem;
+      color: #64748B;
+      cursor: pointer;
+    }
+
+    .btn-secondary-close {
+      background: #F1F5F9;
+      color: #334155;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      padding: 0.85rem 1.75rem;
+      border-radius: 4px;
+      border: 1px solid #E2E8F0;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    /* FOOTER (matching central hub style) */
+    .hub-footer {
+      background: #0f2a3b;
+      color: #cbdfed;
+      padding: 48px 0 24px;
+      margin-top: 80px;
+    }
+    .hub-footer .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 60px;
+    }
+    .link-group h4 {
+      color: white;
+      margin-bottom: 16px;
+    }
+    .link-group a, .link-group span {
+      display: block;
+      color: #bcd3e2;
+      text-decoration: none;
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 40px;
+      font-size: 0.75rem;
+      border-top: 1px solid #284b62;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid-layout {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+      }
+    }
+    @media (max-width: 768px) {
+      body { padding-top: 120px; }
+      .hero-title { font-size: 2.35rem; }
+      .products-grid { grid-template-columns: 1fr; }
+      .footer-content { flex-direction: column; }
+      .footer-links { flex-direction: column; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="nav-main-tier">
+    <div class="container">
+      <a href="#" class="logo-area">
+        <div class="logo-main">Farid<span class="ex">Ex</span> Labs</div>
+        <div class="tagline">Quantifying Product Decisions</div>
+      </a>
+      <div class="nav-links">
+        <button id="navOpenGuideBtn">User Guide</button>
+        <a href="#validation-tests" class="nav-products">Validation Tests</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content-container">
+  
+  <section id="home" class="hero-section">
+    <div class="hero-grid-layout">
+      <div class="hero-left-content">
+        <div class="section-label">Institutional Feasibility Intelligence</div>
+        <h1 class="hero-title">
+          Replacing product intuition with <em>verifiable mathematical scoring models.</em>
+        </h1>
+        <p class="hero-subtitle">FaridEx Labs engineers isolated tactical validation frameworks that allow software product leaders, enterprise managers, and founders to audit feature sets and mitigate roadmap vulnerabilities pre-development.</p>
+        <div class="hero-action-row">
+          <a href="#validation-tests" class="btn-shine-premium nav-products">
+            <span>Explore Validation Tests</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <button id="heroOpenGuideBtn" class="btn-outline-executive">
+            <span>Lab User Guide</span>
+            <i class="fas fa-book-open"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="pipeline-dashboard-container" id="dashboardHub">
+        <div class="source-cards-row">
+          <div class="pipeline-source-card active" data-target-state="1" id="cardAnalysis">
+            <i class="fas fa-chart-line"></i>
+            <h4>Analysis</h4>
+            <p>Quantitative Logic</p>
+          </div>
+          <div class="pipeline-source-card" data-target-state="2" id="cardStrategy">
+            <i class="fas fa-compass"></i>
+            <h4>Strategy</h4>
+            <p>Risk Vulnerability</p>
+          </div>
+          <div class="pipeline-source-card" data-target-state="3" id="cardExecution">
+            <i class="fas fa-gears"></i>
+            <h4>Execution</h4>
+            <p>Pre-Dev Verification</p>
+          </div>
+        </div>
+
+        <div class="conduit-channel" id="conduitTrack">
+          <div class="stream-line-conduit"></div>
+          <div id="userTrendWatcher" class="user-pc-watcher">
+            <i class="fas fa-user"></i>
+            <i class="fas fa-desktop"></i>
+          </div>
+        </div>
+
+        <div class="faridex-processing-bucket">
+          <div class="bucket-header-zone">
+            <div class="bucket-title-meta">
+              <h5>FaridEx Lab Engine Core</h5>
+              <p id="activeTrackLabel">Processing Pipeline Active: Analysis Mode</p>
+            </div>
+            <div class="engine-status-puck">
+              <i class="fas fa-bolt"></i> High Frequency
+            </div>
+          </div>
+
+          <div class="telemetry-output-grid">
+            <div class="growth-bars-display" id="barsDisplay">
+              <div class="growth-chart-bar bar-cyan" style="height: 45%;"></div>
+              <div class="growth-chart-bar bar-blue" style="height: 70%;"></div>
+              <div class="growth-chart-bar bar-green" style="height: 85%;"></div>
+              <div class="growth-chart-bar bar-purple" style="height: 60%;"></div>
+              <div class="growth-chart-bar bar-indigo" style="height: 90%;"></div>
+            </div>
+            <div class="metric-readout-panel">
+              <div class="value-node" id="telemetryValue">64.50%</div>
+              <div class="delta-status-row positive" id="deltaStatusBox">
+                <i class="fas id-icon fa-caret-up" id="deltaIcon"></i> <span id="deltaValue">+1.45%</span>
+              </div>
+              <div class="label-node">Feasibility Growth Core</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="validation-tests" class="products-grid-section">
+    <div class="section-header-area">
+      <span class="section-title-label">Available Modules</span>
+      <h2 class="section-title">Validation Test Architecture</h2>
+    </div>
+    
+    <div class="products-grid">
+      <div class="premium-product-card">
+        <div class="card-top-matter">
+          <div style="background: #ECFDF5; border: 1px solid #A7F3D0; color: #047857; display: inline-block; padding: 4px 12px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; margin-bottom: 1rem;">
+            <i class="fas fa-circle-check"></i> Operational Test · Active Engine
+          </div>
+          <h3 class="product-headline">RevenuePilot</h3>
+          <div class="product-meta-sub"><i class="fas fa-coins"></i> Revenue Feasibility Test Platform</div>
+          <p class="product-description-text">Insulate engineering teams from non-viable architectures. RevenuePilot audits target market parameters, variable baseline pricing tiers, and direct monetization vectors before a single line of script is committed.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr auto; gap: 0.75rem;">
+          <a href="revenue-pilot.html" class="btn-card-primary" style="text-decoration: none;">
+            <span>Run Feasibility Test</span>
+            <i class="fas fa-bolt"></i>
+          </a>
+          <button class="btn-card-primary open-manual-trigger" data-target-manual="revenuePilotManual" style="background: #F1F5F9; color: #1E3A8A; font-size: 0.8rem; padding: 0 1.2rem; width: auto; border: 1px solid #CBD5E1;">
+            <i class="fas fa-file-invoice"></i> <span>Manual</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="premium-product-card" style="opacity: 0.85;">
+        <div class="card-top-matter">
+          <div class="coming-soon-badge" style="background: #FEF3C7; border: 1px solid #FDE68A; color: #B45309; display: inline-block; padding: 4px 12px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; margin-bottom: 1rem;">
+            <i class="far fa-clock"></i> Development Phase
+          </div>
+          <h3 class="product-headline">FeatureImpact OS</h3>
+          <div class="product-meta-sub"><i class="fas fa-shuffle"></i> Pre-Deployment Feature Impact Simulator</div>
+          <p class="product-description-text">Predicts how a feature modification may impact users and overall product performance vectors before deployment. Simulates onboarding friction, retention stability indexes, and UX disruption indicators.</p>
+        </div>
+        <button class="btn-card-primary" disabled style="background: #E2E8F0; color: #94A3B8; cursor: not-allowed;">
+          <span>Pipeline Test Locked</span>
+          <i class="fas fa-lock"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- HUB-STYLE FOOTER (no about section) -->
+  <footer class="hub-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          <strong style="font-size:1.2rem;">Ghulam Farid</strong><br>
+          Corporate Strategy & Product Consultant<br>
+          <span style="font-size:0.8rem;">Data Science × Corporate Strategy = Intelligent Growth</span>
+        </div>
+        <div class="footer-links">
+          <div class="link-group">
+            <h4>Explore</h4>
+            <a href="#validation-tests">Validation Tests</a>
+            <a href="#" id="footerGuideBtn">User Guide</a>
+          </div>
+          <div class="link-group">
+            <h4>Connect</h4>
+            <span>gf1488360@gmail.com</span>
+            <span>+92 308 6007904</span>
+            <span>Lahore, Pakistan</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Ghulam Farid — Corporate Strategy & Product Consultant. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- MODALS -->
+<div id="userGuideModal" class="modal-overlay">
+  <div class="modal-container">
+    <div class="modal-header-centered">
+      <h2>User Guide</h2>
+      <button class="close-modal-absolute modal-close-trigger"><i class="fas fa-times"></i></button>
+    </div>
+    <div><h4 style="margin-bottom: 8px;">What is the Lab?</h4><p>FaridEx Labs helps you check if a product or business idea is practical and financially viable before you build it.</p></div>
+    <div style="margin: 20px 0;"><h4>How to use</h4><p>1. Go to Validation Tests.<br>2. Select RevenuePilot and click "Run Feasibility Test".<br>3. Or click "Manual" to read the test specification.</p></div>
+    <div style="text-align: right;"><button class="btn-secondary-close modal-close-trigger">Close</button></div>
+  </div>
+</div>
+
+<div id="revenuePilotManual" class="modal-overlay">
+  <div class="modal-container">
+    <div class="modal-header-centered">
+      <h2>Test Manual</h2>
+      <button class="close-modal-absolute modal-close-trigger"><i class="fas fa-times"></i></button>
+    </div>
+    <p><strong>RevenuePilot</strong> evaluates monetization structures through a 33-vector calibration array. Inputs: TAM, SAM, SOM, CAC, Regulatory Index. Outputs: Feasibility Growth Score, optimization vectors.</p>
+    <div style="margin-top: 2rem; text-align: right;"><button class="btn-secondary-close modal-close-trigger">Dismiss</button></div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // Modal logic
+    const userGuideModal = document.getElementById('userGuideModal');
+    const revenueManual = document.getElementById('revenuePilotManual');
+    const openGuideBtns = [document.getElementById('navOpenGuideBtn'), document.getElementById('heroOpenGuideBtn'), document.getElementById('footerGuideBtn')];
+    const manualTriggers = document.querySelectorAll('.open-manual-trigger');
+    const closeTriggers = document.querySelectorAll('.modal-close-trigger');
+    let activeModal = null;
+    function openModal(m) { if(m) { m.classList.add('active'); document.body.style.overflow='hidden'; activeModal=m; } }
+    function closeModal() { if(activeModal) { activeModal.classList.remove('active'); document.body.style.overflow=''; activeModal=null; } }
+    openGuideBtns.forEach(btn => { if(btn) btn.addEventListener('click', () => openModal(userGuideModal)); });
+    manualTriggers.forEach(btn => { btn.addEventListener('click', () => openModal(revenueManual)); });
+    closeTriggers.forEach(tr => tr.addEventListener('click', closeModal));
+    document.querySelectorAll('.modal-overlay').forEach(overlay => overlay.addEventListener('click', e => { if(e.target===overlay) closeModal(); }));
+    document.addEventListener('keydown', e => { if(e.key==='Escape' && activeModal) closeModal(); });
+    // Smooth scroll
+    document.querySelectorAll('.nav-products').forEach(link => link.addEventListener('click', e => { e.preventDefault(); document.getElementById('validation-tests').scrollIntoView({behavior:'smooth'}); }));
+    // Dashboard telemetry
+    const conduitTrack = document.getElementById('conduitTrack');
+    const chartBars = document.querySelectorAll('.growth-chart-bar');
+    const telemetryValue = document.getElementById('telemetryValue');
+    const deltaValue = document.getElementById('deltaValue');
+    const deltaStatusBox = document.getElementById('deltaStatusBox');
+    const deltaIcon = document.getElementById('deltaIcon');
+    const sourceCards = document.querySelectorAll('.pipeline-source-card');
+    let baseScore = 64.50;
+    setInterval(() => { const p = document.createElement('div'); p.className='dynamic-packet'; p.style.marginLeft=`${Math.floor(Math.random()*30)-15}px`; conduitTrack.appendChild(p); setTimeout(()=>p.remove(),250); }, 200);
+    function refreshTelemetry() {
+      chartBars.forEach(bar => bar.style.height = `${Math.floor(Math.random()*65)+30}%`);
+      let old = baseScore; baseScore += (Math.random()*12)-5.5;
+      if(baseScore>95) baseScore=88.5; if(baseScore<30) baseScore=42.1;
+      telemetryValue.textContent = `${baseScore.toFixed(2)}%`;
+      let diff = baseScore - old;
+      if(diff>=0) { deltaStatusBox.className="delta-status-row positive"; deltaIcon.className="fas fa-caret-up"; deltaValue.textContent=`+${diff.toFixed(2)}%`; }
+      else { deltaStatusBox.className="delta-status-row negative"; deltaIcon.className="fas fa-caret-down"; deltaValue.textContent=`${diff.toFixed(2)}%`; }
+    }
+    setTimeout(refreshTelemetry,60); setInterval(refreshTelemetry,500);
+    const trackLabels = ["Analysis Mode", "Strategy Core", "Execution Node"];
+    sourceCards.forEach((card,idx) => { card.addEventListener('click', () => { sourceCards.forEach(c=>c.classList.remove('active')); card.classList.add('active'); document.getElementById('activeTrackLabel').textContent=`Processing Pipeline Active: ${trackLabels[idx]}`; }); });
+  })();
+</script>
+</body>
+</html>
