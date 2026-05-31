@@ -512,7 +512,9 @@
                         <h3>📈 After Strategy</h3>
                         <div id="afterBars" class="bars-group"></div>
                     </div>
-                </div>
+                 </div>
+                <div class="metric-badge" id="metricLabel">Current: Revenue Growth</div>
+               
             </div>
         </div>
     </section>
@@ -621,9 +623,9 @@
 
         // ----- HORIZONTAL ANIMATION WITH CSS BARS -----
         const metrics = [
-            { name: "Revenue Growth", before: [28, 32, 24], after: [78, 82, 74] },
-            { name: "Operational Efficiency", before: [45, 48, 40], after: [88, 91, 85] },
-            { name: "Market Share", before: [15, 20, 18], after: [58, 63, 60] }
+            { name: "Tangible Results", before: [28, 32, 24], after: [78, 82, 74] },
+            { name: "Tangible Results", before: [45, 48, 40], after: [88, 91, 85] },
+            { name: "Tangible Results", before: [15, 20, 18], after: [58, 63, 60] }
         ];
         let currentIdx = 0;
         let isMoving = false;
@@ -644,7 +646,7 @@
         function updateBars(containerId, values, colors) {
             const container = document.getElementById(containerId);
             container.innerHTML = '';
-            const labels = ['Profit', 'Market', 'Adoption'];
+            const labels = ['Profit', 'Market Shares', 'Adoption'];
             for (let i = 0; i < values.length; i++) {
                 const bar = createBarElement(labels[i], values[i], colors[i]);
                 container.appendChild(bar);
@@ -655,7 +657,7 @@
             const metric = metrics[currentIdx];
             updateBars('beforeBars', metric.before, ['#a0aec0', '#94a3b8', '#8896a8']);
             updateBars('afterBars', metric.after, ['#1e3a5f', '#2c6e9e', '#3b82b6']);
-            document.getElementById('metricLabel').innerHTML = `⚡ Current focus: ${metric.name}`;
+            document.getElementById('metricLabel').innerHTML = ` ${metric.name}`;
         }
 
         // Horizontal particle movement
