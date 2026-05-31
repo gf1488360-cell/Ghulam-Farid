@@ -552,7 +552,54 @@
     </div>
 </section>
 
+<!-- Interactive Advisory Footprint Module -->
+<section class="advisory-footprint" style="background: #FFFFFF; padding: 50px 0; border-bottom: 1px solid var(--mck-border); position: relative; z-index: 10;">
+    <div class="container">
+        <div class="footprint-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: center;">
+            
+            <!-- Metric 1 -->
+            <div class="footprint-card" style="display: flex; flex-direction: column; align-items: center; position: relative;">
+                <div class="canvas-wrapper" style="position: relative; width: 100px; height: 100px; margin-bottom: 16px;">
+                    <canvas id="engagementsDonut"></canvas>
+                    <div class="counter-overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; color: var(--mck-navy);"><span class="stat-counter" data-target="20">0</span>+</div>
+                </div>
+                <h4 style="font-family: 'Inter', sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--mck-text-muted); font-weight: 600;">Strategic Engagements</h4>
+                <p style="font-size: 0.8rem; color: #7B8794; margin-top: 4px; max-width: 220px;">Corporate roadmaps & fractional digital mandates deployed.</p>
+            </div>
 
+            <!-- Metric 2 -->
+            <div class="footprint-card" style="display: flex; flex-direction: column; align-items: center; position: relative; border-left: 1px solid var(--mck-border); border-right: 1px solid var(--mck-border);">
+                <div class="canvas-wrapper" style="position: relative; width: 100px; height: 100px; margin-bottom: 16px;">
+                    <canvas id="casesDonut"></canvas>
+                    <div class="counter-overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; color: var(--mck-navy);"><span class="stat-counter" data-target="30">0</span>+</div>
+                </div>
+                <h4 style="font-family: 'Inter', sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--mck-text-muted); font-weight: 600;">Case Studies</h4>
+                <p style="font-size: 0.8rem; color: #7B8794; margin-top: 4px; max-width: 220px;">MECE structural frameworks fully executed and audited.</p>
+            </div>
+
+            <!-- Metric 3 -->
+            <div class="footprint-card" style="display: flex; flex-direction: column; align-items: center; position: relative;">
+                <div class="canvas-wrapper" style="position: relative; width: 100px; height: 100px; margin-bottom: 16px;">
+                    <canvas id="valuationDonut"></canvas>
+                    <div class="counter-overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; color: var(--mck-navy);"><span class="stat-counter" data-target="95">0</span>%</div>
+                </div>
+                <h4 style="font-family: 'Inter', sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--mck-text-muted); font-weight: 600;">Retention Index</h4>
+                <p style="font-size: 0.8rem; color: #7B8794; margin-top: 4px; max-width: 220px;">Client conversion stability and long-term pipeline optimization.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Responsive Handling Overrides -->
+<style>
+@media (max-width: 768px) {
+    .footprint-grid { grid-template-columns: 1fr !important; gap: 30px !important; }
+    .footprint-card { border-left: none !important; border-right: none !important; border-bottom: 1px solid var(--mck-border); padding-bottom: 20px; }
+    .footprint-card:last-child { border-bottom: none; padding-bottom: 0; }
+}
+                     </style>
+    
 <section id="competencies" class="competency-section">
     <div class="container">
         <div class="competency-grid">
@@ -863,6 +910,83 @@
             } 
         }); 
     });
+    // Interactive Donut Charts & Counter Module Implementation
+const initFootprintModule = () => {
+    const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '82%',
+        plugins: { legend: { display: false }, tooltip: { enabled: false } },
+        events: []
+    };
+
+    // Instantiate Donut Frameworks
+    const ctxEngage = document.getElementById('engagementsDonut').getContext('2d');
+    const engageChart = new Chart(ctxEngage, {
+        type: 'doughnut',
+        data: { datasets: [{ data: [0, 100], backgroundColor: ['#002147', '#E4E7EB'], borderLineWidth: 0, borderWidth: 0 }] },
+        options: chartOptions
+    });
+
+    const ctxCases = document.getElementById('casesDonut').getContext('2d');
+    const casesChart = new Chart(ctxCases, {
+        type: 'doughnut',
+        data: { datasets: [{ data: [0, 100], backgroundColor: ['#0072CE', '#E4E7EB'], borderLineWidth: 0, borderWidth: 0 }] },
+        options: chartOptions
+    });
+
+    const ctxValue = document.getElementById('valuationDonut').getContext('2d');
+    const valuationChart = new Chart(ctxValue, {
+        type: 'doughnut',
+        data: { datasets: [{ data: [0, 100], backgroundColor: ['#334E68', '#E4E7EB'], borderLineWidth: 0, borderWidth: 0 }] },
+        options: chartOptions
+    });
+
+    // Animate numbers and chart tracking accurately
+    const triggerAnimations = () => {
+        // Animate Charts
+        engageChart.data.datasets[0].data = [75, 25]; engageChart.update();
+        casesChart.data.datasets[0].data = [85, 15]; casesChart.update();
+        valuationChart.data.datasets[0].data = [95, 5]; valuationChart.update();
+
+        // Animate Numerical Counters
+        const counters = document.querySelectorAll('.stat-counter');
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const duration = 1500; // 1.5 Seconds execution time
+            const startTime = performance.now();
+
+            const updateNumber = (currentTime) => {
+                const elapsedTime = currentTime - startTime;
+                if (elapsedTime < duration) {
+                    const progress = elapsedTime / duration;
+                    counter.innerText = Math.floor(progress * target);
+                    requestAnimationFrame(updateNumber);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            requestAnimationFrame(updateNumber);
+        });
+    };
+
+    // Lazy load animations via viewport entry tracker
+    const moduleSection = document.querySelector('.advisory-footprint');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                triggerAnimations();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    
+    observer.observe(moduleSection);
+};
+
+// Initialize once document loads
+document.addEventListener('DOMContentLoaded', initFootprintModule);
+    
 </script>
 </body>
 </html>
