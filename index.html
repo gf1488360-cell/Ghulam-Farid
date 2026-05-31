@@ -110,7 +110,7 @@
         .expertise-card, .service-card { height: 100%; display: flex; flex-direction: column; }
         .expertise-icon, .service-icon { font-size: 2rem; color: var(--light-blue); margin-bottom: 20px; }
         
-        /* Labs & Analysis - Centered cards with flex */
+        /* Labs & Analysis - Centered cards */
         .labs-grid {
             display: flex;
             justify-content: center;
@@ -128,6 +128,30 @@
         .lab-icon { font-size: 2rem; color: var(--light-blue); margin-bottom: 20px; }
         .lab-link { margin-top: auto; padding-top: 20px; color: var(--light-blue); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: var(--transition); }
         .lab-link:hover { gap: 12px; color: var(--gold-accent); }
+        
+        /* Strategic Edge Navy Background */
+        #strategic-edge {
+            background: var(--navy-deep);
+            color: white;
+        }
+        #strategic-edge .section-title {
+            background: none;
+            color: white;
+        }
+        #strategic-edge .section-label {
+            background: rgba(255,255,255,0.15);
+            color: var(--gold-accent);
+        }
+        #strategic-edge p {
+            color: rgba(255,255,255,0.7);
+        }
+        #strategic-edge .ring-label,
+        #strategic-edge .ring-percent {
+            color: white;
+        }
+        #strategic-edge .ring-canvas {
+            filter: drop-shadow(0 0 4px rgba(0,0,0,0.2));
+        }
         
         .contact-form input, .contact-form textarea { width: 100%; padding: 14px 18px; border: 1px solid var(--gray-light); border-radius: 24px; margin-bottom: 16px; font-family: 'Inter', sans-serif; }
         .contact-form button { background: var(--light-blue); color: white; border: none; padding: 14px; border-radius: 40px; font-weight: 600; cursor: pointer; width: 100%; }
@@ -203,20 +227,20 @@
                     <div class="step-item"><div class="step-icon"><i class="fas fa-play-circle"></i></div><div class="step-label">Execution</div><div class="step-desc">Agile deployment</div></div>
                     <div class="step-item"><div class="step-icon"><i class="fas fa-chart-line"></i></div><div class="step-label">Growth</div><div class="step-desc">Scale & optimize</div></div>
                 </div>
-                <div class="growth-badge" id="dynamicGrowthMessage">🚀  Growth Intelligence Active</div>
+                <div class="growth-badge" id="dynamicGrowthMessage">🚀 PKR Growth Intelligence Active</div>
                 <div style="margin-top: 15px; font-size:0.7rem; color:var(--gray-mid);">Data-backed decisions → Exponential outcomes</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Strategic Edge Skills Rings -->
-<section id="strategic-edge" style="padding: 20px 0 40px;">
+<!-- Strategic Edge Section - Navy Background -->
+<section id="strategic-edge" style="padding: 60px 0;">
     <div class="container">
         <div style="text-align: center;" class="fade-up">
             <span class="section-label">STRATEGIC EDGE</span>
             <h2 class="section-title">Core Competencies & Proficiency</h2>
-            <p style="color: var(--gray-mid);">Measured excellence across the pillars of modern strategy execution.</p>
+            <p style="color: rgba(255,255,255,0.7);">Measured excellence across the pillars of modern strategy execution.</p>
         </div>
         <div class="skills-ring fade-up">
             <div class="ring-item"><canvas class="ring-canvas" id="ringDataScience" width="110" height="110"></canvas><div class="ring-label">Data Science</div><div class="ring-percent">86%</div></div>
@@ -296,7 +320,7 @@
 <section id="about" style="background: var(--navy-deep); padding: 80px 0; color: white;">
     <div class="container">
         <div class="about-content fade-up" style="max-width: 800px; margin: 0 auto; text-align: center;">
-            <span class="section-label" style="background: rgba(59,130,246,0.2);">INSIGHT-LED LEADERSHIP</span>
+            <span class="section-label" style="background: rgba(255,255,255,0.15); color: var(--gold-accent);">INSIGHT-LED LEADERSHIP</span>
             <h2 class="section-title" style="color: white;">Ghulam Farid</h2>
             <div style="color: var(--gold-accent); font-style: italic; font-size: 1.2rem; margin: 20px 0;">“Data Science × Business Knowledge = Intelligent Growth”</div>
             <p>I operate at the intersection of business strategy and product execution — helping companies in Pakistan and emerging markets turn data into a competitive weapon. With a BS in Data Science and hands-on consulting experience, I develop strategic roadmaps for SaaS exports, e-commerce, hyperlocal platforms, and market entry frameworks with PKR-native financial modeling.</p>
@@ -348,10 +372,16 @@
         const end = start + (percent / 100) * 2 * Math.PI;
         ctx.clearRect(0, 0, 110, 110);
         ctx.beginPath(); ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-        ctx.strokeStyle = '#E4E9F0'; ctx.lineWidth = 7; ctx.stroke();
+        ctx.strokeStyle = 'rgba(255,255,255,0.2)'; // lighter background ring on dark bg
+        ctx.lineWidth = 7;
+        ctx.stroke();
         ctx.beginPath(); ctx.arc(centerX, centerY, radius, start, end);
-        ctx.strokeStyle = color; ctx.stroke();
-        ctx.font = 'bold 20px Inter'; ctx.fillStyle = color; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.strokeStyle = color;
+        ctx.stroke();
+        ctx.font = 'bold 20px Inter';
+        ctx.fillStyle = color;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
         ctx.fillText(percent + '%', centerX, centerY);
     }
     drawRing('ringDataScience', 86, '#3B82F6');
