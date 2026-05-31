@@ -120,6 +120,18 @@
       color: #38BDF8;
     }
 
+    /* Back to Hub link style */
+    .back-link {
+      background: rgba(255,255,255,0.1);
+      padding: 6px 12px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      margin-left: 1rem;
+    }
+    .back-link i {
+      margin-right: 6px;
+    }
+
     /* GLOBAL CONTENT SYSTEM */
     .content-container {
       max-width: 1200px;
@@ -593,7 +605,7 @@
       background: #1E3A8A;
     }
 
-    /* MODAL STYLES (simplified) */
+    /* MODAL STYLES */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -668,7 +680,7 @@
       font-size: 0.8rem;
     }
 
-    /* FOOTER (matching central hub style) */
+    /* HUB-STYLE FOOTER (with back link) */
     .hub-footer {
       background: #0f2a3b;
       color: #cbdfed;
@@ -701,6 +713,9 @@
       margin-bottom: 8px;
       font-size: 0.85rem;
     }
+    .link-group a:hover {
+      color: white;
+    }
     .footer-bottom {
       text-align: center;
       padding-top: 40px;
@@ -721,6 +736,9 @@
       .products-grid { grid-template-columns: 1fr; }
       .footer-content { flex-direction: column; }
       .footer-links { flex-direction: column; gap: 20px; }
+      .navbar .container { padding: 0 20px; }
+      .nav-links { gap: 1rem; }
+      .back-link { margin-left: 0.5rem; font-size: 0.7rem; }
     }
   </style>
 </head>
@@ -736,6 +754,8 @@
       <div class="nav-links">
         <button id="navOpenGuideBtn">User Guide</button>
         <a href="#validation-tests" class="nav-products">Validation Tests</a>
+        <!-- BACK TO HUB LINK IN HEADER -->
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Hub</a>
       </div>
     </div>
   </div>
@@ -866,20 +886,21 @@
     </div>
   </section>
 
-  <!-- HUB-STYLE FOOTER (no about section) -->
+  <!-- HUB-STYLE FOOTER with Back to Hub link -->
   <footer class="hub-footer">
     <div class="container">
       <div class="footer-content">
         <div>
           <strong style="font-size:1.2rem;">Ghulam Farid</strong><br>
           Corporate Strategy & Product Consultant<br>
-          <span style="font-size:0.8rem;">Data Science × Corporate Strategy = Intelligent Growth</span>
+          <span style="font-size:0.8rem;">Data Science × Strategy = Intelligent Growth</span>
         </div>
         <div class="footer-links">
           <div class="link-group">
             <h4>Explore</h4>
             <a href="#validation-tests">Validation Tests</a>
             <a href="#" id="footerGuideBtn">User Guide</a>
+            <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Main Hub</a>
           </div>
           <div class="link-group">
             <h4>Connect</h4>
