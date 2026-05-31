@@ -107,6 +107,53 @@
             height: 2px;
             background: #1e3a5f;
         }
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            display: none;
+            justify-content: flex-end;
+        }
+        .mobile-menu-panel {
+            background: white;
+            width: 80%;
+            max-width: 300px;
+            height: 100%;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #1e3a5f;
+        }
+        .mobile-menu-panel .nav-list-mobile {
+            list-style: none;
+            margin-top: 50px;
+        }
+        .mobile-menu-panel .nav-list-mobile li {
+            margin-bottom: 20px;
+        }
+        .mobile-menu-panel .nav-list-mobile a {
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #2d3e50;
+        }
         /* Buttons */
         .btn {
             display: inline-flex;
@@ -176,8 +223,13 @@
             padding: 24px;
             border: 1px solid rgba(59,130,246,0.2);
             text-align: center;
+            transition: all 0.3s;
         }
-        /* HORIZONTAL TRANSFORMATION CARD */
+        .hero-visual:hover {
+            border-color: #3b82b6;
+            box-shadow: 0 0 0 2px rgba(59,130,246,0.3);
+        }
+        /* Horizontal Transformation Card */
         .transformation-section {
             padding: 20px 0 60px;
         }
@@ -186,12 +238,11 @@
             border-radius: 32px;
             border: 1px solid #3b82b6;
             padding: 30px 20px;
-            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.05);
             transition: all 0.3s;
         }
         .transform-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 40px -12px rgba(59,130,246,0.2);
+            border-color: #3b82b6;
+            box-shadow: 0 0 0 2px rgba(59,130,246,0.3);
         }
         .transform-title {
             text-align: center;
@@ -306,40 +357,7 @@
             margin-left: auto;
             margin-right: auto;
         }
-        @media (max-width: 900px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-            }
-            .nav-menu {
-                display: none;
-            }
-            .mobile-toggle {
-                display: flex;
-            }
-            .nav-menu.active {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background: white;
-                padding: 30px;
-            }
-            .horizontal-flow {
-                flex-direction: column;
-            }
-            .flow-line-h {
-                display: none;
-            }
-            .flow-particle-h {
-                display: none !important;
-            }
-            .center-hub-h {
-                margin: 10px 0;
-            }
-        }
-        /* Other sections */
+        /* Other sections (restored) */
         .section-intro {
             text-align: center;
             margin-bottom: 56px;
@@ -367,24 +385,10 @@
         }
         .approach-card:hover, .feature-card:hover, .service-item:hover, .contact-form-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 20px 30px -12px rgba(59,130,246,0.2);
             border-color: #3b82b6;
+            box-shadow: 0 0 0 2px rgba(59,130,246,0.2);
         }
-        .approach-card::after, .feature-card::after, .service-item::after, .contact-form-card::after {
-            content: '';
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            width: 8px;
-            height: 8px;
-            background: #3b82b6;
-            border-radius: 2px;
-            animation: blinkLight 1.2s infinite;
-        }
-        @keyframes blinkLight {
-            0%, 100% { opacity: 0.25; transform: scale(0.9);}
-            50% { opacity: 1; transform: scale(1.2); background: #1e3a5f;}
-        }
+        /* No blinking corner */
         .why-section {
             padding: 80px 0;
             background: #f9fbfd;
@@ -405,6 +409,20 @@
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 28px;
         }
+        .service-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .service-item p {
+            color: #4a5568;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+        .service-icon {
+            font-size: 1.8rem;
+            color: #1e3a5f;
+            margin-bottom: 12px;
+        }
         .dual-card {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -415,15 +433,39 @@
             grid-template-columns: 1fr 1fr;
             gap: 48px;
         }
+        .contact-details {
+            margin-top: 20px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: white;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e3a5f;
+            font-size: 1.2rem;
+            border: 1px solid #e2e8f0;
+        }
         .contact-form-card {
             padding: 36px;
+        }
+        .form-group {
+            margin-bottom: 20px;
         }
         input, textarea {
             width: 100%;
             padding: 12px;
             border: 1px solid #d1dfe8;
             border-radius: 16px;
-            margin-bottom: 12px;
+            font-family: 'Inter', sans-serif;
         }
         footer {
             background: #0f2a3b;
@@ -434,8 +476,52 @@
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
+            gap: 40px;
         }
-        @media (max-width: 700px) {
+        .footer-links {
+            display: flex;
+            gap: 60px;
+        }
+        .link-group h4 {
+            color: white;
+            margin-bottom: 16px;
+        }
+        .link-group a, .link-group span {
+            display: block;
+            color: #bcd3e2;
+            text-decoration: none;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            font-size: 0.75rem;
+            border-top: 1px solid #284b62;
+            margin-top: 40px;
+        }
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-menu {
+                display: none;
+            }
+            .mobile-toggle {
+                display: flex;
+            }
+            .horizontal-flow {
+                flex-direction: column;
+            }
+            .flow-line-h {
+                display: none;
+            }
+            .flow-particle-h {
+                display: none !important;
+            }
+            .center-hub-h {
+                margin: 10px 0;
+            }
             .approach-grid, .dual-card, .contact-grid {
                 grid-template-columns: 1fr;
             }
@@ -470,11 +556,27 @@
         </div>
     </nav>
 
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileMenuOverlay" class="mobile-menu-overlay">
+        <div class="mobile-menu-panel">
+            <button id="closeMobileMenu" class="close-menu"><i class="fas fa-times"></i></button>
+            <ul class="nav-list-mobile">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#why-me">Why Me</a></li>
+                <li><a href="#labs">FaridEx Labs</a></li>
+                <li><a href="#analysis">Farid Analysis</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="nav-cta" style="display:inline-block;">Start a project</a></li>
+            </ul>
+        </div>
+    </div>
+
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-content">
-                    <div class="hero-badge">Corporate Strategy & Product Consultant</div>
                     <h1 class="hero-title">Data Science × Strategy = <span class="text-gradient">Intelligent Growth</span></h1>
                     <p class="hero-subtitle">I help organizations navigate complexity, align product vision with market realities, and build roadmaps that deliver measurable outcomes in emerging economies.</p>
                     <div class="hero-cta">
@@ -486,13 +588,13 @@
                     <i class="fas fa-chart-line" style="font-size: 3rem; color:#1e3a5f;"></i>
                     <i class="fas fa-arrow-right"></i>
                     <i class="fas fa-rocket" style="font-size: 3rem; color:#3b82b6;"></i>
-                    <p style="margin-top: 16px;">Analysis → Strategy → Execution</p>
+                    <p style="margin-top: 16px;">Analysis → Strategy → Execution → Growth</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- HORIZONTAL WORKING ANIMATION CARD -->
+    <!-- Horizontal Working Animation Card -->
     <section class="transformation-section">
         <div class="container">
             <div class="transform-card">
@@ -500,20 +602,17 @@
                 <div class="horizontal-flow" id="horizontalFlow">
                     <div class="flow-line-h"></div>
                     <div id="particleH" class="flow-particle-h"></div>
-                    <!-- Before Box -->
                     <div class="flow-box" id="beforeBox">
                         <h3>📉 Before Analysis</h3>
                         <div id="beforeBars" class="bars-group"></div>
                     </div>
-                    <!-- Center Hub -->
                     <div class="center-hub-h">🔍 Farid Analysis</div>
-                    <!-- After Box -->
                     <div class="flow-box" id="afterBox">
                         <h3>📈 After Strategy</h3>
                         <div id="afterBars" class="bars-group"></div>
                     </div>
-                 </div>
-                <div class="metric-badge" id="metricLabel">Current: Revenue Growth</div>
+                </div>
+                <div class="metric-badge" id="metricLabel">⚡ Current focus: Revenue Growth</div>
                
             </div>
         </div>
@@ -539,13 +638,13 @@
                 <div class="feature-card">
                     <i class="fas fa-flask" style="font-size: 2rem;"></i>
                     <h3>FaridEx Labs</h3>
-                    <p>Validation lab for digital products, feature concepts, and market assumptions.</p>
+                    <p>Validation lab for digital products, feature concepts, and market assumptions. Stress-test ideas before engineering deployment — reducing risk and accelerating time-to-value.</p>
                     <a href="https://faridexlabs.github.io/FaridEx-Labs/" target="_blank" style="color:#1e3a5f; font-weight:600;">Visit Lab →</a>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-chart-simple" style="font-size: 2rem;"></i>
                     <h3>Farid Analysis</h3>
-                    <p>In-depth case studies, competitive benchmarking, and strategic intelligence.</p>
+                    <p>In-depth case studies, competitive benchmarking, and strategic intelligence. Explore real projects — from SaaS export roadmaps to hyperlocal platforms and e-commerce battles.</p>
                     <a href="https://gf1488360-cell.github.io/FaridStrategy/" target="_blank" style="color:#1e3a5f; font-weight:600;">Explore Analysis →</a>
                 </div>
             </div>
@@ -556,17 +655,17 @@
         <div class="container">
             <div class="section-intro">
                 <span class="section-label">Strategic Services</span>
-                <h2 class="section-title">What I deliver</h2>
+                <h2 class="section-title">What I deliver for founders & leaders</h2>
             </div>
             <div class="services-grid">
-                <div class="service-item"><i class="fas fa-chart-pie"></i><h4>Product/Business Analysis</h4></div>
-                <div class="service-item"><i class="fas fa-user-check"></i><h4>Onboarding Flow Optimization</h4></div>
-                <div class="service-item"><i class="fas fa-road"></i><h4>Product Strategy & Roadmapping</h4></div>
-                <div class="service-item"><i class="fas fa-bullseye"></i><h4>Key Features & MVP Definition</h4></div>
-                <div class="service-item"><i class="fas fa-globe"></i><h4>Market Entry & GTM Strategy</h4></div>
-                <div class="service-item"><i class="fas fa-chart-line"></i><h4>Unit Economics & Modeling</h4></div>
-                <div class="service-item"><i class="fas fa-flask"></i><h4>Revenue Feasibility Engine</h4></div>
-                <div class="service-item"><i class="fas fa-people-arrows"></i><h4>Cross-Functional Sprints</h4></div>
+                <div class="service-item"><i class="fas fa-chart-pie service-icon"></i><h4>Product/Business Analysis (SWOT, PESTLE)</h4><p>Deep-dive competitive audit, internal capability mapping, and strategic gap identification.</p></div>
+                <div class="service-item"><i class="fas fa-user-check service-icon"></i><h4>Onboarding Flow Optimization</h4><p>Reduce friction, improve retention, and design activation loops backed by behavioral data.</p></div>
+                <div class="service-item"><i class="fas fa-road service-icon"></i><h4>Product Strategy & Roadmapping</h4><p>Define north star metrics, feature prioritization (RICE/WSJF), and 6–18 month execution roadmap.</p></div>
+                <div class="service-item"><i class="fas fa-bullseye service-icon"></i><h4>Key Features & MVP Definition</h4><p>Identify high-impact capabilities, de-risk scope, and align product investments with business goals.</p></div>
+                <div class="service-item"><i class="fas fa-globe service-icon"></i><h4>Market Entry & GTM Strategy</h4><p>Localization frameworks, channel strategy, and pilot design for emerging economies.</p></div>
+                <div class="service-item"><i class="fas fa-chart-line service-icon"></i><h4>Unit Economics & Financial Modeling</h4><p>CAC/LTV, payback periods, cohort analysis — build profitable growth levers.</p></div>
+                <div class="service-item"><i class="fas fa-flask service-icon"></i><h4>Revenue Feasibility Engine</h4><p>Pre-development scoring algorithm to evaluate concept ROI and marginal returns.</p></div>
+                <div class="service-item"><i class="fas fa-people-arrows service-icon"></i><h4>Cross-Functional Strategy Sprints</h4><p>Facilitate alignment between product, sales, and ops to execute complex initiatives.</p></div>
             </div>
         </div>
     </section>
@@ -578,8 +677,9 @@
                 <h2 class="section-title">Ghulam Farid</h2>
             </div>
             <div style="max-width:800px; margin:0 auto; text-align:center">
-                <p>Data Science × Business Knowledge = Intelligent Growth. BS Data Science, hands-on consulting for SaaS, e-commerce, hyperlocal platforms.</p>
-                <p>📍 Lahore, Pakistan | Fractional consulting & advisory.</p>
+                <p>I operate at the intersection of business strategy and product execution — helping companies in Pakistan and emerging markets turn data into a competitive weapon. My formula is simple: <strong>Data Science × Business Knowledge = Intelligent Growth</strong>. With a BS in Data Science and hands-on consulting experience, I have developed strategic roadmaps for SaaS exports, e-commerce battles, hyperlocal platforms, and market entry frameworks.</p>
+                <p style="margin-top: 16px;">I don't just analyze — I build actionable plans with clear KPIs and phased execution. Whether you're a startup aiming for national scale or an enterprise navigating local regulations, I bring a rare blend of analytical depth and strategic clarity.</p>
+                <p style="margin-top: 16px;">📍 Lahore, Pakistan | Open for fractional consulting and advisory roles.</p>
             </div>
         </div>
     </section>
@@ -589,39 +689,59 @@
             <div class="contact-grid">
                 <div>
                     <span class="section-label">Connect</span>
-                    <h2>Start a conversation</h2>
-                    <p><i class="fas fa-envelope"></i> gf1488360@gmail.com</p>
-                    <p><i class="fas fa-phone"></i> +92 308 6007904</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Lahore, Pakistan</p>
+                    <h2 style="font-size: 2rem;">Start a strategic conversation</h2>
+                    <p style="margin: 20px 0 10px;">Let’s align your product & corporate strategy for sustainable growth.</p>
+                    <div class="contact-details">
+                        <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div class="contact-text"><h4>Email</h4><p>gf1488360@gmail.com</p></div></div>
+                        <div class="contact-item"><div class="contact-icon"><i class="fas fa-phone-alt"></i></div><div class="contact-text"><h4>Phone</h4><p>+92 308 6007904</p></div></div>
+                        <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div class="contact-text"><h4>Location</h4><p>Lahore, Pakistan</p></div></div>
+                        <div class="contact-item"><div class="contact-icon"><i class="fab fa-linkedin"></i></div><div class="contact-text"><h4>LinkedIn</h4><p>linkedin.com/in/ghulam-farid-295143336</p></div></div>
+                    </div>
                 </div>
                 <div class="contact-form-card">
-                    <form action="https://formspree.io/f/mnjvrrvr" method="POST">
-                        <input type="text" name="name" placeholder="Full name" required>
-                        <input type="email" name="_replyto" placeholder="Email" required>
-                        <textarea name="message" placeholder="Your message" rows="4" required></textarea>
-                        <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
+                    <h3>Send a message</h3>
+                    <form id="contactForm" action="https://formspree.io/f/mnjvrrvr" method="POST">
+                        <input type="hidden" name="_subject" value="New Consulting Inquiry - FaridStrategy">
+                        <div class="form-group"><label>Full name *</label><input type="text" name="name" required></div>
+                        <div class="form-group"><label>Email *</label><input type="email" name="_replyto" required></div>
+                        <div class="form-group"><label>Subject</label><input type="text" name="subject" placeholder="Strategy consultation / Project inquiry"></div>
+                        <div class="form-group"><label>Message *</label><textarea rows="4" name="message" required></textarea></div>
+                        <button type="submit" class="btn btn-primary" style="width:100%;">Send message <i class="fas fa-paper-plane"></i></button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer>
+    <footer class="main-footer">
         <div class="container">
             <div class="footer-content">
-                <div><strong>Ghulam Farid</strong><br>Corporate Strategy & Product Consultant</div>
-                <div>© 2026</div>
+                <div><strong style="font-size:1.2rem;">Ghulam Farid</strong><br>Corporate Strategy & Product Consultant<br><span style="font-size:0.8rem;">Data Science × Strategy = Intelligent Growth</span></div>
+                <div class="footer-links">
+                    <div class="link-group"><h4>Explore</h4><a href="#why-me">Why Me</a><a href="#services">Services</a><a href="#labs">FaridEx Labs</a><a href="#analysis">Analysis</a></div>
+                    <div class="link-group"><h4>Connect</h4><span>gf1488360@gmail.com</span><span>+92 308 6007904</span><span>Lahore, Pakistan</span></div>
+                </div>
             </div>
+            <div class="footer-bottom"><p>© 2026 Ghulam Farid — Corporate Strategy & Product Consultant. All rights reserved.</p></div>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
-        const toggleBtn = document.getElementById('mobileToggle');
-        const navMenu = document.getElementById('navMenu');
-        if (toggleBtn) toggleBtn.onclick = () => navMenu.classList.toggle('active');
+        // Mobile menu
+        const mobileToggle = document.getElementById('mobileToggle');
+        const overlay = document.getElementById('mobileMenuOverlay');
+        const closeBtn = document.getElementById('closeMobileMenu');
+        if (mobileToggle) {
+            mobileToggle.onclick = () => overlay.style.display = 'flex';
+        }
+        if (closeBtn) {
+            closeBtn.onclick = () => overlay.style.display = 'none';
+        }
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) overlay.style.display = 'none';
+        });
 
-        // ----- HORIZONTAL ANIMATION WITH CSS BARS -----
+        // Animation script (Horizontal)
         const metrics = [
             { name: "Tangible Results", before: [28, 32, 24], after: [78, 82, 74] },
             { name: "Tangible Results", before: [45, 48, 40], after: [88, 91, 85] },
@@ -630,7 +750,7 @@
         let currentIdx = 0;
         let isMoving = false;
 
-        function createBarElement(label, value, color, isAfter = false) {
+        function createBarElement(label, value, color) {
             const div = document.createElement('div');
             div.className = 'bar-item';
             div.innerHTML = `
@@ -645,11 +765,11 @@
 
         function updateBars(containerId, values, colors) {
             const container = document.getElementById(containerId);
+            if (!container) return;
             container.innerHTML = '';
-            const labels = ['Profit', 'Market Shares', 'Adoption'];
+            const labels = ['Profit', 'Market', 'Adoption'];
             for (let i = 0; i < values.length; i++) {
-                const bar = createBarElement(labels[i], values[i], colors[i]);
-                container.appendChild(bar);
+                container.appendChild(createBarElement(labels[i], values[i], colors[i]));
             }
         }
 
@@ -660,21 +780,21 @@
             document.getElementById('metricLabel').innerHTML = ` ${metric.name}`;
         }
 
-        // Horizontal particle movement
         const particle = document.getElementById('particleH');
-        const container = document.getElementById('horizontalFlow');
+        const containerFlow = document.getElementById('horizontalFlow');
         const beforeBox = document.getElementById('beforeBox');
         const centerHub = document.querySelector('.center-hub-h');
         const afterBox = document.getElementById('afterBox');
 
         function getRelativeLeft(element) {
+            if (!element || !containerFlow) return 100;
             const elRect = element.getBoundingClientRect();
-            const contRect = container.getBoundingClientRect();
+            const contRect = containerFlow.getBoundingClientRect();
             return elRect.left + elRect.width / 2 - contRect.left;
         }
 
         function moveParticle() {
-            if (isMoving) return;
+            if (isMoving || !particle) return;
             isMoving = true;
             const startX = getRelativeLeft(beforeBox);
             const midX = getRelativeLeft(centerHub);
@@ -682,7 +802,7 @@
             particle.style.display = 'block';
             particle.style.left = startX + 'px';
             particle.style.transition = 'none';
-            particle.offsetHeight; // force reflow
+            particle.offsetHeight;
             particle.style.transition = 'left 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1)';
             particle.style.left = endX + 'px';
             setTimeout(() => {
@@ -694,14 +814,10 @@
             }, 800);
         }
 
-        // Initialize
         refreshCharts();
-        // Wait for layout then start
         setTimeout(() => {
             moveParticle();
-            setInterval(() => {
-                if (!isMoving) moveParticle();
-            }, 1000);
+            setInterval(() => { if (!isMoving) moveParticle(); }, 1000);
         }, 500);
     </script>
 </body>
