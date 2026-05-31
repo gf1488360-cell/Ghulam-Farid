@@ -175,13 +175,43 @@
         }
         
         /* Hero */
-        .hero { padding: 50px 0; }
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 0.9fr;
-            gap: 40px;
-            align-items: center;
-        }
+        /* Make Hero background Navy Blue */
+.hero {
+    background: var(--navy-deep);
+    color: white;
+}
+.hero .hero-badge {
+    background: rgba(255,255,255,0.15);
+    color: var(--gold-accent);
+}
+.hero .hero-description {
+    color: rgba(255,255,255,0.85);
+}
+.hero .hero-stats {
+    border-top-color: rgba(255,255,255,0.2);
+}
+.hero .stat-number {
+    color: var(--gold-accent);
+}
+.hero .btn-outline {
+    border-color: white;
+    color: white;
+}
+.hero .btn-outline:hover {
+    background: white;
+    color: var(--navy-deep);
+}
+.hero .hero-visual.glass-card {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.2);
+}
+.hero .step-icon {
+    background: rgba(255,255,255,0.15);
+    color: var(--gold-accent);
+}
+.hero .step-label, .hero .step-desc {
+    color: white;
+}
         @media (max-width: 900px) {
             .hero-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
             .hero-title { font-size: 2rem; }
