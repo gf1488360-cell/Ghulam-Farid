@@ -443,13 +443,7 @@
                         <a href="#contact" class="btn btn-secondary">Schedule Consultation →</a>
                     </div>
                 </div>
-                <div class="hero-visual">
-                    <i class="fas fa-chart-line" style="font-size: 3rem; color:#1e3a5f;"></i>
-                    <i class="fas fa-arrow-right"></i>
-                    <i class="fas fa-rocket" style="font-size: 3rem; color:#3b82b6;"></i>
-                    <p style="margin-top: 16px;">Analysis → Strategy → Execution</p>
-                </div>
-            </div>
+                
         </div>
     </section>
 
@@ -461,18 +455,18 @@
                 <div class="dual-chart-container" id="animationContainer">
                     <div class="flow-line"></div>
                     <div class="chart-box">
-                        <h3>📉 Before Analysis (Raw Data)</h3>
-                        <canvas id="topCanvas" width="600" height="180" style="width:100%; height:180px"></canvas>
+                        <h3>📉 Before Analysis</h3>
+                        <canvas id="topCanvas" width="600" height="160" style="width:80%; height:160px"></canvas>
                     </div>
                     <div class="center-hub">🔍 Farid Analysis</div>
                     <div class="chart-box">
-                        <h3>📈 After Strategy (Boosted Growth)</h3>
+                        <h3>📈 After Strategy </h3>
                         <canvas id="bottomCanvas" width="600" height="180" style="width:100%; height:180px"></canvas>
                     </div>
                     <div id="particle" class="flow-particle"></div>
                 </div>
-                <div class="metric-badge" id="metricLabel">Current: Revenue Growth</div>
-                <p style="text-align:center; margin-top: 20px; font-size:0.85rem;">⬇️ Every 1 second, a new metric flows through and boosts results ⬇️</p>
+                <div class="metric-badge" id="metricLabel">Tangible Results</div>
+                <p style="text-align:center; margin-top: 20px; font-size:0.85rem;"></p>
             </div>
         </div>
     </section>
@@ -586,7 +580,7 @@
 
         // Metric data: low (before), high (after)
         const metrics = [
-            { name: "Revenue Growth", low: [28, 32, 24], high: [78, 82, 74] },
+            { name: "Revenue Growth", low: [42, 32, 24], high: [98, 82, 74] },
             { name: "Operational Efficiency", low: [45, 48, 40], high: [88, 91, 85] },
             { name: "Market Share", low: [15, 20, 18], high: [58, 63, 60] }
         ];
@@ -606,7 +600,7 @@
                 ctx.fillText(data[i] + "%", x + 5, y - 5);
                 ctx.fillStyle = "#475569";
                 ctx.font = "10px Inter";
-                ctx.fillText(["A", "B", "C"][i], x + barWidth/2 - 4, height - 8);
+                ctx.fillText(["Profit", "Market Shares", "Adoptabbility"][i], x + barWidth/2 - 4, height - 8);
             }
         }
 
