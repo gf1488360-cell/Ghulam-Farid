@@ -129,7 +129,7 @@
         .lab-link { margin-top: auto; padding-top: 20px; color: var(--light-blue); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: var(--transition); }
         .lab-link:hover { gap: 12px; color: var(--gold-accent); }
         
-        /* Strategic Edge Navy Background */
+        /* Strategic Edge Navy Background - Improved contrast */
         #strategic-edge {
             background: var(--navy-deep);
             color: white;
@@ -153,11 +153,45 @@
             filter: drop-shadow(0 0 4px rgba(0,0,0,0.2));
         }
         
+        /* The Farid Advantage (expertise) section spacing */
+        #the-farid-advantage {
+            padding: 60px 0 40px;
+        }
+        
+        /* Strategic Impact Analysis */
+        #strategic-impact {
+            padding: 40px 0 60px;
+        }
+        
         .contact-form input, .contact-form textarea { width: 100%; padding: 14px 18px; border: 1px solid var(--gray-light); border-radius: 24px; margin-bottom: 16px; font-family: 'Inter', sans-serif; }
         .contact-form button { background: var(--light-blue); color: white; border: none; padding: 14px; border-radius: 40px; font-weight: 600; cursor: pointer; width: 100%; }
         footer { background: var(--navy-deep); color: rgba(255,255,255,0.7); padding: 48px 0 24px; }
-        @media (max-width: 1024px) { .container { padding: 0 32px; } .impact-charts, .dynamic-dashboard { grid-template-columns: 1fr 1fr; } .expertise-grid, .services-grid { grid-template-columns: 1fr 1fr; } .lab-card { flex: 0 0 340px; } }
-        @media (max-width: 800px) { .container { padding: 0 20px; } .nav-list { display: none; } .mobile-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; } .mobile-toggle span { width: 24px; height: 2px; background: var(--navy-deep); } .step-progression { flex-direction: column; } .progress-line { display: none; } .hero-title { font-size: 2.2rem; } .impact-charts, .dynamic-dashboard, .expertise-grid, .services-grid { grid-template-columns: 1fr; } .hero-stats { flex-direction: column; gap: 20px; } .lab-card { flex: 0 0 100%; } }
+        
+        /* Mobile Responsive Enhancements */
+        @media (max-width: 1024px) {
+            .container { padding: 0 32px; }
+            .impact-charts, .dynamic-dashboard { grid-template-columns: 1fr 1fr; }
+            .expertise-grid, .services-grid { grid-template-columns: 1fr 1fr; }
+            .lab-card { flex: 0 0 340px; }
+            .hero-title { font-size: 2.8rem; }
+        }
+        @media (max-width: 800px) {
+            .container { padding: 0 20px; }
+            .nav-list { display: none; }
+            .mobile-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; }
+            .mobile-toggle span { width: 24px; height: 2px; background: var(--navy-deep); }
+            .step-progression { flex-direction: column; }
+            .progress-line { display: none; }
+            .hero-title { font-size: 2.2rem; }
+            .impact-charts, .dynamic-dashboard, .expertise-grid, .services-grid { grid-template-columns: 1fr; }
+            .hero-stats { flex-direction: column; gap: 20px; }
+            .lab-card { flex: 0 0 100%; }
+            .skills-ring { gap: 20px; }
+            .ring-item { min-width: 80px; }
+            .ring-canvas { width: 90px; height: 90px; }
+            .section-title { font-size: 1.8rem; }
+            .hero-stats .stat-number { font-size: 1.5rem; }
+        }
         .mobile-menu-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(10,28,47,0.97); z-index:2000; display:none; justify-content: flex-end; }
         .mobile-menu-panel { background: white; width: 80%; max-width: 300px; padding: 40px 28px; position: relative; }
         .close-menu { position: absolute; top:20px; right:20px; background:none; border:none; font-size:1.5rem; cursor: pointer; }
@@ -184,11 +218,9 @@
         </div>
         <ul class="nav-list">
             <li><a href="#home" class="nav-link">Home</a></li>
-            <li><a href="#strategic-edge" class="nav-link">Edge</a></li>
-            <li><a href="#expertise" class="nav-link">Expertise</a></li>
+            <li><a href="#expertise-combined" class="nav-link">Expertise</a></li>
             <li><a href="#services" class="nav-link">Services</a></li>
             <li><a href="#labs-analysis" class="nav-link">Lab & Analysis</a></li>
-            <li><a href="#impact" class="nav-link">Impact</a></li>
             <li><a href="#about" class="nav-link">About</a></li>
             <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
@@ -201,9 +233,12 @@
     <div class="mobile-menu-panel">
         <button id="closeMobileMenu" class="close-menu"><i class="fas fa-times"></i></button>
         <ul class="mobile-nav-list">
-            <li><a href="#home">Home</a></li><li><a href="#strategic-edge">Edge</a></li><li><a href="#expertise">Expertise</a></li>
-            <li><a href="#services">Services</a></li><li><a href="#labs-analysis">Labs</a></li><li><a href="#impact">Impact</a></li>
-            <li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#expertise-combined">Expertise</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#labs-analysis">Labs</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </div>
 </div>
@@ -215,7 +250,7 @@
                 <div class="hero-badge" style="background: rgba(59,130,246,0.12); display: inline-block;">INTELLIGENT GROWTH PARTNER</div>
                 <h1 class="hero-title">Where <span style="color: var(--gold-accent);">Data Science</span> meets <span style="color: var(--light-blue);">Corporate Strategy</span></h1>
                 <p class="hero-description" style="margin: 20px 0;">I help organizations in emerging markets navigate complexity, align product vision with market realities, and build roadmaps that deliver measurable outcomes — elite analytical rigor with PKR-native ROI modeling.</p>
-                <div class="btn-group"><a href="#contact" class="btn-primary">Strategic dialogue <i class="fas fa-arrow-right"></i></a><a href="#expertise" class="btn-outline">Explore edge <i class="fas fa-chart-line"></i></a></div>
+                <div class="btn-group"><a href="#contact" class="btn-primary">Strategic dialogue <i class="fas fa-arrow-right"></i></a><a href="#expertise-combined" class="btn-outline">Explore edge <i class="fas fa-chart-line"></i></a></div>
                 <div class="hero-stats"><div><span class="stat-number" data-count="22">0</span><span>+</span><div>Engagements</div></div><div><span class="stat-number" data-count="92">0</span><span>%</span><div>Success Rate</div></div><div><span class="stat-number" data-count="4.2">0</span><span>x</span><div>ROI Multiplier</div></div></div>
             </div>
             <div class="hero-visual glass-card fade-up" style="text-align: center;">
@@ -234,34 +269,58 @@
     </div>
 </section>
 
-<!-- Strategic Edge Section - Navy Background -->
-<section id="strategic-edge" style="padding: 60px 0;">
-    <div class="container">
-        <div style="text-align: center;" class="fade-up">
-            <span class="section-label">STRATEGIC EDGE</span>
-            <h2 class="section-title">Core Competencies & Proficiency</h2>
-            <p style="color: rgba(255,255,255,0.7);">Measured excellence across the pillars of modern strategy execution.</p>
+<!-- Combined Expertise Section: Strategic Edge + The Farid Advantage + Strategic Impact -->
+<div id="expertise-combined">
+    <!-- Strategic Edge Section - Navy Background -->
+    <section id="strategic-edge" style="padding: 60px 0;">
+        <div class="container">
+            <div style="text-align: center;" class="fade-up">
+                <span class="section-label">STRATEGIC EDGE</span>
+                <h2 class="section-title">Core Competencies & Proficiency</h2>
+                <p style="color: rgba(255,255,255,0.7);">Measured excellence across the pillars of modern strategy execution.</p>
+            </div>
+            <div class="skills-ring fade-up">
+                <div class="ring-item"><canvas class="ring-canvas" id="ringDataScience" width="110" height="110"></canvas><div class="ring-label">Data Science</div><div class="ring-percent">86%</div></div>
+                <div class="ring-item"><canvas class="ring-canvas" id="ringStrategy" width="110" height="110"></canvas><div class="ring-label">Strategy</div><div class="ring-percent">88%</div></div>
+                <div class="ring-item"><canvas class="ring-canvas" id="ringProduct" width="110" height="110"></canvas><div class="ring-label">Product</div><div class="ring-percent">81%</div></div>
+                <div class="ring-item"><canvas class="ring-canvas" id="ringAnalytics" width="110" height="110"></canvas><div class="ring-label">Analytics</div><div class="ring-percent">90%</div></div>
+                <div class="ring-item"><canvas class="ring-canvas" id="ringLeadership" width="110" height="110"></canvas><div class="ring-label">Leadership</div><div class="ring-percent">87%</div></div>
+            </div>
         </div>
-        <div class="skills-ring fade-up">
-            <div class="ring-item"><canvas class="ring-canvas" id="ringDataScience" width="110" height="110"></canvas><div class="ring-label">Data Science</div><div class="ring-percent">86%</div></div>
-            <div class="ring-item"><canvas class="ring-canvas" id="ringStrategy" width="110" height="110"></canvas><div class="ring-label">Strategy</div><div class="ring-percent">88%</div></div>
-            <div class="ring-item"><canvas class="ring-canvas" id="ringProduct" width="110" height="110"></canvas><div class="ring-label">Product</div><div class="ring-percent">81%</div></div>
-            <div class="ring-item"><canvas class="ring-canvas" id="ringAnalytics" width="110" height="110"></canvas><div class="ring-label">Analytics</div><div class="ring-percent">90%</div></div>
-            <div class="ring-item"><canvas class="ring-canvas" id="ringLeadership" width="110" height="110"></canvas><div class="ring-label">Leadership</div><div class="ring-percent">87%</div></div>
-        </div>
-    </div>
-</section>
+    </section>
 
-<section id="expertise" style="padding: 60px 0 0;">
-    <div class="container">
-        <div style="text-align: center;" class="fade-up"><span class="section-label">THE FARID ADVANTAGE</span><h2 class="section-title">Analytical depth. Strategic clarity.</h2><p style="color: var(--gray-mid);">A rare blend of data science rigor and corporate strategy execution.</p></div>
-        <div class="expertise-grid">
-            <div class="expertise-card glass-card fade-up"><i class="fas fa-chart-simple expertise-icon"></i><h3>Pattern Intelligence</h3><p>Predictive analytics, competitor clustering, and trend extraction for forward-looking decisions.</p></div>
-            <div class="expertise-card glass-card fade-up"><i class="fas fa-calculator expertise-icon"></i><h3>Data-Backed Validation</h3><p>Quantitative scoring, unit economics, risk-adjusted roadmaps with real KPIs.</p></div>
-            <div class="expertise-card glass-card fade-up"><i class="fas fa-rocket expertise-icon"></i><h3>Quantitative Execution</h3><p>OKRs, instrumented feedback loops, and measurable growth frameworks.</p></div>
+    <!-- The Farid Advantage (formerly Expertise) -->
+    <section id="the-farid-advantage" style="padding: 60px 0 40px;">
+        <div class="container">
+            <div style="text-align: center;" class="fade-up">
+                <span class="section-label">THE FARID ADVANTAGE</span>
+                <h2 class="section-title">Analytical depth. Strategic clarity.</h2>
+                <p style="color: var(--gray-mid);">A rare blend of data science rigor and corporate strategy execution.</p>
+            </div>
+            <div class="expertise-grid">
+                <div class="expertise-card glass-card fade-up"><i class="fas fa-chart-simple expertise-icon"></i><h3>Pattern Intelligence</h3><p>Predictive analytics, competitor clustering, and trend extraction for forward-looking decisions.</p></div>
+                <div class="expertise-card glass-card fade-up"><i class="fas fa-calculator expertise-icon"></i><h3>Data-Backed Validation</h3><p>Quantitative scoring, unit economics, risk-adjusted roadmaps with real KPIs.</p></div>
+                <div class="expertise-card glass-card fade-up"><i class="fas fa-rocket expertise-icon"></i><h3>Quantitative Execution</h3><p>OKRs, instrumented feedback loops, and measurable growth frameworks.</p></div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <!-- Strategic Impact Analysis -->
+    <section id="strategic-impact" style="padding: 40px 0 60px;">
+        <div class="container">
+            <div style="text-align: center;" class="fade-up">
+                <span class="section-label">STRATEGIC IMPACT ANALYSIS</span>
+                <h2 class="section-title">How my strategy accelerates your growth</h2>
+                <p style="color: var(--gray-mid);">Measurable improvements across key business dimensions — before vs. after strategic intervention.</p>
+            </div>
+            <div class="impact-charts">
+                <div class="chart-box glass-card fade-up"><h4>📊 KPI Improvement (Before/After)</h4><div class="chart-container"><canvas id="kpiBarChart"></canvas></div><p style="font-size:0.7rem; margin-top:12px;">Revenue, Profitability, Market Share gains</p></div>
+                <div class="chart-box glass-card fade-up"><h4>📈 Revenue Growth Trajectory</h4><div class="chart-container"><canvas id="growthLineChart"></canvas></div><p style="font-size:0.7rem; margin-top:12px;">Projected 24-month post-strategy uplift</p></div>
+                <div class="chart-box glass-card fade-up"><h4>🥧 Portfolio ROI Distribution</h4><div class="chart-container"><canvas id="roiPieChart"></canvas></div><p style="font-size:0.7rem; margin-top:12px;">Allocation by ROI potential</p></div>
+            </div>
+        </div>
+    </section>
+</div>
 
 <section id="services" style="padding: 60px 0;">
     <div class="container">
@@ -298,21 +357,6 @@
                 <p>In-depth case studies, competitive benchmarking, and strategic intelligence. From SaaS exports to hyperlocal platforms and e-commerce battles — actionable insights drawn from real emerging market data.</p>
                 <a href="#" class="lab-link">View intelligence <i class="fas fa-arrow-right"></i></a>
             </div>
-        </div>
-    </div>
-</section>
-
-<section id="impact" style="padding: 40px 0 60px;">
-    <div class="container">
-        <div style="text-align: center;" class="fade-up">
-            <span class="section-label">STRATEGIC IMPACT ANALYSIS</span>
-            <h2 class="section-title">How my strategy accelerates your growth</h2>
-            <p style="color: var(--gray-mid);">Measurable improvements across key business dimensions — before vs. after strategic intervention.</p>
-        </div>
-        <div class="impact-charts">
-            <div class="chart-box glass-card fade-up"><h4>📊 KPI Improvement (Before/After)</h4><div class="chart-container"><canvas id="kpiBarChart"></canvas></div><p style="font-size:0.7rem; margin-top:12px;">Revenue, Profitability, Market Share gains</p></div>
-            <div class="chart-box glass-card fade-up"><h4>📈 Revenue Growth Trajectory</h4><div class="chart-container"><canvas id="growthLineChart"></canvas></div><p style="font-size:0.7rem; margin-top:12px;">Projected 24-month post-strategy uplift</p></div>
-            <div class="chart-box glass-card fade-up"><h4>🥧 Portfolio ROI Distribution</h4><div class="chart-container"><canvas id="roiPieChart"></canvas></div><p style="font-size:0.7rem; margin-top:12px;">Allocation by ROI potential</p></div>
         </div>
     </div>
 </section>
@@ -357,7 +401,7 @@
 </section>
 
 <footer>
-    <div class="container"><div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px;"><div><h3 style="font-family: 'Playfair Display';">Ghulam Farid</h3><p>Corporate Strategy & Product Consultant<br>Data Science × Corporate Strategy = Intelligent Growth</p></div><div style="display: flex; gap: 48px;"><div><h4 style="color: white;">Explore</h4><a href="#expertise" style="display: block; color: rgba(255,255,255,0.6);">Expertise</a><a href="#services" style="display: block; color: rgba(255,255,255,0.6);">Services</a><a href="#labs-analysis" style="display: block; color: rgba(255,255,255,0.6);">Labs</a><a href="#impact" style="display: block; color: rgba(255,255,255,0.6);">Impact</a></div><div><h4 style="color: white;">Connect</h4><a href="#contact" style="display: block; color: rgba(255,255,255,0.6);">Contact</a><span style="display: block;">gf1488360@gmail.com</span><span>+92 308 6007904</span></div></div></div><div class="footer-bottom" style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);"><p>© 2026 Ghulam Farid — Corporate Strategy & Product Advisory | PKR-native analytics</p></div></div>
+    <div class="container"><div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px;"><div><h3 style="font-family: 'Playfair Display';">Ghulam Farid</h3><p>Corporate Strategy & Product Consultant<br>Data Science × Corporate Strategy = Intelligent Growth</p></div><div style="display: flex; gap: 48px;"><div><h4 style="color: white;">Explore</h4><a href="#expertise-combined" style="display: block; color: rgba(255,255,255,0.6);">Expertise</a><a href="#services" style="display: block; color: rgba(255,255,255,0.6);">Services</a><a href="#labs-analysis" style="display: block; color: rgba(255,255,255,0.6);">Labs</a></div><div><h4 style="color: white;">Connect</h4><a href="#contact" style="display: block; color: rgba(255,255,255,0.6);">Contact</a><span style="display: block;">gf1488360@gmail.com</span><span>+92 308 6007904</span></div></div></div><div class="footer-bottom" style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);"><p>© 2026 Ghulam Farid — Corporate Strategy & Product Advisory | PKR-native analytics</p></div></div>
 </footer>
 
 <script>
@@ -372,7 +416,7 @@
         const end = start + (percent / 100) * 2 * Math.PI;
         ctx.clearRect(0, 0, 110, 110);
         ctx.beginPath(); ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-        ctx.strokeStyle = 'rgba(255,255,255,0.2)'; // lighter background ring on dark bg
+        ctx.strokeStyle = 'rgba(255,255,255,0.25)';
         ctx.lineWidth = 7;
         ctx.stroke();
         ctx.beginPath(); ctx.arc(centerX, centerY, radius, start, end);
@@ -385,10 +429,10 @@
         ctx.fillText(percent + '%', centerX, centerY);
     }
     drawRing('ringDataScience', 86, '#3B82F6');
-    drawRing('ringStrategy', 88, '#1E3A5F');
-    drawRing('ringProduct', 81, '#D4AF37');
-    drawRing('ringAnalytics', 90, '#3B82F6');
-    drawRing('ringLeadership', 87, '#1E3A5F');
+    drawRing('ringStrategy', 88, '#D4AF37');
+    drawRing('ringProduct', 81, '#3B82F6');
+    drawRing('ringAnalytics', 90, '#D4AF37');
+    drawRing('ringLeadership', 87, '#3B82F6');
 
     // Rotating growth message
     const msgs = ["🚀 PKR Growth Intelligence Active", "📈 Strategy → 2.3x ROI", "🎯 Execution Excellence", "📊 Data-Driven Scale"];
@@ -399,7 +443,7 @@
         msgIdx = (msgIdx+1)%msgs.length; 
     }, 3000);
 
-    // Charts initialization (Chart.js)
+    // Charts
     new Chart(document.getElementById('kpiBarChart'), {
         type: 'bar',
         data: { labels: ['Revenue', 'Profitability', 'Market Share'], datasets: [{ label: 'Pre-Strategy', data: [42,28,32], backgroundColor: 'rgba(107,114,128,0.6)', borderRadius: 8 }, { label: 'Post-Strategy', data: [86,79,74], backgroundColor: '#3B82F6', borderRadius: 8 }] },
@@ -416,7 +460,7 @@
         options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'bottom', labels: { font: { size: 10 } } } } }
     });
 
-    // Counter animation for stats
+    // Counter animation
     const counters = document.querySelectorAll('.stat-number');
     const counterObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
