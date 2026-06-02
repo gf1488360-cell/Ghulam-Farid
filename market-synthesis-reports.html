@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Synthesis Reports | Strategic Case Studies & Analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1a202c;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* Header */
+        .reports-header {
+            background: linear-gradient(135deg, #0a192f 0%, #1e3a5f 100%);
+            color: white;
+            padding: 60px 0 40px;
+            text-align: center;
+            border-bottom: 1px solid #3b82b6;
+        }
+
+        .reports-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .reports-header h1 span {
+            color: #3b82b6;
+        }
+
+        .reports-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 24px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: white;
+        }
+
+        /* Reports Section */
+        .reports-section {
+            padding: 60px 0;
+        }
+
+        .section-intro {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #3b82b6;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: #0a192f;
+        }
+
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 32px;
+        }
+
+        .report-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .report-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+        }
+
+        .report-header {
+            padding: 24px 24px 12px 24px;
+        }
+
+        .report-type {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .report-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            line-height: 1.4;
+            color: #0a192f;
+        }
+
+        .report-content {
+            padding: 0 24px 16px 24px;
+            color: #475569;
+        }
+
+        .report-content p {
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+
+        .report-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .report-tags span {
+            background: #f1f5f9;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #1e3a5f;
+        }
+
+        .report-footer {
+            padding: 16px 24px 24px 24px;
+            border-top: 1px solid #eef2f6;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+        }
+
+        .btn-primary {
+            background: #1e3a5f;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0f2c46;
+            transform: translateY(-2px);
+        }
+
+        .report-status {
+            font-size: 0.8rem;
+            color: #64748b;
+            font-style: italic;
+        }
+
+        footer {
+            background: #0a192f;
+            color: #94a3b8;
+            text-align: center;
+            padding: 32px 0;
+            font-size: 0.8rem;
+            border-top: 1px solid #1e3a5f;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            .reports-grid {
+                grid-template-columns: 1fr;
+            }
+            .reports-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="reports-header">
+        <div class="container">
+            <h1>Market <span>Synthesis</span> Reports</h1>
+            <p>Data‑driven case studies, strategic analysis, and market intelligence from real-world engagements</p>
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Main Hub</a>
+        </div>
+    </div>
+
+    <section class="reports-section">
+        <div class="container">
+            <div class="section-intro">
+                <span class="section-label">Strategic Intelligence</span>
+                <h2 class="section-title">Featured Reports & Case Studies</h2>
+            </div>
+
+            <div class="reports-grid">
+                <!-- Featured Article: Daraz vs Amazon -->
+                <div class="report-card">
+                    <div class="report-header">
+                        <span class="report-type" style="background: rgba(66, 153, 225, 0.1); color: #2c6e9e;">Market Analysis</span>
+                        <h3>Daraz vs Amazon: The E-commerce Battle for Pakistan's Digital Future</h3>
+                    </div>
+                    <div class="report-content">
+                        <p>An in-depth analysis of Daraz's local dominance versus Amazon's global reach in Pakistan's fast growing e-commerce market. Strategic insights and data-driven comparison for businesses and consumers.</p>
+                        <div class="report-tags">
+                            <span>E-commerce</span>
+                            <span>Market Analysis</span>
+                            <span>Digital Strategy</span>
+                            <span>Pakistan</span>
+                        </div>
+                    </div>
+                    <div class="report-footer">
+                        <a href="https://gf1488360-cell.github.io/FaridStrategy/daraz-vs-amazon.html" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                            <span>Read Full Report</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Case Study: SaaS Export Growth -->
+                <div class="report-card">
+                    <div class="report-header">
+                        <span class="report-type" style="background: rgba(76, 175, 80, 0.1); color: #2e7d32;">Growth Strategy</span>
+                        <h3>Pakistani SaaS Export Growth Strategy: $500M to $2B Roadmap</h3>
+                    </div>
+                    <div class="report-content">
+                        <p>A strategic roadmap to scale Pakistan's SaaS exports from $500M to $2B through targeted market selection, optimized sales channels, and strategic interventions.</p>
+                        <div class="report-tags">
+                            <span>SaaS Strategy</span>
+                            <span>Export Growth</span>
+                            <span>Market Entry</span>
+                            <span>Digital Economy</span>
+                        </div>
+                    </div>
+                    <div class="report-footer">
+                        <a href="https://gf1488360-cell.github.io/FaridStrategy/saas-case-study.html" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                            <span>Read Case Study</span>
+                            <i class="fas fa-chart-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Case Study: TechGlobal Market Entry -->
+                <div class="report-card">
+                    <div class="report-header">
+                        <span class="report-type" style="background: rgba(76, 175, 80, 0.1); color: #2e7d32;">Market Entry</span>
+                        <h3>Strategic Market Entry Framework for Emerging Economies</h3>
+                    </div>
+                    <div class="report-content">
+                        <p>TechGlobal's expansion into Pakistan: navigating mandatory local incorporation, data localization, and rapid IT export growth to capture $60M ARR through a phased joint venture.</p>
+                        <div class="report-tags">
+                            <span>Market Entry</span>
+                            <span>Pakistan IT</span>
+                            <span>Joint Venture</span>
+                            <span>Data Localization</span>
+                        </div>
+                    </div>
+                    <div class="report-footer">
+                        <a href="https://gf1488360-cell.github.io/FaridStrategy/techglobal-pakistan-case-study.html" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                            <span>Read Case Study</span>
+                            <i class="fas fa-chart-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Case Study: Bykea National Expansion -->
+                <div class="report-card">
+                    <div class="report-header">
+                        <span class="report-type" style="background: rgba(76, 175, 80, 0.1); color: #2e7d32;">Scaling Strategy</span>
+                        <h3>Scaling a Startup from Regional to National Presence</h3>
+                    </div>
+                    <div class="report-content">
+                        <p>Bykea's journey from Karachi dominance to national mobility champion: a phased expansion strategy across Pakistan's diverse cities, balancing risk and reward.</p>
+                        <div class="report-tags">
+                            <span>Startup Scaling</span>
+                            <span>Bykea</span>
+                            <span>Mobility</span>
+                            <span>National Expansion</span>
+                        </div>
+                    </div>
+                    <div class="report-footer">
+                        <a href="https://gf1488360-cell.github.io/FaridStrategy/bykea-case-study.html" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                            <span>Read Case Study</span>
+                            <i class="fas fa-chart-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Case Study: Hyperlocal Information Gap -->
+                <div class="report-card">
+                    <div class="report-header">
+                        <span class="report-type" style="background: rgba(76, 175, 80, 0.1); color: #2e7d32;">Product Innovation</span>
+                        <h3>Pakistan's Hyperlocal Information Gap — A Product Solution</h3>
+                    </div>
+                    <div class="report-content">
+                        <p>Geofenced, incentivised, community‑verified platform that transforms neighbourhood knowledge into real‑time urban intelligence. Solving the 15‑minute daily information crisis for millions.</p>
+                        <div class="report-tags">
+                            <span>Hyperlocal Tech</span>
+                            <span>Product Strategy</span>
+                            <span>Incentive Design</span>
+                            <span>Community Platform</span>
+                            <span>Pakistan</span>
+                        </div>
+                    </div>
+                    <div class="report-footer">
+                        <a href="https://gf1488360-cell.github.io/FaridStrategy/hyperlocal-information-gap.html" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                            <span>Read Case Study</span>
+                            <i class="fas fa-map-marker-alt"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Coming Soon: More Articles -->
+                <div class="report-card">
+                    <div class="report-header">
+                        <span class="report-type" style="background: #e2e8f0; color: #475569;">Coming Soon</span>
+                        <h3>More Strategic Articles</h3>
+                    </div>
+                    <div class="report-content">
+                        <p>In-depth analysis and thought leadership on business strategy, market dynamics, and strategic frameworks.</p>
+                        <div class="report-tags">
+                            <span>Market Analysis</span>
+                            <span>Strategic Frameworks</span>
+                            <span>Business Insights</span>
+                        </div>
+                    </div>
+                    <div class="report-footer">
+                        <span class="report-status">In Development</span>
+                    </div>
+                </div>
+
+                <!-- Coming Soon: More Case Studies -->
+                <div class="report-card">
+                    <div class="report-header">
+                        <span class="report-type" style="background: #e2e8f0; color: #475569;">Coming Soon</span>
+                        <h3>More Case Studies</h3>
+                    </div>
+                    <div class="report-content">
+                        <p>Detailed real-world applications of strategic frameworks to complex business challenges across industries.</p>
+                        <div class="report-tags">
+                            <span>Porter's Analysis</span>
+                            <span>SWOT Analysis</span>
+                            <span>Market Entry</span>
+                            <span>Operations Strategy</span>
+                        </div>
+                    </div>
+                    <div class="report-footer">
+                        <span class="report-status">In Development</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Market Synthesis Reports — Data‑Driven Strategy & Product Intelligence</p>
+            <p style="margin-top: 8px; font-size: 0.7rem;">Data Science × Strategy = Intelligent Growth</p>
+        </div>
+    </footer>
+
+</body>
+</html>
