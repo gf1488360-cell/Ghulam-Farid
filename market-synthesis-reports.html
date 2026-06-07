@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Market Synthesis Reports | Strategic Case Studies & Analysis</title>
+    <title>Market Synthesis Reports & Product Frameworks | Strategic Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -31,11 +31,11 @@
             padding: 0 32px;
         }
 
-        /* Premium Executive Header */
+        /* Executive Header */
         .reports-header {
             background: linear-gradient(135deg, #002147 0%, #0A1C2F 100%);
             color: white;
-            padding: 70px 0 50px;
+            padding: 75px 0 55px;
             text-align: center;
             border-bottom: 3px solid #0072CE;
             position: relative;
@@ -43,21 +43,20 @@
 
         .reports-header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 700;
             margin-bottom: 16px;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.01em;
         }
 
         .reports-header h1 span {
             color: #0072CE;
-            font-style: italic;
         }
 
         .reports-header p {
             font-size: 1.15rem;
             color: #D9E2EC;
-            max-width: 650px;
+            max-width: 700px;
             margin: 0 auto;
             font-weight: 300;
         }
@@ -83,7 +82,7 @@
             background: rgba(255,255,255,0.05);
         }
 
-        /* Reports Section Grid */
+        /* Portfolio Layout Grid */
         .reports-section {
             padding: 80px 0;
         }
@@ -127,10 +126,22 @@
             justify-content: space-between;
         }
 
+        /* Distinct, Elevated Styling for Original Framework Cards */
+        .report-card.framework-card {
+            border-top: 4px solid #0072CE;
+            background: linear-gradient(to bottom, #FCFDFE, #FFFFFF);
+            box-shadow: 0 6px 24px rgba(0, 114, 206, 0.06);
+        }
+
         .report-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(0, 33, 71, 0.08);
             border-color: #002147;
+        }
+        
+        .report-card.framework-card:hover {
+            border-color: #0072CE;
+            box-shadow: 0 15px 35px rgba(0, 114, 206, 0.12);
         }
 
         .report-header {
@@ -148,6 +159,12 @@
             background: #F5F7FA;
             color: #334E68;
             border-left: 2px solid #002147;
+        }
+
+        .framework-card .report-type {
+            background: rgba(0, 114, 206, 0.06);
+            color: #0072CE;
+            border-left: 2px solid #0072CE;
         }
 
         .report-header h3 {
@@ -215,6 +232,15 @@
             background: #0072CE;
         }
 
+        .btn-accent {
+            background: #0072CE;
+            color: white;
+        }
+
+        .btn-accent:hover {
+            background: #002147;
+        }
+
         .report-status {
             font-size: 0.85rem;
             color: #627D98;
@@ -223,7 +249,7 @@
             text-align: center;
         }
 
-        /* --- Secure Premium Modal Overlay Mechanics --- */
+        /* Secure Overlay Container Mechanics Gutter Gaps */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -236,7 +262,7 @@
             display: none;
             justify-content: center;
             align-items: center;
-            padding: 40px 60px; /* Elegant side and upper desktop breathing margins */
+            padding: 40px 60px;
         }
 
         .modal-container {
@@ -306,7 +332,6 @@
             background: #ffffff;
         }
 
-        /* Print Guard Override */
         @media print {
             body * { display: none !important; }
         }
@@ -323,7 +348,7 @@
         @media (max-width: 768px) {
             .container { padding: 0 24px; }
             .reports-grid { grid-template-columns: 1fr; }
-            .reports-header h1 { font-size: 2.2rem; }
+            .reports-header h1 { font-size: 2rem; }
             .modal-overlay { padding: 20px 16px; }
             .modal-header { padding: 14px 20px; }
         }
@@ -333,8 +358,8 @@
 
     <div class="reports-header">
         <div class="container">
-            <h1>Market <span>Synthesis</span> Reports</h1>
-            <p>Empirical case studies, core structural analysis, and advisory deep-dives mapped out for emerging market realities.</p>
+            <h1>Market <span>Synthesis</span> Reports & Product <span>Frameworks</span></h1>
+            <p>Proprietary methodology books and structured market insights transforming abstract strategies into scaling growth assets.</p>
             <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Return to Strategic Hub</a>
         </div>
     </div>
@@ -342,11 +367,52 @@
     <section class="reports-section">
         <div class="container">
             <div class="section-intro">
-                <span class="section-label">Strategic Intelligence Portfolio</span>
-                <h2 class="section-title">Active Field Analysis & Case Records</h2>
+                <span class="section-label">Methodology & Research Assets</span>
+                <h2 class="section-title">Active Intellectual Property & Case Records</h2>
             </div>
 
             <div class="reports-grid">
+                
+                <div class="report-card framework-card">
+                    <div class="report-header">
+                        <span class="report-type">Proprietary Framework</span>
+                        <h3>From Problem to Performance: The 5P Product Strategy Playbook</h3>
+                    </div>
+                    <div class="report-content">
+                        <p>A comprehensive strategy playbook mapping core user validation loops. Case-proven methodology that reduced user churn and drove +18% ARR growth on the LearnNow EdTech platform.</p>
+                        <div class="report-tags">
+                            <span>User-Centered Tactics</span>
+                            <span>Growth Loops</span>
+                            <span>Performance Metrics</span>
+                        </div>
+                    </div>
+                    <div class="report-footer">
+                        <button class="btn btn-accent view-case-btn" data-pdf="media/5P's Framwork For Products.pdf" data-title="The 5P Framework Playbook — Strategy & Performance Blueprint">
+                            Examine Framework Details <i class="fas fa-book-open"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="report-card framework-card">
+                    <div class="report-header">
+                        <span class="report-type">Proprietary Framework</span>
+                        <h3>The Product Strategy Iceberg: Decisions Below the Waterline</h3>
+                    </div>
+                    <div class="report-content">
+                        <p>A vital diagnostic mental model for product leadership. Explores why visible product features sink or swim based on unmapped technical debt, validation gaps, and organizational vision.</p>
+                        <div class="report-tags">
+                            <span>Structural Validation</span>
+                            <span>Tech Debt Management</span>
+                            <span>Strategic Alignment</span>
+                        </div>
+                    </div>
+                    <div class="report-footer">
+                        <button class="btn btn-accent view-case-btn" data-pdf="media/Product Strategy Iceberg.pdf" data-title="The Product Strategy Iceberg Framework — Deep Diagnostics">
+                            Examine Framework Details <i class="fas fa-book-open"></i>
+                        </button>
+                    </div>
+                </div>
+
                 <div class="report-card">
                     <div class="report-header">
                         <span class="report-type">Market Evaluation</span>
@@ -495,8 +561,6 @@
                     const titleText = btn.getAttribute('data-title');
                     
                     modalTitle.innerText = titleText;
-                    
-                    // Route through our custom secondary sandbox script file to ensure right-click and command interception is absolute
                     pdfFrame.src = `pdf-fallback-viewer.html?file=${encodeURIComponent(pdfPath)}`;
                     
                     modal.style.display = 'flex';
@@ -514,12 +578,12 @@
             modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
             document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.style.display === 'flex') closeModal(); });
 
-            // Master Front-End Interception Pipelines
+            // Master Front-End Guard Interceptions
             document.addEventListener('contextmenu', e => e.preventDefault());
 
             document.addEventListener('keydown', (e) => {
                 if (e.ctrlKey || e.metaKey) {
-                    if (['s', 'p', 'u', 'c', 'i', 'k text'].includes(e.key.toLowerCase())) {
+                    if (['s', 'p', 'u', 'c', 'i'].includes(e.key.toLowerCase())) {
                         e.preventDefault();
                         return false;
                     }
