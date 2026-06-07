@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>Ghulam Farid | Corporate Strategy Engine & Product Telemetry</title>
+    <title>Ghulam Farid | Business Strategy & Product Analyst</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -14,10 +14,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; } /* Custom cursor active */
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; } /* Premium Custom Cursor Lock */
         :root {
             --bg-deep: #030a16;
-            --bg-card: #071328;
+            --bg-card: rgba(7, 19, 40, 0.65); /* Made semi-transparent for background 3D depth */
             --mck-navy: #002147;
             --mck-accent-blue: #00a2ff;
             --mck-cyber-cyan: #00f0ff;
@@ -35,9 +35,27 @@
             line-height: 1.6;
             scroll-behavior: smooth;
             overflow-x: hidden;
+            position: relative;
         }
         
-        /* Premium Custom Cursor Ring */
+        /* Full-Screen 3D WebGL Canvas Layer */
+        #threeJsGlobalContainer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1; /* Sits completely behind content layers */
+            pointer-events: none; /* Allows natural text/form interaction */
+        }
+
+        /* Content Layer Wrappers to guarantee crisp typography above WebGL */
+        nav, section, footer {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Premium Custom Cursor System */
         #customCursor {
             width: 8px; height: 8px; background: var(--mck-cyber-cyan); border-radius: 50%;
             position: fixed; pointer-events: none; z-index: 99999; transform: translate(-50%, -50%);
@@ -51,7 +69,7 @@
         .hovered-node #customCursor { width: 14px; height: 14px; background: var(--white); }
         .hovered-node #customCursorRing { width: 55px; height: 55px; border-color: var(--mck-accent-blue); background: rgba(0, 162, 255, 0.05); }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 2; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; position: relative; }
         @media (max-width: 640px) { .container { padding: 0 20px; } }
         
         h1, h2, h3, .mck-serif { font-family: 'Playfair Display', serif; font-weight: 600; letter-spacing: -0.01em; color: var(--white); }
@@ -68,11 +86,12 @@
         .top-bar {
             background: #01050e; color: var(--mck-cyber-cyan); font-size: 0.65rem; font-weight: 600;
             letter-spacing: 1.5px; padding: 12px 0; text-align: center; border-bottom: 1px solid var(--mck-border);
+            position: relative; z-index: 1001;
         }
         
         /* Navigation Matrix */
         .main-nav {
-            position: sticky; top: 0; background: rgba(3, 10, 22, 0.85); backdrop-filter: blur(25px);
+            position: sticky; top: 0; background: rgba(3, 10, 22, 0.75); backdrop-filter: blur(25px);
             z-index: 1000; padding: 20px 0; border-bottom: 1px solid var(--mck-border);
         }
         .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
@@ -91,9 +110,8 @@
         .mobile-toggle span { width: 24px; height: 2px; background: var(--white); }
         @media (max-width: 900px) { .nav-list { display: none; } .mobile-toggle { display: flex; } .nav-cta { display: none; } }
         
-        /* Hero Canvas Section Integration */
-        .hero { padding: 120px 0; position: relative; overflow: hidden; background: transparent; }
-        #threeJsContainer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        /* Hero Layer Layout */
+        .hero { padding: 120px 0; overflow: hidden; background: transparent; }
         .hero-description { color: var(--mck-text-muted); font-size: 1.1rem; margin: 24px 0 35px 0; max-width: 580px; }
         .hero-title { font-size: 3.5rem; font-weight: 700; line-height: 1.15; color: var(--white); }
         .hero-title span { color: var(--mck-cyber-cyan); }
@@ -106,6 +124,7 @@
         .matrix-container {
             background: var(--bg-card); border: 1px solid var(--mck-border); padding: 35px;
             backdrop-filter: blur(10px); box-shadow: inset 0 0 20px rgba(255,255,255,0.02);
+            border-radius: 6px;
         }
         .matrix-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; color: var(--mck-text-muted); font-weight: 600; }
         .step-vertical { display: flex; flex-direction: column; gap: 24px; }
@@ -127,7 +146,7 @@
         .btn-outline:hover { border-color: var(--mck-cyber-cyan); background: rgba(0, 240, 255, 0.05); }
         
         /* Interactive Live Analytics Footprint */
-        .advisory-footprint { background: var(--bg-card); padding: 70px 0; border-top: 1px solid var(--mck-border); border-bottom: 1px solid var(--mck-border); position: relative; z-index: 10; }
+        .advisory-footprint { background: var(--bg-card); padding: 70px 0; border-top: 1px solid var(--mck-border); border-bottom: 1px solid var(--mck-border); backdrop-filter: blur(10px); }
         .footprint-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: center; }
         .footprint-card { display: flex; flex-direction: column; align-items: center; position: relative; transition: var(--transition-smooth); }
         .footprint-card:hover { transform: translateY(-5px); }
@@ -143,7 +162,7 @@
         }
         
         /* Capabilities Architecture */
-        .competency-section { padding: 100px 0; background: var(--bg-deep); }
+        .competency-section { padding: 100px 0; background: transparent; }
         .competency-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 40px; }
         @media (max-width: 900px) { .competency-grid { grid-template-columns: 1fr; gap: 40px; } }
         
@@ -153,7 +172,7 @@
         .benchmark-bar-bg { background: rgba(255,255,255,0.05); height: 6px; width: 100%; position: relative; border-radius: 3px; }
         .benchmark-bar-fill { background: linear-gradient(90deg, var(--mck-accent-blue), var(--mck-cyber-cyan)); height: 100%; position: absolute; top: 0; left: 0; width: 0; transition: width 2s cubic-bezier(0.16, 1, 0.3, 1); border-radius: 3px; }
         
-        .advantage-card { background: var(--bg-card); padding: 35px; border-left: 3px solid var(--mck-accent-blue); border-top: 1px solid var(--mck-border); transition: var(--transition-smooth); }
+        .advantage-card { background: var(--bg-card); padding: 35px; border-left: 3px solid var(--mck-accent-blue); border-top: 1px solid var(--mck-border); backdrop-filter: blur(10px); border-radius: 4px; transition: var(--transition-smooth); }
         .advantage-card:hover { border-left-color: var(--mck-cyber-cyan); transform: scale(1.02); }
         .advantage-card h3 { font-size: 1.35rem; margin-bottom: 12px; color: var(--white); }
         .advantage-card p { font-size: 0.9rem; color: var(--mck-text-muted); }
@@ -162,31 +181,31 @@
         @media (max-width: 900px) { .advantage-grid { grid-template-columns: 1fr; } }
         
         /* Performance Dashboard Visualization */
-        .impact-section { padding: 100px 0; background: #020710; border-top: 1px solid var(--mck-border); }
+        .impact-section { padding: 100px 0; background: rgba(2, 7, 16, 0.4); border-top: 1px solid var(--mck-border); backdrop-filter: blur(5px); }
         .impact-charts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 50px; }
         @media (max-width: 900px) { .impact-charts { grid-template-columns: 1fr; } }
         
-        .chart-box { background: var(--bg-card); border: 1px solid var(--mck-border); padding: 28px; border-radius: 4px; }
+        .chart-box { background: var(--bg-card); border: 1px solid var(--mck-border); padding: 28px; border-radius: 6px; backdrop-filter: blur(10px); }
         .chart-box h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--mck-text-light); margin-bottom: 25px; border-bottom: 1px solid var(--mck-border); padding-bottom: 12px; }
         .chart-container { height: 240px; position: relative; }
         
         /* Capabilities Spectrum Services */
-        .services-section { padding: 100px 0; background: var(--bg-deep); border-top: 1px solid var(--mck-border); }
+        .services-section { padding: 100px 0; background: transparent; border-top: 1px solid var(--mck-border); }
         .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
         @media (max-width: 900px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 600px) { .services-grid { grid-template-columns: 1fr; } }
         
-        .service-card { background: var(--bg-card); border: 1px solid var(--mck-border); padding: 40px 32px; transition: var(--transition-smooth); }
+        .service-card { background: var(--bg-card); border: 1px solid var(--mck-border); padding: 40px 32px; border-radius: 6px; backdrop-filter: blur(10px); transition: var(--transition-smooth); }
         .service-card:hover { border-color: var(--mck-cyber-cyan); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,240,255,0.05); }
         .service-card h4 { color: var(--white); font-size: 1.25rem; font-family: 'Inter', sans-serif; font-weight: 600; margin-bottom: 14px; }
         .service-card p { color: var(--mck-text-muted); font-size: 0.9rem; }
         
         /* Strategic Intelligence Lab */
-        .labs-section { padding: 100px 0; background: #020710; }
+        .labs-section { padding: 100px 0; background: rgba(2, 7, 16, 0.4); backdrop-filter: blur(5px); }
         .labs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
         @media (max-width: 750px) { .labs-grid { grid-template-columns: 1fr; } }
         
-        .lab-card { background: var(--bg-card); border: 1px solid var(--mck-border); padding: 45px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+        .lab-card { background: var(--bg-card); border: 1px solid var(--mck-border); padding: 45px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; border-radius: 6px; backdrop-filter: blur(10px); }
         .lab-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--mck-accent-blue), var(--mck-cyber-cyan)); }
         .lab-card h3 { font-size: 1.6rem; margin-bottom: 14px; }
         .lab-card p { font-size: 0.95rem; color: var(--mck-text-muted); margin-bottom: 30px; }
@@ -194,13 +213,13 @@
         .lab-link:hover { gap: 14px; color: var(--white); }
         
         /* Executive Profile Capsule */
-        .profile-section { background: var(--bg-deep); padding: 110px 0; border-top: 1px solid var(--mck-border); }
+        .profile-section { background: transparent; padding: 110px 0; border-top: 1px solid var(--mck-border); }
         .profile-content { max-width: 780px; margin: 0 auto; text-align: center; }
         .profile-quote { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--white); font-style: italic; margin: 28px 0; line-height: 1.45; }
         .profile-text { font-size: 1.05rem; color: var(--mck-text-muted); margin-bottom: 24px; text-align: left; line-height: 1.7; }
         
         /* Engagement Pipeline Matrix */
-        .contact-section { padding: 100px 0; background: #020710; border-top: 1px solid var(--mck-border); }
+        .contact-section { padding: 100px 0; background: rgba(2, 7, 16, 0.4); border-top: 1px solid var(--mck-border); backdrop-filter: blur(5px); }
         .contact-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 80px; }
         @media (max-width: 850px) { .contact-grid { grid-template-columns: 1fr; gap: 40px; } }
         
@@ -211,24 +230,24 @@
         .contact-form { display: flex; flex-direction: column; gap: 20px; }
         .contact-form input, .contact-form textarea {
             width: 100%; padding: 16px; border: 1px solid var(--mck-border); font-family: 'Inter', sans-serif;
-            font-size: 0.9rem; color: var(--white); background: var(--bg-card); transition: var(--transition-smooth);
+            font-size: 0.9rem; color: var(--white); background: var(--bg-card); backdrop-filter: blur(10px); border-radius: 4px; transition: var(--transition-smooth);
         }
         .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--mck-cyber-cyan); background: rgba(3, 10, 22, 0.9); }
         .contact-form button {
             background: linear-gradient(90deg, var(--mck-accent-blue), var(--mck-cyber-cyan)); color: var(--bg-deep);
-            border: none; padding: 16px; font-weight: 700; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; transition: var(--transition-smooth);
+            border: none; padding: 16px; font-weight: 700; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; border-radius: 4px; transition: var(--transition-smooth);
         }
         .contact-form button:hover { box-shadow: 0 0 25px rgba(0, 240, 255, 0.4); transform: translateY(-2px); }
         
         /* Global Framework Footer */
-        footer { background: #01040a; color: var(--mck-text-muted); padding: 80px 0 40px; font-size: 0.85rem; border-top: 1px solid var(--mck-border); }
+        footer { background: #01040a; color: var(--mck-text-muted); padding: 80px 0 40px; font-size: 0.85rem; border-top: 1px solid var(--mck-border); position: relative; z-index: 1001; }
         footer h3, footer h4 { color: var(--white); }
         .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
         .footer-links a { color: var(--mck-text-muted); text-decoration: none; display: block; margin-bottom: 10px; transition: var(--transition-smooth); }
         .footer-links a:hover { color: var(--mck-cyber-cyan); }
         .footer-bottom { margin-top: 60px; padding-top: 25px; border-top: 1px solid var(--mck-border); text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
         
-        /* Core Mobile Navigation Overlay Menu */
+        /* Mobile Navigation Overlay Menu */
         .mobile-menu-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(3,10,22,0.98); z-index: 2000;
@@ -240,26 +259,29 @@
         .mobile-nav-list li { margin-bottom: 28px; }
         .mobile-nav-list a { text-decoration: none; font-size: 1.6rem; font-family: 'Playfair Display', serif; color: var(--white); }
         
-        /* Modern Acceleration Animation Anchors */
+        /* Modern Scroll Animation States */
         .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
-<!-- Interactive Premium Hardware Cursor Nodes -->
+<!-- Interactive Matrix Pointer Canvas Systems -->
 <div id="customCursor"></div>
 <div id="customCursorRing"></div>
 
+<!-- Global 3D WebGL Constellation Canvas Layer Backdrop -->
+<div id="threeJsGlobalContainer"></div>
+
 <div class="top-bar">
-    <div class="container">EMERGING MARKETS ANALYTICS — STRATEGY INTEGRATED INTERACTIVE TELEMETRY ENGINE</div>
+    <div class="container">EMERGING MARKETS ANALYTICS — BUSINESS STRATEGY & PRODUCT ANALYST CONSOLE</div>
 </div>
 
 <nav class="main-nav interactive-node">
     <div class="container nav-wrapper">
         <div class="logo">
             <div class="logo-name">Ghulam Farid</div>
-            <div class="logo-title">Corporate Strategy & Product Telemetry</div>
+            <div class="logo-title">Business Strategy & Product Analyst</div>
         </div>
         <ul class="nav-list">
             <li><a href="#home" class="nav-link">Consultancy</a></li>
@@ -288,10 +310,7 @@
     </div>
 </div>
 
-<section id="home" class="hero">
-    <!-- Three.js Realtime Matrix Render Space -->
-    <div id="threeJsContainer"></div>
-    
+<section id="home" class="hero">    
     <div class="container">
         <div class="hero-grid">
             <div class="fade-up">
@@ -331,7 +350,7 @@
 <!-- Interactive Live Analytics Footprint -->
 <section class="advisory-footprint">
     <div class="container">
-        <div class="footprint-grid">
+        <div class="footer-grid footprint-grid">
             
             <!-- Metric 1 -->
             <div class="footprint-card">
@@ -405,7 +424,7 @@
     </div>
 </section>
 
-<section id="tactical-edge" style="padding-bottom: 100px; background: var(--bg-deep);">
+<section id="tactical-edge" style="padding-bottom: 100px; background: transparent;">
     <div class="container">
         <div class="advantage-grid">
             <div class="advantage-card fade-up">
@@ -571,7 +590,7 @@
         <div class="footer-grid">
             <div>
                 <h3 style="font-family: 'Playfair Display'; margin-bottom: 12px;">Ghulam Farid</h3>
-                <p style="font-size: 0.8rem; line-height: 1.8; color: var(--mck-text-muted);">Business Strategy & Product Analysis.<br>Data Science Integrated into Corporate Advisory Frameworks.</p>
+                <p style="font-size: 0.8rem; line-height: 1.8; color: var(--mck-text-muted);">Business Strategy & Product Analyst.<br>Data Science Integrated into Corporate Advisory Frameworks.</p>
             </div>
             <div style="display: flex; gap: 60px;">
                 <div class="footer-links">
@@ -588,7 +607,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 Ghulam Farid — Business Strategy & Product Analysis | All Rights Reserved.</p>
+            <p>© 2026 Ghulam Farid — Business Strategy & Product Analyst | All Rights Reserved.</p>
         </div>
     </div>
 </footer>
@@ -602,94 +621,104 @@
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
         
-        // Ring tracking easing simulation
+        // Eased Ring follow physics
         setTimeout(() => {
             ring.style.left = e.clientX + 'px';
             ring.style.top = e.clientY + 'px';
         }, 30);
     });
 
-    document.querySelectorAll('.interactive-node, a, button, input, textarea, .footprint-card').forEach(node => {
+    document.querySelectorAll('.interactive-node, a, button, input, textarea, .footprint-card, .service-card, .lab-card, .advantage-card, .chart-box').forEach(node => {
         node.addEventListener('mouseenter', () => document.body.classList.add('hovered-node'));
         node.addEventListener('mouseleave', () => document.body.classList.remove('hovered-node'));
     });
 
-    // --- THREE.JS REAL-TIME STRATEGY CONSTALLATION MATRIX ---
-    const initThreeJS = () => {
-        const container = document.getElementById('threeJsContainer');
+    // --- THREE.JS GLOBAL PAGE SCROLL CONSTELLATION ENGINES ---
+    const initThreeJSGlobal = () => {
+        const container = document.getElementById('threeJsGlobalContainer');
         if (!container) return;
 
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
-        camera.position.z = 45;
+        // Wider vertical field of view to absorb scroll depths nicely
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 60;
 
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         container.appendChild(renderer.domElement);
 
-        // Core Matrix Geometry Particles
-        const particleCount = 140;
+        // Multi-layered depth particle generation
+        const particleCount = 280;
         const geometry = new THREE.BufferGeometry();
         const positions = new Float32Array(particleCount * 3);
 
         for (let i = 0; i < particleCount * 3; i += 3) {
-            positions[i] = (Math.random() - 0.5) * 70;      // X coordinate range
-            positions[i + 1] = (Math.random() - 0.5) * 50;  // Y coordinate range
-            positions[i + 2] = (Math.random() - 0.5) * 40;  // Z coordinate range
+            positions[i] = (Math.random() - 0.5) * 110;     // Wider dispersion across X
+            positions[i + 1] = (Math.random() - 0.5) * 140; // Extended height boundaries across Y
+            positions[i + 2] = (Math.random() - 0.5) * 50;  // Z axis depth layers
         }
 
         geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
-        // Minimalist Premium Material Matrix Nodes
         const material = new THREE.PointsMaterial({
             color: 0x00f0ff,
-            size: 0.6,
+            size: 0.55,
             transparent: true,
-            opacity: 0.6,
+            opacity: 0.45,
             blending: THREE.AdditiveBlending
         });
 
         const particleSystem = new THREE.Points(geometry, material);
         scene.add(particleSystem);
 
-        // Subtle Ambient Micro-lighting
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+        // Subtle ambient internal lighting glow coordinates
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.25);
         scene.add(ambientLight);
 
-        // Subtle Mouse Interaction Telemetry Variable Mapping
+        // Target track mouse variables
         let mouseX = 0, mouseY = 0;
+        let targetX = 0, targetY = 0;
+        
         document.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX - window.innerWidth / 2) * 0.015;
-            mouseY = (e.clientY - window.innerHeight / 2) * 0.015;
+            mouseX = (e.clientX - window.innerWidth / 2) * 0.012;
+            mouseY = (e.clientY - window.innerHeight / 2) * 0.012;
         });
 
-        // Realtime Animation Frame Loop
+        // Frame tracking update Loop
         const animate = () => {
             requestAnimationFrame(animate);
 
-            particleSystem.rotation.y += 0.0012;
-            particleSystem.rotation.x += 0.0006;
+            // Autonomous orbital motion velocity parameters
+            particleSystem.rotation.y += 0.0008;
+            particleSystem.rotation.x += 0.0003;
 
-            // Tracking camera response deceleration matrix
-            camera.position.x += (mouseX - camera.position.x) * 0.05;
-            camera.position.y += (-mouseY - camera.position.y) * 0.05;
+            // Fluid mouse coordination physics
+            targetX += (mouseX - targetX) * 0.04;
+            targetY += (mouseY - targetY) * 0.04;
+            
+            camera.position.x = targetX;
+            camera.position.y = -targetY;
+
+            // Scroll position integration translates directly into 3D height variations
+            const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            particleSystem.position.y = scrollPercent * 40; // Dynamic upward flow shifts particles alongside content tracking
+
             camera.lookAt(scene.position);
-
             renderer.render(scene, camera);
         };
 
         animate();
 
-        // Responsive Engine Resize Sync
+        // Responsive Engine Resize Mechanics
         window.addEventListener('resize', () => {
-            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
-            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setSize(window.innerWidth, window.innerHeight);
         });
     };
 
-    // --- CHART.JS METRIC THEME UPGRADE ---
+    // --- CHART.JS INSIGHT ENGINE IMPLEMENTATION ---
     const ctxFontConfig = { font: { family: 'Inter', size: 11 }, color: '#7088a8' };
     
     new Chart(document.getElementById('kpiBarChart'), { 
@@ -739,15 +768,13 @@
         } 
     });
     
-    // --- SCROLL ANIMATION & CAPABILITY FILL TRIGGERS ---
+    // --- SCROLL REVEAL OBSERVERS ---
     const faders = document.querySelectorAll('.fade-up');
-    const skillBars = document.querySelectorAll('.benchmark-bar-fill');
     
     const elementObserver = new IntersectionObserver((entries) => {
         entries.forEach(e => {
             if(e.isIntersecting){
                 e.target.classList.add('visible');
-                // Check if skill bar inside container needs processing
                 const progressFill = e.target.querySelectorAll('.benchmark-bar-fill');
                 progressFill.forEach(bar => bar.style.width = bar.getAttribute('data-width'));
                 elementObserver.unobserve(e.target);
@@ -757,7 +784,7 @@
     
     faders.forEach(el => elementObserver.observe(el));
 
-    // --- INTERACTIVE FOOTPRINT DONUT ENGINE ---
+    // --- FOOTPRINT STATISTICS ACCELERATION CONTROLLER ---
     const initFootprintModule = () => {
         const chartOptions = {
             responsive: true, maintainAspectRatio: false, cutout: '84%',
@@ -804,14 +831,14 @@
         footprintObserver.observe(document.querySelector('.advisory-footprint'));
     };
 
-    // --- NAVIGATION PANEL INTERACTION MECHANICS ---
+    // --- NAVIGATION MOBILE EVENT HANDLERS ---
     const toggle = document.getElementById('mobileToggle'), overlay = document.getElementById('mobileMenuOverlay'), closeBtn = document.getElementById('closeMobileMenu');
     if(toggle) toggle.onclick = () => overlay.style.display = 'flex';
     if(closeBtn) closeBtn.onclick = () => overlay.style.display = 'none';
     overlay.addEventListener('click', (e) => { if(e.target === overlay) overlay.style.display = 'none'; });
 
     document.addEventListener('DOMContentLoaded', () => {
-        initThreeJS();
+        initThreeJSGlobal();
         initFootprintModule();
     });
 </script>
