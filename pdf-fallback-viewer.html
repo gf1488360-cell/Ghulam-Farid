@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secure Analysis Viewer Panel</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { 
+            width: 100%; 
+            height: 100%; 
+            background-color: #334E68; 
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .secure-embed-wrapper {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        embed, object {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        /* Anti-Screenshot Overlay Gutter Simulation */
+        .security-shield {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            box-shadow: inset 0 0 100px rgba(0,33,71,0.3);
+            z-index: 99999;
+        }
+        @media print {
+            body { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="secure-embed-wrapper">
+        <div class="security-shield"></div>
+        <object id="secureObject" type="application/pdf" data="">
+            <p style="color: #ffffff; text-align: center; padding-top: 50px; font-family: sans-serif;">
+                System unable to instantly initialize custom browser plugin frame interface.
+            </p>
+        </object>
+    </div>
+
+    <script>
+        // Extract internal PDF route from URI
+        const urlParams = new URLSearchParams(window.location.search);
+        const pdfFile = urlParams.get('file');
+        
+        if (pdfFile) {
+            const secureObj = document.getElementById('secureObject');
+            // #toolbar=0 disables internal layout reader panels from executing native prints/downloads
+            secureObj.data = decodeURIComponent(pdfFile) + '#toolbar=0&navpanes=0&statusbar=0&view=FitH';
+        }
+
+        // Apply strict secondary iframe sandbox protection rules
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey || e.metaKey) {
+                if (['s', 'p', 'u', 'c', 'i'].includes(e.key.toLowerCase())) {
+                    e.preventDefault();
+                    return false;
+                }
+            }
+            if (e.key === 'F12') {
+                e.preventDefault();
+                return false;
+            }
+        });
+    </script>
+</body>
+</html>
