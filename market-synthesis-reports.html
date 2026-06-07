@@ -20,6 +20,9 @@
             background-color: #f8fafc;
             color: #1a202c;
             line-height: 1.5;
+            user-select: none;
+            -webkit-user-select: none;
+            overflow-x: hidden;
         }
 
         .container {
@@ -28,124 +31,143 @@
             padding: 0 32px;
         }
 
-        /* Header */
+        /* Premium Executive Header */
         .reports-header {
-            background: linear-gradient(135deg, #0a192f 0%, #1e3a5f 100%);
+            background: linear-gradient(135deg, #002147 0%, #0A1C2F 100%);
             color: white;
-            padding: 60px 0 40px;
+            padding: 70px 0 50px;
             text-align: center;
-            border-bottom: 1px solid #3b82b6;
+            border-bottom: 3px solid #0072CE;
+            position: relative;
         }
 
         .reports-header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: 700;
             margin-bottom: 16px;
+            letter-spacing: -0.02em;
         }
 
         .reports-header h1 span {
-            color: #3b82b6;
+            color: #0072CE;
+            font-style: italic;
         }
 
         .reports-header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            max-width: 600px;
+            font-size: 1.15rem;
+            color: #D9E2EC;
+            max-width: 650px;
             margin: 0 auto;
+            font-weight: 300;
         }
 
         .back-link {
-            display: inline-block;
-            margin-top: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 28px;
             color: #94a3b8;
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.9rem;
             transition: color 0.2s;
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 8px 18px;
+            background: rgba(255,255,255,0.02);
         }
 
         .back-link:hover {
             color: white;
+            border-color: white;
+            background: rgba(255,255,255,0.05);
         }
 
-        /* Reports Section */
+        /* Reports Section Grid */
         .reports-section {
-            padding: 60px 0;
+            padding: 80px 0;
         }
 
         .section-intro {
             text-align: center;
-            margin-bottom: 48px;
+            margin-bottom: 56px;
         }
 
         .section-label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 3px;
-            color: #3b82b6;
-            font-weight: 600;
+            color: #0072CE;
+            font-weight: 700;
             display: inline-block;
             margin-bottom: 12px;
         }
 
         .section-title {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             font-family: 'Playfair Display', serif;
             font-weight: 600;
-            color: #0a192f;
+            color: #002147;
         }
 
         .reports-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
             gap: 32px;
         }
 
         .report-card {
             background: white;
-            border-radius: 20px;
+            border: 1px solid #D9E2EC;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 20px rgba(0, 33, 71, 0.03);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .report-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 33, 71, 0.08);
+            border-color: #002147;
         }
 
         .report-header {
-            padding: 24px 24px 12px 24px;
+            padding: 28px 28px 14px 28px;
         }
 
         .report-type {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 4px 10px;
-            border-radius: 30px;
+            letter-spacing: 1.5px;
+            padding: 5px 12px;
             display: inline-block;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
+            background: #F5F7FA;
+            color: #334E68;
+            border-left: 2px solid #002147;
         }
 
         .report-header h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
+            font-size: 1.35rem;
             font-weight: 600;
-            line-height: 1.4;
-            color: #0a192f;
+            line-height: 1.35;
+            color: #002147;
         }
 
         .report-content {
-            padding: 0 24px 16px 24px;
-            color: #475569;
+            padding: 0 28px 20px 28px;
+            color: #486581;
+            flex-grow: 1;
         }
 
         .report-content p {
-            margin-bottom: 16px;
-            font-size: 0.9rem;
+            margin-bottom: 20px;
+            font-size: 0.92rem;
+            line-height: 1.6;
         }
 
         .report-tags {
@@ -155,66 +177,155 @@
         }
 
         .report-tags span {
-            background: #f1f5f9;
+            background: #F5F7FA;
             padding: 4px 10px;
-            border-radius: 30px;
             font-size: 0.7rem;
             font-weight: 500;
-            color: #1e3a5f;
+            color: #334E68;
+            border: 1px solid #E4E7EB;
         }
 
         .report-footer {
-            padding: 16px 24px 24px 24px;
-            border-top: 1px solid #eef2f6;
+            padding: 20px 28px 28px 28px;
+            border-top: 1px solid #F5F7FA;
+            background: #FCFDFE;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: 40px;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 24px;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
             font-size: 0.85rem;
+            cursor: pointer;
+            border: none;
+            width: 100%;
         }
 
         .btn-primary {
-            background: #1e3a5f;
+            background: #002147;
             color: white;
         }
 
         .btn-primary:hover {
-            background: #0f2c46;
-            transform: translateY(-2px);
+            background: #0072CE;
         }
 
         .report-status {
-            font-size: 0.8rem;
-            color: #64748b;
+            font-size: 0.85rem;
+            color: #627D98;
             font-style: italic;
+            display: block;
+            text-align: center;
+        }
+
+        /* --- Secure Premium Modal Overlay Mechanics --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(10, 28, 47, 0.92);
+            backdrop-filter: blur(6px);
+            z-index: 10000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 60px; /* Elegant side and upper desktop breathing margins */
+        }
+
+        .modal-container {
+            width: 100%;
+            height: 100%;
+            max-width: 1200px;
+            background: #ffffff;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .modal-header {
+            background: #002147;
+            color: #ffffff;
+            padding: 18px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #0072CE;
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding-right: 30px;
+            letter-spacing: 0.5px;
+        }
+
+        .close-modal-btn {
+            background: transparent;
+            border: none;
+            color: #BAC7D5;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+        }
+
+        .close-modal-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            flex-grow: 1;
+            background: #486581;
+            position: relative;
+        }
+
+        .pdf-viewer-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #ffffff;
+        }
+
+        /* Print Guard Override */
+        @media print {
+            body * { display: none !important; }
         }
 
         footer {
-            background: #0a192f;
-            color: #94a3b8;
+            background: #0A1C2F;
+            color: #627D98;
             text-align: center;
-            padding: 32px 0;
-            font-size: 0.8rem;
-            border-top: 1px solid #1e3a5f;
+            padding: 40px 0;
+            font-size: 0.85rem;
+            border-top: 4px solid #002147;
         }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 0 20px;
-            }
-            .reports-grid {
-                grid-template-columns: 1fr;
-            }
-            .reports-header h1 {
-                font-size: 2rem;
-            }
+            .container { padding: 0 24px; }
+            .reports-grid { grid-template-columns: 1fr; }
+            .reports-header h1 { font-size: 2.2rem; }
+            .modal-overlay { padding: 20px 16px; }
+            .modal-header { padding: 14px 20px; }
         }
     </style>
 </head>
@@ -223,183 +334,202 @@
     <div class="reports-header">
         <div class="container">
             <h1>Market <span>Synthesis</span> Reports</h1>
-            <p>Data‑driven case studies, strategic analysis, and market intelligence from real-world engagements</p>
-            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Main Hub</a>
+            <p>Empirical case studies, core structural analysis, and advisory deep-dives mapped out for emerging market realities.</p>
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Return to Strategic Hub</a>
         </div>
     </div>
 
     <section class="reports-section">
         <div class="container">
             <div class="section-intro">
-                <span class="section-label">Strategic Intelligence</span>
-                <h2 class="section-title">Featured Reports & Case Studies</h2>
+                <span class="section-label">Strategic Intelligence Portfolio</span>
+                <h2 class="section-title">Active Field Analysis & Case Records</h2>
             </div>
 
             <div class="reports-grid">
-                <!-- Featured Article: Daraz vs Amazon -->
                 <div class="report-card">
                     <div class="report-header">
-                        <span class="report-type" style="background: rgba(66, 153, 225, 0.1); color: #2c6e9e;">Market Analysis</span>
+                        <span class="report-type">Market Evaluation</span>
                         <h3>Daraz vs Amazon: The E-commerce Battle for Pakistan's Digital Future</h3>
                     </div>
                     <div class="report-content">
-                        <p>An in-depth analysis of Daraz's local dominance versus Amazon's global reach in Pakistan's fast growing e-commerce market. Strategic insights and data-driven comparison for businesses and consumers.</p>
+                        <p>An institutional layout parsing local logistical networks and platform positioning to define systemic barriers in regional commercial ecosystems.</p>
                         <div class="report-tags">
-                            <span>E-commerce</span>
-                            <span>Market Analysis</span>
-                            <span>Digital Strategy</span>
-                            <span>Pakistan</span>
+                            <span>E-Commerce</span>
+                            <span>Logistical Moats</span>
+                            <span>Market Modeling</span>
                         </div>
                     </div>
                     <div class="report-footer">
-                        <a href="https://gf1488360-cell.github.io/FaridStrategy/daraz-vs-amazon.html" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                            <span>Read Full Report</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <button class="btn btn-primary view-case-btn" data-pdf="media/daraz-vs-amazon.pdf" data-title="Daraz vs Amazon: Market Infrastructure Assessment">
+                            Access Portfolio Vault <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
 
-                <!-- Case Study: SaaS Export Growth -->
                 <div class="report-card">
                     <div class="report-header">
-                        <span class="report-type" style="background: rgba(76, 175, 80, 0.1); color: #2e7d32;">Growth Strategy</span>
+                        <span class="report-type">Capital Roadmap</span>
                         <h3>Pakistani SaaS Export Growth Strategy: $500M to $2B Roadmap</h3>
                     </div>
                     <div class="report-content">
-                        <p>A strategic roadmap to scale Pakistan's SaaS exports from $500M to $2B through targeted market selection, optimized sales channels, and strategic interventions.</p>
+                        <p>A structured analysis projecting resource metrics, go-to-market mechanics, and scaling parameters across software exports.</p>
                         <div class="report-tags">
-                            <span>SaaS Strategy</span>
-                            <span>Export Growth</span>
-                            <span>Market Entry</span>
-                            <span>Digital Economy</span>
+                            <span>SaaS Units</span>
+                            <span>Export Pipelines</span>
+                            <span>Valuation Projection</span>
                         </div>
                     </div>
                     <div class="report-footer">
-                        <a href="https://gf1488360-cell.github.io/FaridStrategy/saas-case-study.html" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                            <span>Read Case Study</span>
-                            <i class="fas fa-chart-line"></i>
-                        </a>
+                        <button class="btn btn-primary view-case-btn" data-pdf="media/saas-case-study.pdf" data-title="SaaS Export Engine Growth Modeling Pipeline">
+                            Access Portfolio Vault <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
 
-                <!-- Case Study: TechGlobal Market Entry -->
                 <div class="report-card">
                     <div class="report-header">
-                        <span class="report-type" style="background: rgba(76, 175, 80, 0.1); color: #2e7d32;">Market Entry</span>
+                        <span class="report-type">Risk Mitigation</span>
                         <h3>Strategic Market Entry Framework for Emerging Economies</h3>
                     </div>
                     <div class="report-content">
-                        <p>TechGlobal's expansion into Pakistan: navigating mandatory local incorporation, data localization, and rapid IT export growth to capture $60M ARR through a phased joint venture.</p>
+                        <p>Evaluating TechGlobal's compliance tracks, structural data boundaries, and joint venture infrastructure options in emerging digital networks.</p>
                         <div class="report-tags">
-                            <span>Market Entry</span>
-                            <span>Pakistan IT</span>
-                            <span>Joint Venture</span>
+                            <span>Regulatory Guardrails</span>
+                            <span>JV Allocation</span>
                             <span>Data Localization</span>
                         </div>
                     </div>
                     <div class="report-footer">
-                        <a href="https://gf1488360-cell.github.io/FaridStrategy/techglobal-pakistan-case-study.html" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                            <span>Read Case Study</span>
-                            <i class="fas fa-chart-line"></i>
-                        </a>
+                        <button class="btn btn-primary view-case-btn" data-pdf="media/techglobal-pakistan-case-study.pdf" data-title="TechGlobal Architecture: Regional Incorporation Blueprint">
+                            Access Portfolio Vault <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
 
-                <!-- Case Study: Bykea National Expansion -->
                 <div class="report-card">
                     <div class="report-header">
-                        <span class="report-type" style="background: rgba(76, 175, 80, 0.1); color: #2e7d32;">Scaling Strategy</span>
+                        <span class="report-type">Velocity Scaling</span>
                         <h3>Scaling a Startup from Regional to National Presence</h3>
                     </div>
                     <div class="report-content">
-                        <p>Bykea's journey from Karachi dominance to national mobility champion: a phased expansion strategy across Pakistan's diverse cities, balancing risk and reward.</p>
+                        <p>Deconstructing operational footprint expansion, network effect metrics, and cross-city demand variables across localized transit infrastructure.</p>
                         <div class="report-tags">
-                            <span>Startup Scaling</span>
-                            <span>Bykea</span>
-                            <span>Mobility</span>
-                            <span>National Expansion</span>
+                            <span>Network Densification</span>
+                            <span>Transit Metrics</span>
+                            <span>Scale Geometry</span>
                         </div>
                     </div>
                     <div class="report-footer">
-                        <a href="https://gf1488360-cell.github.io/FaridStrategy/bykea-case-study.html" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                            <span>Read Case Study</span>
-                            <i class="fas fa-chart-line"></i>
-                        </a>
+                        <button class="btn btn-primary view-case-btn" data-pdf="media/bykea-case-study.pdf" data-title="Bykea Platform: Multi-City Network Scale Logistics">
+                            Access Portfolio Vault <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
 
-                <!-- Case Study: Hyperlocal Information Gap -->
                 <div class="report-card">
                     <div class="report-header">
-                        <span class="report-type" style="background: rgba(76, 175, 80, 0.1); color: #2e7d32;">Product Innovation</span>
+                        <span class="report-type">Product Mechanics</span>
                         <h3>Pakistan's Hyperlocal Information Gap — A Product Solution</h3>
                     </div>
                     <div class="report-content">
-                        <p>Geofenced, incentivised, community‑verified platform that transforms neighbourhood knowledge into real‑time urban intelligence. Solving the 15‑minute daily information crisis for millions.</p>
+                        <p>A rigorous telemetry project validating user retention mechanics, tokenized verification tracking, and spatial validation algorithms.</p>
                         <div class="report-tags">
-                            <span>Hyperlocal Tech</span>
-                            <span>Product Strategy</span>
-                            <span>Incentive Design</span>
-                            <span>Community Platform</span>
-                            <span>Pakistan</span>
+                            <span>Incentive Verification</span>
+                            <span>Telemetry Models</span>
+                            <span>Spatial Graphing</span>
                         </div>
                     </div>
                     <div class="report-footer">
-                        <a href="https://gf1488360-cell.github.io/FaridStrategy/hyperlocal-information-gap.html" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                            <span>Read Case Study</span>
-                            <i class="fas fa-map-marker-alt"></i>
-                        </a>
+                        <button class="btn btn-primary view-case-btn" data-pdf="media/hyperlocal-information-gap.pdf" data-title="Hyperlocal Information Disparity Matrix & Validation Project">
+                            Access Portfolio Vault <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
 
-                <!-- Coming Soon: More Articles -->
-                <div class="report-card">
+                <div class="report-card" style="opacity: 0.75; border-style: dashed;">
                     <div class="report-header">
-                        <span class="report-type" style="background: #e2e8f0; color: #475569;">Coming Soon</span>
-                        <h3>More Strategic Articles</h3>
+                        <span class="report-type" style="background: #E4E7EB;">Synthesis In-Progress</span>
+                        <h3>More Analytical Case Assets Pending</h3>
                     </div>
                     <div class="report-content">
-                        <p>In-depth analysis and thought leadership on business strategy, market dynamics, and strategic frameworks.</p>
-                        <div class="report-tags">
-                            <span>Market Analysis</span>
-                            <span>Strategic Frameworks</span>
-                            <span>Business Insights</span>
-                        </div>
+                        <p>Continuous verification models monitoring sector valuations, fintech cohort arrays, and agritech unit structures.</p>
                     </div>
                     <div class="report-footer">
-                        <span class="report-status">In Development</span>
-                    </div>
-                </div>
-
-                <!-- Coming Soon: More Case Studies -->
-                <div class="report-card">
-                    <div class="report-header">
-                        <span class="report-type" style="background: #e2e8f0; color: #475569;">Coming Soon</span>
-                        <h3>More Case Studies</h3>
-                    </div>
-                    <div class="report-content">
-                        <p>Detailed real-world applications of strategic frameworks to complex business challenges across industries.</p>
-                        <div class="report-tags">
-                            <span>Porter's Analysis</span>
-                            <span>SWOT Analysis</span>
-                            <span>Market Entry</span>
-                            <span>Operations Strategy</span>
-                        </div>
-                    </div>
-                    <div class="report-footer">
-                        <span class="report-status">In Development</span>
+                        <span class="report-status"><i class="fas fa-lock"></i> Undergoing Review</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <div id="caseStudyModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <div class="modal-title" id="modalReportTitle">Institutional Analysis Dossier</div>
+                <button class="close-modal-btn" id="closeModalBtn" title="Terminate Session"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <iframe class="pdf-viewer-frame" id="pdfFrame" src="" allow="autoplay"></iframe>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
-            <p>© 2026 Market Synthesis Reports — Data‑Driven Strategy & Product Intelligence</p>
-            <p style="margin-top: 8px; font-size: 0.7rem;">Data Science × Strategy = Intelligent Growth</p>
+            <p>© 2026 Ghulam Farid Strategy — Business Strategy & Product Analytics Hub</p>
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('caseStudyModal');
+            const pdfFrame = document.getElementById('pdfFrame');
+            const modalTitle = document.getElementById('modalReportTitle');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const viewButtons = document.querySelectorAll('.view-case-btn');
+
+            viewButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const pdfPath = btn.getAttribute('data-pdf');
+                    const titleText = btn.getAttribute('data-title');
+                    
+                    modalTitle.innerText = titleText;
+                    
+                    // Route through our custom secondary sandbox script file to ensure right-click and command interception is absolute
+                    pdfFrame.src = `pdf-fallback-viewer.html?file=${encodeURIComponent(pdfPath)}`;
+                    
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden'; 
+                });
+            });
+
+            const closeModal = () => {
+                modal.style.display = 'none';
+                pdfFrame.src = ''; 
+                document.body.style.overflow = ''; 
+            };
+
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.style.display === 'flex') closeModal(); });
+
+            // Master Front-End Interception Pipelines
+            document.addEventListener('contextmenu', e => e.preventDefault());
+
+            document.addEventListener('keydown', (e) => {
+                if (e.ctrlKey || e.metaKey) {
+                    if (['s', 'p', 'u', 'c', 'i', 'k text'].includes(e.key.toLowerCase())) {
+                        e.preventDefault();
+                        return false;
+                    }
+                }
+                if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        });
+    </script>
 </body>
 </html>
