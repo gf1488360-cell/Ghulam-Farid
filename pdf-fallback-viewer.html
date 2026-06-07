@@ -2,35 +2,119 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Analysis Viewer Panel</title>
+    <!-- Include Mozilla PDF.js Framework -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { 
             width: 100%; 
             height: 100%; 
-            background-color: #334E68; 
+            background-color: #0d1b2a; 
             overflow: hidden;
             user-select: none;
             -webkit-user-select: none;
+            font-family: 'Inter', sans-serif;
         }
-        .secure-embed-wrapper {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-        embed, object {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        /* Anti-Screenshot Overlay Gutter Simulation */
-        .security-shield {
+
+        /* Top control bar inside the modal frame for zooming */
+        .viewer-toolbar {
+            height: 48px;
+            background: #0a192f;
+            border-bottom: 1px solid #1e3a5f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            box-shadow: inset 0 0 100px rgba(0,33,71,0.3);
-            z-index: 99999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            padding: 0 16px;
         }
+
+        .toolbar-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .toolbar-btn:hover {
+            background: #0072CE;
+            border-color: #0072CE;
+        }
+
+        .scale-info {
+            color: #BAC7D5;
+            font-size: 0.85rem;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        /* Scrollable container for PDF pages */
+        .pdf-scroll-container {
+            width: 100%;
+            height: calc(100% - 48px);
+            margin-top: 48px;
+            overflow-y: auto;
+            overflow-x: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            scroll-behavior: smooth;
+            background: #1f2937;
+        }
+
+        /* Canvas page styling mimicking premium print sheets */
+        .pdf-page-canvas {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            background: #ffffff;
+            max-width: 100%;
+            display: block;
+        }
+
+        /* Loading Spinner */
+        .loading-overlay {
+            position: absolute;
+            top: 48px; left: 0; width: 100%; height: calc(100% - 48px);
+            background: #0d1b2a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            gap: 16px;
+            z-index: 5;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            border-top-color: #0072CE;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Print Guard Overrides */
         @media print {
             body { display: none !important; }
         }
@@ -38,27 +122,101 @@
 </head>
 <body>
 
-    <div class="secure-embed-wrapper">
-        <div class="security-shield"></div>
-        <object id="secureObject" type="application/pdf" data="">
-            <p style="color: #ffffff; text-align: center; padding-top: 50px; font-family: sans-serif;">
-                System unable to instantly initialize custom browser plugin frame interface.
-            </p>
-        </object>
+    <!-- Zoom and Navigation UI Bar -->
+    <div class="viewer-toolbar">
+        <button class="toolbar-btn" id="zoomOutBtn" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+        <span class="scale-info" id="zoomPercent">100%</span>
+        <button class="toolbar-btn" id="zoomInBtn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
     </div>
 
+    <!-- Active Loader Signal -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <div>LOADING DOCUMENT...</div>
+    </div>
+
+    <!-- Scrollable viewport area where HTML5 canvas pages are generated -->
+    <div class="pdf-scroll-container" id="scrollContainer"></div>
+
     <script>
-        // Extract internal PDF route from URI
+        // Tell PDF.js where the worker script lives
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+
         const urlParams = new URLSearchParams(window.location.search);
         const pdfFile = urlParams.get('file');
         
+        const scrollContainer = document.getElementById('scrollContainer');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const zoomPercent = document.getElementById('zoomPercent');
+        
+        let pdfDoc = null;
+        let currentScale = 1.0;
+        const minScale = 0.5;
+        const maxScale = 2.5;
+
         if (pdfFile) {
-            const secureObj = document.getElementById('secureObject');
-            // #toolbar=0 disables internal layout reader panels from executing native prints/downloads
-            secureObj.data = decodeURIComponent(pdfFile) + '#toolbar=0&navpanes=0&statusbar=0&view=FitH';
+            loadPDF(decodeURIComponent(pdfFile));
         }
 
-        // Apply strict secondary iframe sandbox protection rules
+        async function loadPDF(url) {
+            try {
+                // Initialize the PDF Document stream
+                pdfDoc = await pdfjsLib.getDocument(url).promise;
+                loadingOverlay.style.display = 'none';
+                renderAllPages();
+            } catch (error) {
+                console.error('PDF.js execution error:', error);
+                loadingOverlay.innerHTML = '<div style="color:#ef4444;text-align:center;padding:20px;">Failed to initialize document structure. Please try again.</div>';
+            }
+        }
+
+        // Render every page sequentially to enable vertical scrolling naturally
+        async function renderAllPages() {
+            // Clean container template fields
+            scrollContainer.innerHTML = '';
+            
+            for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
+                const page = await pdfDoc.getPage(pageNum);
+                
+                // Build a device pixel ratio sensitive rendering frame context
+                const viewport = page.getViewport({ scale: currentScale });
+                const canvas = document.createElement('canvas');
+                canvas.className = 'pdf-page-canvas';
+                
+                const context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                // Append immediately to preserve DOM ordering while rendering occurs
+                scrollContainer.appendChild(canvas);
+
+                const renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+                
+                await page.render(renderContext).promise;
+            }
+            
+            zoomPercent.innerText = `${Math.round(currentScale * 100)}%`;
+        }
+
+        // Zoom Operations Event Logic
+        document.getElementById('zoomInBtn').addEventListener('click', () => {
+            if (currentScale < maxScale) {
+                currentScale += 0.25;
+                renderAllPages();
+            }
+        });
+
+        document.getElementById('zoomOutBtn').addEventListener('click', () => {
+            if (currentScale > minScale) {
+                currentScale -= 0.25;
+                renderAllPages();
+            }
+        });
+
+        // Security Measures: Intercept context menus and copy/save shortcut pipelines
         document.addEventListener('contextmenu', e => e.preventDefault());
         
         document.addEventListener('keydown', (e) => {
