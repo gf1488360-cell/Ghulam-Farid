@@ -1,45 +1,136 @@
-<!DOCTYPE html>
+[cite: 1]<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>Ghulam Farid | Business Strategy & Product Analyst</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Premium Production Libraries CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Ghulam Farid · Business Management &amp; Product Analyst</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; } 
+        /* ---------- RESET & VARIABLES ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         :root {
             --bg-deep: #020712;
-            --bg-card: rgba(7, 19, 40, 0.55); 
-            --mck-navy: #002147;
+            --bg-card: rgba(7, 19, 40, 0.65);
             --mck-accent-blue: #00a2ff;
             --mck-cyber-cyan: #00f0ff;
-            --mck-border: rgba(255, 255, 255, 0.07);
-            --mck-text-light: #e2e8f0;
-            --mck-text-muted: #7088a8;
-            --white: #FFFFFF;
-            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --mck-border: rgba(255, 255, 255, 0.08);
+            --mck-text-light: #e8edf5;
+            --mck-text-muted: #8aa0c0;
+            --white: #ffffff;
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
+        * {
+            cursor: none !important;
+        }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-deep);
+            background: var(--bg-deep);
             color: var(--mck-text-light);
             line-height: 1.6;
             scroll-behavior: smooth;
             overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
             position: relative;
         }
-        
-        /* 3D WebGL Canvas Layer - Product Tech Grid Network Blueprint */
-        #threeJsGlobalContainer {
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+                text-align: center;
+            }
+        }
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: var(--white);
+        }
+        .section-label {
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 700;
+            display: inline-block;
+            color: var(--mck-cyber-cyan);
+            margin-bottom: 12px;
+            position: relative;
+        }
+        .section-label::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: var(--mck-accent-blue);
+            margin-top: 6px;
+        }
+        @media (max-width: 768px) {
+            .section-label::after {
+                margin: 6px auto 0;
+            }
+        }
+        .section-title {
+            font-size: 2.6rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            line-height: 1.2;
+        }
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.9rem;
+                text-align: center;
+            }
+        }
+
+        /* ---------- CUSTOM CURSOR ---------- */
+        #customCursor {
+            width: 10px;
+            height: 10px;
+            background: var(--mck-cyber-cyan);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+        }
+        #customCursorRing {
+            width: 40px;
+            height: 40px;
+            border: 1.5px solid rgba(0, 240, 255, 0.25);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 99998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.08s ease-out, width 0.3s, height 0.3s, border-color 0.3s, background 0.3s;
+        }
+        .hovered-node #customCursor {
+            width: 16px;
+            height: 16px;
+            background: var(--white);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
+        }
+        .hovered-node #customCursorRing {
+            width: 60px;
+            height: 60px;
+            border-color: var(--mck-accent-blue);
+            background: rgba(0, 162, 255, 0.06);
+        }
+
+        /* ---------- 3D CANVAS ---------- */
+        #three-canvas {
             position: fixed;
             top: 0;
             left: 0;
@@ -48,961 +139,1595 @@
             z-index: 1;
             pointer-events: none;
         }
+        #three-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+            background: radial-gradient(ellipse at center, rgba(2, 7, 18, 0.2) 0%, rgba(2, 7, 18, 0.8) 100%);
+        }
 
-        /* Ambient Dynamic Dashboard Aura Blurs */
-        .ambient-aura-glow {
+        /* ---------- AMBIENT GLOW ---------- */
+        .ambient-glow {
             position: fixed;
             width: 60vw;
             height: 60vw;
             border-radius: 50%;
             pointer-events: none;
             z-index: 1;
-            filter: blur(140px);
-            opacity: 0.09;
+            filter: blur(150px);
+            opacity: 0.07;
             mix-blend-mode: screen;
-            transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1), background 1.5s ease;
+            transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        #aura1 { top: -20vw; left: -10vw; background: radial-gradient(circle, var(--mck-cyber-cyan) 0%, transparent 70%); }
-        #aura2 { bottom: -10vw; right: -10vw; background: radial-gradient(circle, var(--mck-accent-blue) 0%, transparent 70%); }
+        #glow1 {
+            top: -20vw;
+            left: -10vw;
+            background: radial-gradient(circle, var(--mck-cyber-cyan), transparent 70%);
+        }
+        #glow2 {
+            bottom: -10vw;
+            right: -10vw;
+            background: radial-gradient(circle, var(--mck-accent-blue), transparent 70%);
+        }
 
+        /* ---------- LAYERS ---------- */
         nav, section, footer {
             position: relative;
             z-index: 2;
         }
-        
-        /* Premium Custom Cursor System */
-        #customCursor {
-            width: 8px; height: 8px; background: var(--mck-cyber-cyan); border-radius: 50%;
-            position: fixed; pointer-events: none; z-index: 99999; transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-        }
-        #customCursorRing {
-            width: 35px; height: 35px; border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 50%;
-            position: fixed; pointer-events: none; z-index: 99998; transform: translate(-50%, -50%);
-            transition: transform 0.08s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
-        }
-        .hovered-node #customCursor { width: 14px; height: 14px; background: var(--white); }
-        .hovered-node #customCursorRing { width: 55px; height: 55px; border-color: var(--mck-accent-blue); background: rgba(0, 162, 255, 0.05); }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; position: relative; }
-        @media (max-width: 768px) { .container { padding: 0 20px; text-align: center; } }
-        
-        h1, h2, h3, .mck-serif { font-family: 'Playfair Display', serif; font-weight: 600; letter-spacing: -0.01em; color: var(--white); }
-        
-        .section-label {
-            font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 700;
-            display: inline-block; color: var(--mck-cyber-cyan); margin-bottom: 12px; position: relative;
-        }
-        .section-label::after { content: ''; display: block; width: 35px; height: 2px; background: var(--mck-accent-blue); margin-top: 6px; }
-        @media (max-width: 768px) { .section-label::after { margin: 6px auto 0 auto; } }
-        
-        .section-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 20px; line-height: 1.25; }
-        @media (max-width: 768px) { .section-title { font-size: 1.85rem; text-align: center; } }
-        
-        /* Top Navigation Bar */
+        /* ---------- TOP BAR ---------- */
         .top-bar {
-            background: #01050e; color: var(--mck-cyber-cyan); font-size: 0.65rem; font-weight: 600;
-            letter-spacing: 1.5px; padding: 12px 0; text-align: center; border-bottom: 1px solid var(--mck-border);
-            position: relative; z-index: 1001;
+            background: rgba(1, 5, 14, 0.85);
+            backdrop-filter: blur(12px);
+            color: var(--mck-cyber-cyan);
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            padding: 10px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--mck-border);
+            position: relative;
+            z-index: 1001;
         }
-        
-        /* Navigation Elements */
+
+        /* ---------- NAV ---------- */
         .main-nav {
-            position: sticky; top: 0; background: rgba(2, 7, 18, 0.7); backdrop-filter: blur(25px);
-            z-index: 1000; padding: 20px 0; border-bottom: 1px solid var(--mck-border);
+            position: sticky;
+            top: 0;
+            background: rgba(2, 7, 18, 0.75);
+            backdrop-filter: blur(25px);
+            z-index: 1000;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--mck-border);
         }
-        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
-        .logo { text-align: left; }
-        .logo-name { font-size: 1.4rem; font-weight: 700; font-family: 'Playfair Display', serif; color: var(--white); line-height: 1; }
-        .logo-title { font-size: 0.55rem; letter-spacing: 2px; color: var(--mck-text-muted); text-transform: uppercase; margin-top: 4px; font-weight: 600; }
-        .nav-list { display: flex; list-style: none; gap: 32px; align-items: center; }
-        .nav-link { text-decoration: none; font-size: 0.85rem; font-weight: 500; color: var(--mck-text-light); transition: var(--transition-smooth); }
-        .nav-link:hover { color: var(--mck-cyber-cyan); }
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            color: var(--white);
+            line-height: 1;
+        }
+        .logo-title {
+            font-size: 0.5rem;
+            letter-spacing: 2.5px;
+            color: var(--mck-text-muted);
+            text-transform: uppercase;
+            margin-top: 3px;
+            font-weight: 600;
+        }
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            align-items: center;
+        }
+        .nav-list a {
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--mck-text-light);
+            transition: var(--transition);
+            position: relative;
+        }
+        .nav-list a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--mck-cyber-cyan);
+            transition: var(--transition);
+        }
+        .nav-list a:hover::after {
+            width: 100%;
+        }
+        .nav-list a:hover {
+            color: var(--mck-cyber-cyan);
+        }
         .nav-cta {
-            border: 1px solid var(--mck-accent-blue); color: var(--white); padding: 10px 24px;
-            text-decoration: none; font-weight: 600; font-size: 0.8rem; background: rgba(0, 162, 255, 0.03); transition: var(--transition-smooth);
+            border: 1px solid var(--mck-accent-blue);
+            color: var(--white);
+            padding: 10px 26px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.75rem;
+            background: rgba(0, 162, 255, 0.05);
+            transition: var(--transition);
+            border-radius: 4px;
         }
-        .nav-cta:hover { background: var(--mck-accent-blue); box-shadow: 0 0 15px rgba(0, 162, 255, 0.4); }
-        
-        .mobile-toggle { display: none; flex-direction: column; gap: 6px; cursor: pointer; background: none; border: none; }
-        .mobile-toggle span { width: 24px; height: 2px; background: var(--white); transition: var(--transition-smooth); }
-        @media (max-width: 900px) { .nav-list { display: none; } .mobile-toggle { display: flex; } .nav-cta { display: none; } }
-        
-        /* Hero Base Framework */
-        .hero { padding: 120px 0; overflow: hidden; background: transparent; }
-        .hero-text-side { min-height: 280px; text-align: left; }
-        @media (max-width: 768px) { .hero-text-side { text-align: center; min-height: 380px; } }
-        
-        .hero-description { color: var(--mck-text-muted); font-size: 1.1rem; margin: 24px 0 35px 0; max-width: 580px; opacity: 0; transform: translateY(10px); transition: opacity 0.6s ease, transform 0.6s ease; }
-        .hero-description.visible { opacity: 1; transform: translateY(0); }
-        .hero-title { font-size: 3.5rem; font-weight: 700; line-height: 1.15; color: var(--white); display: inline-block; min-height: 1.2em; }
-        .hero-title span { color: var(--mck-cyber-cyan); }
-        @media (max-width: 640px) { .hero-title { font-size: 2.15rem; } }
-        
-        /* Modern Dynamic Typing Cursor Asset */
-        .typing-cursor { display: inline-block; width: 3px; height: 0.9em; background-color: var(--mck-cyber-cyan); margin-left: 4px; animation: blink 0.75s step-end infinite; vertical-align: middle; }
-        @keyframes blink { from, to { background-color: transparent } 50% { background-color: var(--mck-cyber-cyan); } }
-        
-        .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
-        @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } .hero-description { max-width: 100%; } }
-        
-        /* Strategic Matrix Module Overlay */
-        .matrix-container {
-            background: var(--bg-card); border: 1px solid var(--mck-border); padding: 35px;
-            backdrop-filter: blur(15px); box-shadow: inset 0 0 20px rgba(255,255,255,0.01);
-            border-radius: 6px; transition: var(--transition-smooth); text-align: left;
+        .nav-cta:hover {
+            background: var(--mck-accent-blue);
+            box-shadow: 0 0 30px rgba(0, 162, 255, 0.3);
+            color: var(--bg-deep);
         }
-        .matrix-container:hover { border-color: rgba(0, 240, 255, 0.25); box-shadow: 0 15px 35px rgba(0,240,255,0.03); }
-        .matrix-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; color: var(--mck-text-muted); font-weight: 600; }
-        .step-vertical { display: flex; flex-direction: column; gap: 24px; }
-        .matrix-row { display: flex; gap: 20px; align-items: flex-start; }
-        @media (max-width: 768px) { .matrix-container { margin: 0 auto; width: 100%; max-width: 500px; } }
-        
-        .matrix-num { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--mck-cyber-cyan); border-bottom: 2px solid var(--mck-border); padding-bottom: 2px; }
-        .matrix-meta h4 { font-size: 1rem; font-weight: 600; color: var(--white); }
-        .matrix-meta p { font-size: 0.85rem; color: var(--mck-text-muted); margin-top: 4px; }
-        
-        .btn-group { display: flex; gap: 16px; flex-wrap: wrap; }
-        @media (max-width: 768px) { .btn-group { justify-content: center; } }
-        
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .mobile-toggle span {
+            width: 26px;
+            height: 2px;
+            background: var(--white);
+            transition: var(--transition);
+        }
+        @media (max-width: 900px) {
+            .nav-list { display: none; }
+            .mobile-toggle { display: flex; }
+            .nav-cta { display: none; }
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            padding: 120px 0 90px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 60px;
+            align-items: center;
+        }
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+        }
+        .hero-title {
+            font-size: 3.8rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--white);
+            min-height: 1.3em;
+        }
+        .hero-title .highlight {
+            color: var(--mck-cyber-cyan);
+        }
+        .hero-title .typing-cursor {
+            display: inline-block;
+            width: 4px;
+            height: 0.85em;
+            background-color: var(--mck-cyber-cyan);
+            margin-left: 2px;
+            vertical-align: middle;
+            animation: blink 0.75s step-end infinite;
+        }
+        @keyframes blink {
+            from, to { background-color: transparent; }
+            50% { background-color: var(--mck-cyber-cyan); }
+        }
+        .hero-role {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--mck-accent-blue);
+            margin-top: 8px;
+            letter-spacing: 1px;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+        .hero-role.visible {
+            opacity: 1;
+        }
+        .hero-description {
+            color: var(--mck-text-muted);
+            font-size: 1.05rem;
+            margin: 24px 0 35px;
+            max-width: 560px;
+            line-height: 1.7;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .hero-description.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (max-width: 900px) {
+            .hero-description { max-width: 100%; }
+        }
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            opacity: 0;
+            transition: opacity 0.8s ease 0.4s;
+        }
+        .btn-group.visible {
+            opacity: 1;
+        }
+        @media (max-width: 900px) {
+            .btn-group { justify-content: center; }
+        }
         .btn-primary {
-            background: var(--white); color: var(--bg-deep); padding: 14px 32px; font-weight: 600;
-            text-decoration: none; font-size: 0.85rem; transition: var(--transition-smooth); border: 1px solid var(--white);
+            background: var(--white);
+            color: var(--bg-deep);
+            padding: 14px 34px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            border: 1px solid var(--white);
+            border-radius: 4px;
         }
-        .btn-primary:hover { background: transparent; color: var(--white); box-shadow: 0 0 20px rgba(255,255,255,0.2); }
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--white);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+        }
         .btn-outline {
-            border: 1px solid rgba(255,255,255,0.2); color: var(--white); padding: 14px 32px;
-            font-weight: 600; text-decoration: none; font-size: 0.85rem; transition: var(--transition-smooth);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            padding: 14px 34px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            border-radius: 4px;
         }
-        .btn-outline:hover { border-color: var(--mck-cyber-cyan); background: rgba(0, 240, 255, 0.05); }
-        
-        /* Interactive Analytics Footprint Module */
-        .advisory-footprint { background: var(--bg-card); padding: 70px 0; border-top: 1px solid var(--mck-border); border-bottom: 1px solid var(--mck-border); backdrop-filter: blur(15px); }
-        .footprint-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: center; }
-        .footprint-card { display: flex; flex-direction: column; align-items: center; position: relative; transition: var(--transition-smooth); }
-        .footprint-card:hover { transform: translateY(-5px); }
-        .canvas-wrapper { position: relative; width: 110px; height: 110px; margin-bottom: 20px; }
-        .counter-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 600; color: var(--white); }
-        .footprint-card h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--mck-text-light); font-weight: 600; }
-        .footprint-card p { font-size: 0.85rem; color: var(--mck-text-muted); margin-top: 8px; max-width: 240px; }
-        
+        .btn-outline:hover {
+            border-color: var(--mck-cyber-cyan);
+            background: rgba(0, 240, 255, 0.05);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.05);
+        }
+
+        /* ---------- MATRIX CARD ---------- */
+        .matrix-card {
+            background: var(--bg-card);
+            border: 1px solid var(--mck-border);
+            padding: 32px 30px;
+            backdrop-filter: blur(18px);
+            border-radius: 8px;
+            transition: var(--transition);
+            text-align: left;
+            border-left: 3px solid var(--mck-accent-blue);
+        }
+        .matrix-card:hover {
+            border-color: rgba(0, 240, 255, 0.25);
+            box-shadow: 0 20px 40px rgba(0, 240, 255, 0.03);
+        }
+        .matrix-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-bottom: 22px;
+            color: var(--mck-text-muted);
+            font-weight: 600;
+        }
+        .matrix-row {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            margin-bottom: 18px;
+        }
+        .matrix-row:last-child {
+            margin-bottom: 0;
+        }
+        .matrix-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--mck-cyber-cyan);
+            border-bottom: 2px solid var(--mck-border);
+            padding-bottom: 2px;
+            min-width: 40px;
+        }
+        .matrix-meta h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+        .matrix-meta p {
+            font-size: 0.82rem;
+            color: var(--mck-text-muted);
+            margin-top: 4px;
+        }
+
+        /* ---------- STATS ---------- */
+        .stats-section {
+            padding: 70px 0;
+            border-top: 1px solid var(--mck-border);
+            border-bottom: 1px solid var(--mck-border);
+            background: rgba(7, 19, 40, 0.4);
+            backdrop-filter: blur(12px);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+        .stat-card .number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+        .stat-card .number .counter {
+            display: inline-block;
+        }
+        .stat-card .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--mck-text-light);
+            font-weight: 600;
+            margin-top: 6px;
+        }
+        .stat-card .sub {
+            font-size: 0.8rem;
+            color: var(--mck-text-muted);
+            margin-top: 4px;
+        }
         @media (max-width: 768px) {
-            .footprint-grid { grid-template-columns: 1fr; gap: 40px; }
-            .footprint-card { border: none !important; padding-bottom: 20px; border-bottom: 1px solid var(--mck-border) !important; }
-            .footprint-card:last-child { border-bottom: none !important; }
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .stat-card {
+                border-bottom: 1px solid var(--mck-border);
+                padding-bottom: 20px;
+            }
+            .stat-card:last-child {
+                border-bottom: none;
+            }
         }
-        
-        /* Capabilities Architecture */
-        .competency-section { padding: 100px 0; background: transparent; }
-        .competency-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 40px; }
-        @media (max-width: 900px) { .competency-grid { grid-template-columns: 1fr; gap: 40px; } }
-        
-        .benchmark-container { display: flex; flex-direction: column; gap: 28px; text-align: left; }
-        .benchmark-row { display: flex; flex-direction: column; gap: 10px; }
-        .benchmark-labels { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; color: var(--mck-text-light); }
-        .benchmark-bar-bg { background: rgba(255,255,255,0.04); height: 6px; width: 100%; position: relative; border-radius: 3px; }
-        .benchmark-bar-fill { background: linear-gradient(90deg, var(--mck-accent-blue), var(--mck-cyber-cyan)); height: 100%; position: absolute; top: 0; left: 0; width: 0; transition: width 2s cubic-bezier(0.16, 1, 0.3, 1); border-radius: 3px; }
-        
-        .advantage-card { background: var(--bg-card); padding: 35px; border-left: 3px solid var(--mck-accent-blue); border-top: 1px solid var(--mck-border); backdrop-filter: blur(15px); border-radius: 4px; transition: var(--transition-smooth); text-align: left; }
-        .advantage-card:hover { border-left-color: var(--mck-cyber-cyan); transform: scale(1.02) translateY(-2px); border-color: rgba(0, 240, 255, 0.15); }
-        .advantage-card h3 { font-size: 1.35rem; margin-bottom: 12px; color: var(--white); }
-        .advantage-card p { font-size: 0.9rem; color: var(--mck-text-muted); }
-        @media (max-width: 768px) { .advantage-card { max-width: 500px; margin: 0 auto; } }
-        
-        .advantage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-        @media (max-width: 900px) { .advantage-grid { grid-template-columns: 1fr; } }
-        
-        /* Performance Dashboard Visualizations */
-        .impact-section { padding: 100px 0; background: transparent; border-top: 1px solid var(--mck-border); }
-        .impact-charts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 50px; }
-        @media (max-width: 900px) { .impact-charts { grid-template-columns: 1fr; } }
-        
-        .chart-box { background: var(--bg-card); border: 1px solid var(--mck-border); padding: 28px; border-radius: 6px; backdrop-filter: blur(15px); transition: var(--transition-smooth); text-align: left; }
-        .chart-box:hover { border-color: rgba(0, 162, 255, 0.3); }
-        .chart-box h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--mck-text-light); margin-bottom: 25px; border-bottom: 1px solid var(--mck-border); padding-bottom: 12px; }
-        .chart-container { height: 240px; position: relative; }
-        @media (max-width: 768px) { .chart-box { max-width: 500px; margin: 0 auto; width: 100%; } }
-        
-        /* Services Spectrum Systems */
-        .services-section { padding: 100px 0; background: transparent; border-top: 1px solid var(--mck-border); }
-        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
-        @media (max-width: 900px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 600px) { .services-grid { grid-template-columns: 1fr; } }
-        
-        .service-card { background: var(--bg-card); border: 1px solid var(--mck-border); padding: 40px 32px; border-radius: 6px; backdrop-filter: blur(15px); transition: var(--transition-smooth); text-align: left; }
-        .service-card:hover { border-color: var(--mck-cyber-cyan); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,240,255,0.06); }
-        .service-card h4 { color: var(--white); font-size: 1.25rem; font-family: 'Inter', sans-serif; font-weight: 600; margin-bottom: 14px; }
-        .service-card p { color: var(--mck-text-muted); font-size: 0.9rem; }
-        @media (max-width: 768px) { .service-card { max-width: 500px; margin: 0 auto; width: 100%; } }
-        
-        /* Labs Execution Matrix */
-        .labs-section { padding: 100px 0; background: transparent; border-top: 1px solid var(--mck-border); }
-        .labs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
-        @media (max-width: 750px) { .labs-grid { grid-template-columns: 1fr; } }
-        
-        .lab-card { background: var(--bg-card); border: 1px solid var(--mck-border); padding: 45px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; border-radius: 6px; backdrop-filter: blur(15px); transition: var(--transition-smooth); text-align: left; }
-        .lab-card:hover { border-color: rgba(0, 240, 255, 0.3); }
-        .lab-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--mck-accent-blue), var(--mck-cyber-cyan)); }
-        .lab-card h3 { font-size: 1.6rem; margin-bottom: 14px; }
-        .lab-card p { font-size: 0.95rem; color: var(--mck-text-muted); margin-bottom: 30px; }
-        .lab-link { color: var(--mck-cyber-cyan); font-weight: 600; text-decoration: none; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 8px; transition: var(--transition-smooth); }
-        .lab-link:hover { gap: 14px; color: var(--white); }
-        @media (max-width: 768px) { .lab-card { max-width: 500px; margin: 0 auto; width: 100%; } }
-        
-        /* Executive Profile Capsule */
-        .profile-section { background: transparent; padding: 110px 0; border-top: 1px solid var(--mck-border); }
-        .profile-content { max-width: 780px; margin: 0 auto; text-align: center; }
-        .profile-quote { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--white); font-style: italic; margin: 28px 0; line-height: 1.45; }
-        .profile-text { font-size: 1.05rem; color: var(--mck-text-muted); margin-bottom: 24px; text-align: left; line-height: 1.7; }
-        @media (max-width: 768px) { .profile-text { text-align: center; } }
-        
-        /* Engagement Pipeline Matrix */
-        .contact-section { padding: 100px 0; background: transparent; border-top: 1px solid var(--mck-border); }
-        .contact-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 80px; }
-        @media (max-width: 850px) { .contact-grid { grid-template-columns: 1fr; gap: 40px; } }
-        
-        .contact-details { display: flex; flex-direction: column; gap: 32px; margin-top: 30px; text-align: left; }
-        @media (max-width: 768px) { .contact-details { text-align: center; } }
-        .contact-item h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--mck-text-muted); }
-        .contact-item p { font-size: 1.1rem; color: var(--white); font-weight: 500; margin-top: 4px; }
-        
-        .contact-form { display: flex; flex-direction: column; gap: 20px; }
+
+        /* ---------- COMPETENCIES ---------- */
+        .competency-section {
+            padding: 110px 0;
+        }
+        .competency-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            margin-top: 40px;
+        }
+        @media (max-width: 900px) {
+            .competency-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+        .benchmark-row {
+            margin-bottom: 28px;
+        }
+        .benchmark-row:last-child {
+            margin-bottom: 0;
+        }
+        .benchmark-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--mck-text-light);
+        }
+        .benchmark-bar {
+            background: rgba(255, 255, 255, 0.05);
+            height: 6px;
+            border-radius: 4px;
+            margin-top: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+        .benchmark-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--mck-accent-blue), var(--mck-cyber-cyan));
+            width: 0;
+            transition: width 2.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .advantage-card {
+            background: var(--bg-card);
+            padding: 32px 30px;
+            border-left: 3px solid var(--mck-accent-blue);
+            border-top: 1px solid var(--mck-border);
+            backdrop-filter: blur(15px);
+            border-radius: 6px;
+            transition: var(--transition);
+            margin-bottom: 20px;
+        }
+        .advantage-card:last-child {
+            margin-bottom: 0;
+        }
+        .advantage-card:hover {
+            border-left-color: var(--mck-cyber-cyan);
+            transform: translateX(6px);
+            border-color: rgba(0, 240, 255, 0.12);
+        }
+        .advantage-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+        .advantage-card p {
+            font-size: 0.9rem;
+            color: var(--mck-text-muted);
+        }
+
+        /* ---------- SERVICES ---------- */
+        .services-section {
+            padding: 110px 0;
+            border-top: 1px solid var(--mck-border);
+            background: rgba(2, 7, 18, 0.3);
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+        @media (max-width: 900px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .services-grid { grid-template-columns: 1fr; }
+        }
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--mck-border);
+            padding: 30px 26px;
+            border-radius: 8px;
+            backdrop-filter: blur(15px);
+            transition: var(--transition);
+            text-align: left;
+            border-bottom: 2px solid transparent;
+        }
+        .service-card:hover {
+            border-color: var(--mck-cyber-cyan);
+            border-bottom-color: var(--mck-cyber-cyan);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0, 240, 255, 0.05);
+        }
+        .service-card .icon {
+            color: var(--mck-cyber-cyan);
+            font-size: 1.4rem;
+            margin-bottom: 14px;
+            display: block;
+        }
+        .service-card h4 {
+            color: var(--white);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        .service-card p {
+            color: var(--mck-text-muted);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+        .service-divider {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px 0 10px;
+            border-top: 1px solid var(--mck-border);
+            color: var(--mck-text-muted);
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* ---------- SECTORS SECTIONS ---------- */
+        .sectors-container {
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 1px solid var(--mck-border);
+        }
+        .sectors-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+        @media (max-width: 900px) {
+            .sectors-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 500px) {
+            .sectors-grid { grid-template-columns: 1fr; }
+        }
+        .sector-tag {
+            background: rgba(7, 19, 40, 0.4);
+            border: 1px solid var(--mck-border);
+            padding: 18px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--mck-text-light);
+            transition: var(--transition);
+        }
+        .sector-tag i {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--mck-accent-blue);
+            font-size: 1.2rem;
+        }
+        .sector-tag:hover {
+            border-color: var(--mck-cyber-cyan);
+            background: var(--bg-card);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* ---------- PROJECTS ---------- */
+        .projects-section {
+            padding: 110px 0;
+            border-top: 1px solid var(--mck-border);
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        @media (max-width: 750px) {
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--mck-border);
+            padding: 40px 36px;
+            border-radius: 8px;
+            backdrop-filter: blur(15px);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--mck-accent-blue), var(--mck-cyber-cyan));
+        }
+        .project-card:hover {
+            border-color: rgba(0, 240, 255, 0.25);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+        }
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+        .project-card p {
+            font-size: 0.92rem;
+            color: var(--mck-text-muted);
+            margin-bottom: 22px;
+            line-height: 1.7;
+        }
+        .project-link {
+            color: var(--mck-cyber-cyan);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+        .project-link:hover {
+            gap: 18px;
+            color: var(--white);
+        }
+
+        /* ---------- PROFILE ---------- */
+        .profile-section {
+            padding: 110px 0;
+            border-top: 1px solid var(--mck-border);
+        }
+        .profile-content {
+            max-width: 780px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .profile-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--white);
+            font-style: italic;
+            margin: 28px 0;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+        .profile-text {
+            font-size: 1.05rem;
+            color: var(--mck-text-muted);
+            margin-bottom: 20px;
+            text-align: left;
+            line-height: 1.8;
+        }
+        @media (max-width: 768px) {
+            .profile-text { text-align: center; }
+        }
+
+        /* ---------- CONTACT ---------- */
+        .contact-section {
+            padding: 110px 0;
+            border-top: 1px solid var(--mck-border);
+            background: rgba(2, 7, 18, 0.3);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 70px;
+        }
+        @media (max-width: 850px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-top: 30px;
+            text-align: left;
+        }
+        @media (max-width: 768px) {
+            .contact-details { text-align: center; }
+        }
+        .contact-item h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--mck-text-muted);
+            font-weight: 600;
+        }
+        .contact-item p {
+            font-size: 1.1rem;
+            color: var(--white);
+            font-weight: 500;
+            margin-top: 4px;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
         .contact-form input, .contact-form textarea {
-            width: 100%; padding: 16px; border: 1px solid var(--mck-border); font-family: 'Inter', sans-serif;
-            font-size: 0.9rem; color: var(--white); background: var(--bg-card); backdrop-filter: blur(15px); border-radius: 4px; transition: var(--transition-smooth);
+            width: 100%;
+            padding: 16px 18px;
+            border: 1px solid var(--mck-border);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--white);
+            background: var(--bg-card);
+            backdrop-filter: blur(15px);
+            border-radius: 6px;
+            transition: var(--transition);
         }
-        .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--mck-cyber-cyan); background: rgba(3, 10, 22, 0.85); box-shadow: 0 0 15px rgba(0,240,255,0.05); }
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--mck-cyber-cyan);
+            background: rgba(3, 10, 22, 0.9);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.05);
+        }
         .contact-form button {
-            background: linear-gradient(90deg, var(--mck-accent-blue), var(--mck-cyber-cyan)); color: var(--bg-deep);
-            border: none; padding: 16px; font-weight: 700; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; border-radius: 4px; transition: var(--transition-smooth);
+            background: linear-gradient(135deg, var(--mck-accent-blue), var(--mck-cyber-cyan));
+            color: var(--bg-deep);
+            border: none;
+            padding: 16px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 6px;
+            transition: var(--transition);
+            cursor: pointer;
         }
-        .contact-form button:hover { box-shadow: 0 0 25px rgba(0, 240, 255, 0.4); transform: translateY(-2px); }
-        
-        /* Footer Framework */
-        footer { background: #01040a; color: var(--mck-text-muted); padding: 80px 0 40px; font-size: 0.85rem; border-top: 1px solid var(--mck-border); position: relative; z-index: 1001; }
-        footer h3, footer h4 { color: var(--white); }
-        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; text-align: left; }
-        @media (max-width: 768px) { .footer-grid { flex-direction: column; align-items: center; text-align: center; } }
-        .footer-links a { color: var(--mck-text-muted); text-decoration: none; display: block; margin-bottom: 10px; transition: var(--transition-smooth); }
-        .footer-links a:hover { color: var(--mck-cyber-cyan); }
-        .footer-bottom { margin-top: 60px; padding-top: 25px; border-top: 1px solid var(--mck-border); text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
-        
-        /* Mobile Navigation Overlay Menu */
+        .contact-form button:hover {
+            box-shadow: 0 0 35px rgba(0, 240, 255, 0.35);
+            transform: translateY(-2px);
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            background: #01040a;
+            color: var(--mck-text-muted);
+            padding: 60px 0 30px;
+            font-size: 0.85rem;
+            border-top: 1px solid var(--mck-border);
+            position: relative;
+            z-index: 1001;
+        }
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            text-align: left;
+        }
+        @media (max-width: 768px) {
+            .footer-grid {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+        .footer-links a {
+            color: var(--mck-text-muted);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: var(--transition);
+            font-size: 0.85rem;
+        }
+        .footer-links a:hover {
+            color: var(--mck-cyber-cyan);
+        }
+        .footer-bottom {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--mck-border);
+            text-align: center;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.25);
+            letter-spacing: 0.5px;
+        }
+
+        /* ---------- MOBILE MENU ---------- */
         .mobile-menu-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(2, 7, 18, 0.98); backdrop-filter: blur(30px); z-index: 2000;
-            display: none; justify-content: center; align-items: center;
-            opacity: 0; transition: opacity 0.4s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(2, 7, 18, 0.98);
+            backdrop-filter: blur(35px);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
-        .mobile-menu-overlay.active { display: flex; opacity: 1; }
-        .mobile-menu-panel { text-align: center; position: relative; }
-        .close-menu { position: absolute; top: -60px; right: 0; left: 0; margin: auto; background: none; border: none; color: var(--white); font-size: 2rem; }
-        .mobile-nav-list { list-style: none; }
-        .mobile-nav-list li { margin-bottom: 28px; transform: translateY(20px); opacity: 0; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        .mobile-menu-overlay.active .mobile-nav-list li { transform: translateY(0); opacity: 1; }
-        .mobile-nav-list li:nth-child(1) { transition-delay: 0.1s; }
-        .mobile-nav-list li:nth-child(2) { transition-delay: 0.15s; }
-        .mobile-nav-list li:nth-child(3) { transition-delay: 0.2s; }
-        .mobile-nav-list li:nth-child(4) { transition-delay: 0.25s; }
-        .mobile-nav-list li:nth-child(5) { transition-delay: 0.3s; }
-        .mobile-nav-list li:nth-child(6) { transition-delay: 0.35s; }
-        
-        .mobile-nav-list a { text-decoration: none; font-size: 1.6rem; font-family: 'Playfair Display', serif; color: var(--white); transition: var(--transition-smooth); }
-        .mobile-nav-list a:hover { color: var(--mck-cyber-cyan); letter-spacing: 1px; }
-        
-        /* Animation Triggers */
-        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .mobile-menu-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        .mobile-menu-panel {
+            text-align: center;
+            position: relative;
+        }
+        .close-menu {
+            position: absolute;
+            top: -70px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .close-menu:hover {
+            color: var(--mck-cyber-cyan);
+            transform: rotate(90deg);
+        }
+        .mobile-nav-list {
+            list-style: none;
+        }
+        .mobile-nav-list li {
+            margin-bottom: 28px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mobile-menu-overlay.active .mobile-nav-list li {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .mobile-nav-list li:nth-child(1) { transition-delay: 0.08s; }
+        .mobile-nav-list li:nth-child(2) { transition-delay: 0.12s; }
+        .mobile-nav-list li:nth-child(3) { transition-delay: 0.16s; }
+        .mobile-nav-list li:nth-child(4) { transition-delay: 0.20s; }
+        .mobile-nav-list li:nth-child(5) { transition-delay: 0.24s; }
+        .mobile-nav-list li:nth-child(6) { transition-delay: 0.28s; }
+        .mobile-nav-list a {
+            text-decoration: none;
+            font-size: 1.6rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--white);
+            transition: var(--transition);
+        }
+        .mobile-nav-list a:hover {
+            color: var(--mck-cyber-cyan);
+            letter-spacing: 2px;
+        }
+
+        /* ---------- ANIMATIONS ---------- */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ---------- SCROLLBAR ---------- */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: var(--mck-accent-blue); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--mck-cyber-cyan); }
+
+        /* ---------- FLOATING GLOW ORBS ---------- */
+        .floating-orb {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(80px);
+            opacity: 0.06;
+            animation: floatOrb 8s infinite ease-in-out alternate;
+        }
+        .floating-orb:nth-child(1) { width: 40vw; height: 40vw; background: var(--mck-cyber-cyan); top: 10%; left: -10%; animation-delay: 0s; }
+        .floating-orb:nth-child(2) { width: 35vw; height: 35vw; background: var(--mck-accent-blue); bottom: 10%; right: -8%; animation-delay: -3s; }
+        .floating-orb:nth-child(3) { width: 30vw; height: 30vw; background: #4a8fe0; top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: -6s; }
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(60px, -80px) scale(1.3); }
+            66% { transform: translate(-40px, 60px) scale(0.8); }
+            100% { transform: translate(30px, -30px) scale(1.2); }
+        }
     </style>
 </head>
 <body>
 
-<!-- Pointer Asset Systems -->
-<div id="customCursor"></div>
-<div id="customCursorRing"></div>
+    <div class="floating-orb"></div>
+    <div class="floating-orb"></div>
+    <div class="floating-orb"></div>
 
-<!-- Visual Backdrop Controls -->
-<div id="threeJsGlobalContainer"></div>
-<div id="aura1" class="ambient-aura-glow"></div>
-<div id="aura2" class="ambient-aura-glow"></div>
+    <div id="customCursor"></div>
+    <div id="customCursorRing"></div>
 
-<div class="top-bar">
-    <div class="container">EMERGING MARKETS ANALYTICS — BUSINESS STRATEGY & PRODUCT ANALYST CONSOLE</div>
-</div>
+    <div id="three-canvas"></div>
+    <div id="three-overlay"></div>
 
-<nav class="main-nav interactive-node">
-    <div class="container nav-wrapper">
-        <div class="logo">
-            <div class="logo-name">Ghulam Farid</div>
-            <div class="logo-title">Business Strategy & Product Analyst</div>
-        </div>
-        <ul class="nav-list">
-            <li><a href="#home" class="nav-link">Home</a></li>
-            <li><a href="#competencies" class="nav-link">Capabilities</a></li>
-            <li><a href="#services" class="nav-link">Services</a></li>
-            <li><a href="#labs" class="nav-link">Projects</a></li>
-            <li><a href="#about" class="nav-link">Profile</a></li>
-            <li><a href="#contact" class="nav-link">Engage</a></li>
-        </ul>
-        <a href="#contact" class="nav-cta">Initiate a Project</a>
-        <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
+    <div id="glow1" class="ambient-glow"></div>
+    <div id="glow2" class="ambient-glow"></div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">CORPORATE STRATEGY, OPERATIONS &amp; DIGITAL PRODUCT ANALYSIS</div>
     </div>
-</nav>
 
-<!-- Mobile Overlay Navigation Matrix -->
-<div id="mobileMenuOverlay" class="mobile-menu-overlay">
-    <div class="mobile-menu-panel">
-        <button id="closeMobileMenu" class="close-menu"><i class="fas fa-times"></i></button>
-        <ul class="mobile-nav-list">
-            <li><a href="#home" class="mobile-menu-link">Consultancy</a></li>
-            <li><a href="#competencies" class="mobile-menu-link">Capabilities</a></li>
-            <li><a href="#services" class="mobile-menu-link">Services</a></li>
-            <li><a href="#labs" class="mobile-menu-link">Projects</a></li>
-            <li><a href="#about" class="mobile-menu-link">Profile</a></li>
-            <li><a href="#contact" class="mobile-menu-link">Engage</a></li>
-        </ul>
-    </div>
-</div>
-
-<section id="home" class="hero">    
-    <div class="container">
-        <div class="hero-grid">
-            <div class="hero-text-side">
-                <span class="section-label">Analytical Frameworks</span>
-                <!-- Text elements here inject smoothly via sequential Javascript core cycles -->
-                <h1 class="hero-title" id="typedHeroHeader"><span class="typing-cursor"></span></h1>
-                <p class="hero-description" id="typedHeroSubtext">
-                    I deliver structured analysis and advisory to bridge the gap between high-level management objectives and deep analytical product mechanics, mapping data-backed product strategies for emerging market realities.
-                </p>
-                <div class="btn-group" id="heroBtnGroup" style="opacity: 0; transition: opacity 0.6s ease;">
-                    <a href="#contact" class="btn-primary interactive-node">Initiate a Project</a>
-                    <a href="#competencies" class="btn-outline interactive-node">Core Benchmarks</a>
-                </div>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container nav-wrapper">
+            <div class="logo">
+                <div class="logo-name">Ghulam Farid</div>
+                <div class="logo-title">Business Management &amp; Product Analyst</div>
             </div>
-            <div class="matrix-container fade-up">
-                <div class="matrix-title">Analysis Alignment Matrix</div>
-                <div class="step-vertical">
+            <ul class="nav-list">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#competencies">Capabilities</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="#contact">Engage</a></li>
+            </ul>
+            <a href="#contact" class="nav-cta">Initiate Analysis Portfolio</a>
+            <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenuOverlay" class="mobile-menu-overlay">
+        <div class="mobile-menu-panel">
+            <button id="closeMobileMenu" class="close-menu"><i class="fas fa-times"></i></button>
+            <ul class="mobile-nav-list">
+                <li><a href="#home" class="mobile-link">Home</a></li>
+                <li><a href="#competencies" class="mobile-link">Capabilities</a></li>
+                <li><a href="#services" class="mobile-link">Services</a></li>
+                <li><a href="#projects" class="mobile-link">Projects</a></li>
+                <li><a href="#profile" class="mobile-link">Profile</a></li>
+                <li><a href="#contact" class="mobile-link">Engage</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div>
+                    <span class="section-label">Intelligence &amp; Strategic Alignment</span>
+                    <h1 class="hero-title" id="heroTitle"><span class="typing-cursor"></span></h1>
+                    <div class="hero-role" id="heroRole">Business Management &amp; Product Analyst</div>
+                    <p class="hero-description" id="heroDesc">
+                        I partner with C-suites and boards to deconstruct complex business challenges, 
+                        architect data-driven frameworks, and map sustainable value creation paths across 
+                        emerging markets. Specializing in operational optimization, commercial analysis, and 
+                        product-led positioning metrics.
+                    </p>
+                    <div class="btn-group" id="heroBtns">
+                        <a href="#contact" class="btn-primary">Initiate Analysis Portfolio</a>
+                        <a href="#competencies" class="btn-outline">Core Benchmarks</a>
+                    </div>
+                </div>
+                <div class="matrix-card">
+                    <div class="matrix-title">Analytical Framework</div>
                     <div class="matrix-row">
                         <div class="matrix-num">01</div>
-                        <div class="matrix-meta"><h4>Diagnostic Discovery</h4><p>Granular structural and product telemetry data mapping.</p></div>
+                        <div class="matrix-meta">
+                            <h4>Diagnostic Discovery</h4>
+                            <p>Hypothesis-driven analysis of operational &amp; financial data sets.</p>
+                        </div>
                     </div>
                     <div class="matrix-row">
                         <div class="matrix-num">02</div>
-                        <div class="matrix-meta"><h4>Strategy Formulation</h4><p>Capital allocation and risk-adjusted digital positioning frameworks.</p></div>
+                        <div class="matrix-meta">
+                            <h4>Strategy &amp; Roadmap Formulation</h4>
+                            <p>Capital asset allocation metrics, risk valuation modeling, and execution playbooks.</p>
+                        </div>
                     </div>
                     <div class="matrix-row">
                         <div class="matrix-num">03</div>
-                        <div class="matrix-meta"><h4>Sustained Velocity</h4><p>Product execution roadmaps built around structured analytical models.</p></div>
+                        <div class="matrix-meta">
+                            <h4>Sustained Value Performance</h4>
+                            <p>Structured problem-solving onboarding, performance monitoring, and course correction vectors.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Interactive Performance Analytics Footprint -->
-<section class="advisory-footprint">
-    <div class="container">
-        <div class="footer-grid footprint-grid">
-            
-            <div class="footprint-card">
-                <div class="canvas-wrapper">
-                    <canvas id="engagementsDonut"></canvas>
-                    <div class="counter-overlay"><span class="stat-counter" data-target="20">0</span>+</div>
+    <!-- STATS -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number"><span class="counter" data-target="20">0</span>+</div>
+                    <div class="label">Analytical Engagements</div>
+                    <div class="sub">Corporate business strategy &amp; operational evaluation</div>
                 </div>
-                <h4>Analytical Engagements</h4>
-                <p>Corporate strategy audits & fractional digital advisory mandates completed.</p>
-            </div>
-
-            <div class="footprint-card" style="border-left: 1px solid var(--mck-border); border-right: 1px solid var(--mck-border);">
-                <div class="canvas-wrapper">
-                    <canvas id="casesDonut"></canvas>
-                    <div class="counter-overlay"><span class="stat-counter" data-target="30">0</span>+</div>
+                <div class="stat-card">
+                    <div class="number"><span class="counter" data-target="30">0</span>+</div>
+                    <div class="label">Strategic Case Studies</div>
+                    <div class="sub">Due diligence, market entry modeling, and performance mapping</div>
                 </div>
-                <h4>Analysis Case Studies</h4>
-                <p>MECE structural frameworks comprehensively synthesized and reviewed.</p>
-            </div>
-
-            <div class="footprint-card">
-                <div class="canvas-wrapper">
-                    <canvas id="valuationDonut"></canvas>
-                    <div class="counter-overlay"><span class="stat-counter" data-target="95">0</span>%</div>
+                <div class="stat-card">
+                    <div class="number"><span class="counter" data-target="95">0</span>%</div>
+                    <div class="label">Client Satisfaction Index</div>
+                    <div class="sub">Measured via rigorous NPS and corporate ROI metrics</div>
                 </div>
-                <h4>Data Alignment Index</h4>
-                <p>Precision benchmark for conversion modeling and pipeline validation.</p>
             </div>
-
         </div>
-    </div>
-</section>
-    
-<section id="competencies" class="competency-section">
-    <div class="container">
-        <div class="competency-grid">
-            <div class="fade-up">
-                <span class="section-label">Capabilities</span>
-                <h2 class="section-title">Analysis Benchmarks & Focus Areas</h2>
-                <p style="color: var(--mck-text-muted); margin-bottom: 30px;">
-                    My consultation profile combines standard management research frameworks with deep digital telemetry validation parameters.
+    </section>
+
+    <!-- COMPETENCIES -->
+    <section id="competencies" class="competency-section">
+        <div class="container">
+            <div class="competency-grid">
+                <div class="fade-up">
+                    <span class="section-label">Capabilities</span>
+                    <h2 class="section-title">Core Management &amp; Product Benchmarks</h2>
+                    <p style="color:var(--mck-text-muted);margin-bottom:30px;line-height:1.7;">
+                        Leveraging a robust toolkit of management frameworks, advanced data science, and 
+                        operational analysis architectures to isolate and deliver measurable institutional values.
+                    </p>
+                    <div class="benchmark-row">
+                        <div class="benchmark-labels"><span>Corporate Strategy &amp; Transaction Analysis</span><span>90%</span></div>
+                        <div class="benchmark-bar"><div class="benchmark-fill" data-width="90%"></div></div>
+                    </div>
+                    <div class="benchmark-row">
+                        <div class="benchmark-labels"><span>Operations &amp; Performance Optimization</span><span>88%</span></div>
+                        <div class="benchmark-bar"><div class="benchmark-fill" data-width="88%"></div></div>
+                    </div>
+                    <div class="benchmark-row">
+                        <div class="benchmark-labels"><span>Product Analytics &amp; Lifecycle Architecture</span><span>86%</span></div>
+                        <div class="benchmark-bar"><div class="benchmark-fill" data-width="86%"></div></div>
+                    </div>
+                </div>
+                <div class="fade-up" style="display:flex;flex-direction:column;justify-content:center;gap:20px;">
+                    <div class="advantage-card">
+                        <h3>Empirical Decision Making</h3>
+                        <p>Every analysis is strictly grounded in quantitative metrics, deep-dive industry telemetry, and sector-wide indexing.</p>
+                    </div>
+                    <div class="advantage-card">
+                        <h3>MECE Problem-Solving Structuring</h3>
+                        <p>Rigorous breakdown of institutional friction points into isolated, mutually exclusive, and completely exhaustive analytical components.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="fade-up" style="text-align:center;">
+                <span class="section-label">Analysis Suite</span>
+                <h2 class="section-title">Management Analysis &amp; Product Strategy Portfolio</h2>
+                <p style="color:var(--mck-text-muted);max-width:650px;margin:0 auto;line-height:1.7;">
+                    End‑to‑end structural evaluation and framework execution supporting corporate leaders and institutional partners.
                 </p>
-                <div class="benchmark-container">
-                    <div class="benchmark-row">
-                        <div class="benchmark-labels"><span>Data Science & Telemetry Analysis</span><span>90%</span></div>
-                        <div class="benchmark-bar-bg"><div class="benchmark-bar-fill" data-width="90%"></div></div>
+            </div>
+            <div class="services-grid fade-up">
+
+                <!-- Management Services (1-6) -->
+                <div class="service-card">
+                    <span class="icon"><i class="fas fa-chess-queen"></i></span>
+                    <h4>Corporate Strategy &amp; Business Transformation Analysis</h4>
+                    <p>Evaluating, structuring, and engineering comprehensive operational frameworks to identify market upside and accelerate business model scaling.</p>
+                </div>
+                <div class="service-card">
+                    <span class="icon"><i class="fas fa-industry"></i></span>
+                    <h4>Operational Excellence &amp; Process Optimization</h4>
+                    <p>Utilizing core data mapping, digital workflows, and performance tracking models to streamline overhead and maximize output efficiency.</p>
+                </div>
+                <div class="service-card">
+                    <span class="icon"><i class="fas fa-globe-americas"></i></span>
+                    <h4>Market Expansion &amp; Risk Valuation Analysis</h4>
+                    <p>Formulating entry risk profiles, competitor intelligence matrices, and regulatory alignment blueprints across emerging economic zones.</p>
+                </div>
+                <div class="service-card">
+                    <span class="icon"><i class="fas fa-search-dollar"></i></span>
+                    <h4>Onboarding Problem Evaluation &amp; Solution Designing</h4>
+                    <p>Deconstructing initial operational friction barriers, analyzing user activation bottlenecks, and blueprinting robust systemic architectures to ensure immediate retention and seamless ecosystem entry.</p>
+                </div>
+                <div class="service-card">
+                    <span class="icon"><i class="fas fa-chart-line"></i></span>
+                    <h4>Operational Planning &amp; Benchmarking</h4>
+                    <p>Mapping complex workflows against industry-leading performance indicators, forecasting asset requirements, and building comparative data baselines to sustain high-velocity operational efficiency.</p>
+                </div>
+                <div class="service-card">
+                    <span class="icon"><i class="fas fa-clipboard-check"></i></span>
+                    <h4>Feasibility Audits &amp; Execution Planning</h4>
+                    <p>Conducting comprehensive risk-reward architecture deep dives, auditing strategic resources, and generating deterministic playbooks to eliminate deployment vulnerabilities during product or enterprise rollouts.</p>
+                </div>
+
+                <!-- Divider -->
+                <div class="service-divider">— Product Strategy &amp; Lifecycle Metrics —</div>
+
+                <!-- Product Services (7-9) -->
+                <div class="service-card">
+                    <span class="icon"><i class="fas fa-sync-alt"></i></span>
+                    <h4>Product Lifecycle Architecture (PLA)</h4>
+                    <p>Synthesizing product performance data from early discovery cycles through active release tracking, maximizing portfolio long-term yield.</p>
+                </div>
+                <div class="service-card">
+                    <span class="icon"><i class="fas fa-search-plus"></i></span>
+                    <h4>Product Portfolio Audit &amp; Optimization Analysis</h4>
+                    <p>Deep-dive telemetry analysis mapping user metrics, tech debt overhead, and strategic features to unlock operational optimization targets.</p>
+                </div>
+                <div class="service-card">
+                    <span class="icon"><i class="fas fa-user-astronaut"></i></span>
+                    <h4>UX Analytics &amp; Product Interface Metrics</h4>
+                    <p>Translating user behavioral pathways, churn intelligence, and conversion funnels into concrete, feature-engineered software roadmaps.</p>
+                </div>
+            </div>
+
+            <!-- SECTORS OF FOCUS SUBSECTION -->
+            <div class="sectors-container fade-up">
+                <div style="text-align:center; margin-bottom: 20px;">
+                    <span class="section-label" style="font-size:0.6rem; color:var(--mck-text-muted);">Industrial Verticals</span>
+                    <h3 style="font-size: 1.5rem; font-weight:700;">Target Sectors for Analytical Services</h3>
+                </div>
+                <div class="sectors-grid">
+                    <div class="sector-tag">
+                        <i class="fas fa-laptop-code"></i>
+                        Digital Products &amp; SaaS
                     </div>
-                    <div class="benchmark-row">
-                        <div class="benchmark-labels"><span>Business Strategy Assessment & Advisory</span><span>88%</span></div>
-                        <div class="benchmark-bar-bg"><div class="benchmark-bar-fill" data-width="88%"></div></div>
+                    <div class="sector-tag">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        FinTech &amp; Digital Banking
                     </div>
-                    <div class="benchmark-row">
-                        <div class="benchmark-labels"><span>Digital Product Economics Evaluation</span><span>86%</span></div>
-                        <div class="benchmark-bar-bg"><div class="benchmark-bar-fill" data-width="86%"></div></div>
+                    <div class="sector-tag">
+                        <i class="fas fa-shopping-basket"></i>
+                        E-Commerce &amp; Logistics Networks
+                    </div>
+                    <div class="sector-tag">
+                        <i class="fas fa-network-wired"></i>
+                        Emerging Markets Tech Infrastructures
                     </div>
                 </div>
             </div>
-            <div class="fade-up" style="display: flex; flex-direction: column; justify-content: center; gap: 20px;">
-                <div class="advantage-card">
-                    <h3>Quantitative Synthesis</h3>
-                    <p>Every analysis roadmap is anchored entirely on empirical tracking, product instrumentation metrics, and rigorous industry trend data.</p>
-                </div>
-                <div class="advantage-card">
-                    <h3>MECE Framework Audits</h3>
-                    <p>Product operational structures are systematically broken down into mutually exclusive and collectively exhaustive analysis tracks.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section id="tactical-edge" style="padding-bottom: 100px; background: transparent;">
-    <div class="container">
-        <div class="advantage-grid">
-            <div class="advantage-card fade-up">
-                <h3>Predictive Discovery</h3>
-                <p>Applying data science models to extract macro trends, user clusters, and consumer habits out of messy digital metrics.</p>
-            </div>
-            <div class="advantage-card fade-up">
-                <h3>Unit Economics Realism</h3>
-                <p>Stress-testing ecosystem structures based on local market factors, cohort variables, and realistic retention metrics.</p>
-            </div>
-            <div class="advantage-card fade-up">
-                <h3>Structured Scalability</h3>
-                <p>Consultancy assets framed entirely around engineering capacity metrics, pipeline structures, and product viability thresholds.</p>
-            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="impact" class="impact-section">
-    <div class="container">
-        <div style="text-align: center;" class="fade-up">
-            <span class="section-label">Performance Visualization</span>
-            <h2 class="section-title">Strategic Analysis Value</h2>
-            <p style="color: var(--mck-text-muted); max-width: 600px; margin: 0 auto;">Measurable, empirical tracking improvements recorded post-intervention across core commercial segments.</p>
-        </div>
-        <div class="impact-charts">
-            <div class="chart-box fade-up">
-                <h4>Product Metric Baseline Analysis</h4>
-                <div class="chart-container"><canvas id="kpiBarChart"></canvas></div>
+    <!-- PROJECTS -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <div class="fade-up" style="text-align:center;">
+                <span class="section-label">Case Metrics</span>
+                <h2 class="section-title">Strategic System Analyses</h2>
+                <p style="color:var(--mck-text-muted);max-width:650px;margin:0 auto;line-height:1.7;">
+                    Selected case studies demonstrating rigorous, data-driven analytical impact across competitive spaces.
+                </p>
             </div>
-            <div class="chart-box fade-up">
-                <h4>Growth Vector Projection Analysis</h4>
-                <div class="chart-container"><canvas id="growthLineChart"></canvas></div>
-            </div>
-            <div class="chart-box fade-up">
-                <h4>Portfolio Allocation Analysis</h4>
-                <div class="chart-container"><canvas id="roiPieChart"></canvas></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="services" class="services-section">
-    <div class="container">
-        <div class="fade-up" style="text-align: center;">
-            <span class="section-label">Services</span>
-            <h2 class="section-title">Business Strategy & Product Analysis Services</h2>
-        </div>
-        <div class="services-grid fade-up">
-            <!-- 1. From Image 1 -->
-            <div class="service-card">
-                <h4>Business / Product Feasibility Analysis</h4>
-                <p>Determining whether your idea deserves capital before you spend a dollar on engineering by validating demand, evaluating systemic constraints, and checking technical viability.</p>
-            </div>
-            
-            <!-- 2. From Image 2 -->
-            <div class="service-card">
-                <h4>Market Analysis & Go-to-Market Strategies</h4>
-                <p>Mapping the competitive terrain, sizing the exact market opportunity, and engineering localized launch sequences for maximum commercial traction.</p>
-            </div>
-            
-            <!-- 3. From Image 3 -->
-            <div class="service-card">
-                <h4>Operations Optimization</h4>
-                <p>Identifying bottlenecks across your entire digital value chain and redesigning daily workflows to unlock margin and enhance throughput without adding unnecessary headcount.</p>
-            </div>
-            
-            <!-- 4. From Image 4 -->
-            <div class="service-card">
-                <h4>Financial Modeling & Unit Economics Optimization</h4>
-                <p>Building dynamic, granular financial models that reveal true unit economics, followed by restructuring pricing tiers, CAC targets, and LTV metrics to scale profitably.</p>
-            </div>
-            
-            <!-- 5. From Image 5 -->
-            <div class="service-card">
-                <h4>Business / Product System Design</h4>
-                <p>Architecting the core interactions between people, processes, and technology infrastructure to ensure your foundational operating system scales efficiently with your corporate ambition.</p>
-            </div>
-            
-            <!-- 6. From Image 6 -->
-            <div class="service-card">
-                <h4>Product Features Optimization & Prioritization</h4>
-                <p>Applying evidence-based frameworks to aggressively eliminate low-impact features while doubling down on the highest-leverage initiatives that directly move active KPIs.</p>
-            </div>
-            
-            <!-- 7. From Image 7 -->
-            <div class="service-card">
-                <h4>End-to-End Product Lifecycle Management</h4>
-                <p>Taking complete tactical ownership from validation through sunset—cutting structural time-to-market, systematically reducing churn, and maximizing multi-year lifecycle value.</p>
-            </div>
-            
-            <!-- 8. From Image 8 -->
-            <div class="service-card">
-                <h4>User Research & UX Optimization</h4>
-                <p>Uncovering the unspoken needs of target users and translating raw behavioral data into clean, frictionless digital interfaces that systematically convert and retain.</p>
-            </div>
-            
-            <!-- 9. From Image 9 -->
-            <div class="service-card">
-                <h4>Onboarding Business / Product Problem Solving</h4>
-                <p>Rapidly stepping in during operational crises to provide structured diagnosis, precise root-cause isolation, and an executable, clear path to immediate resolution.</p>
-            </div>
-
-            <!-- 10. Requested: SWOT and PESTLE Analysis -->
-            <div class="service-card">
-                <h4>Granular SWOT & PESTLE Market Structures</h4>
-                <p>Evaluating macro-environmental pressures and internal organizational capabilities via deep audits of regulatory, competitive, and economic forces to map strategic defensive gaps.</p>
-            </div>
-
-            <!-- 11. Requested: Merging and Acquisition Strategy -->
-            <div class="service-card">
-                <h4>Digital Product M&A Strategy & Synergy Evaluation</h4>
-                <p>Assessing horizontal and vertical merging or acquisition pathways across digital products to ensure portfolio compatibility, technical alignment, and accelerated equity value compounding.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-    
-<section id="labs" class="labs-section">
-    <div class="container">
-        <div style="text-align: center;" class="fade-up">
-            <span class="section-label">Projects</span>
-            <h2 class="section-title">The Product Validation Lab</h2>
-            <p style="color: var(--mck-text-muted); max-width: 650px; margin: 0 auto;">Decoding active digital performance variables into real structural clarity and reliable operational roadmaps.</p>
-        </div>
-        <div class="labs-grid">
-            <div class="lab-card fade-up">
-                <div>
+            <div class="projects-grid">
+                <div class="project-card fade-up">
                     <h3>FaridEx Labs Platform</h3>
                     <p>A rigorous modeling platform designed for analyzing digital product assets, feature hypotheses, and monetization metrics under regional economic constraints.</p>
+                    <a href="#" class="project-link">Access Strategic Lab <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <a href="FaridEx_Labs.html" class="lab-link interactive-node">Access Strategic Lab <i class="fas fa-arrow-right"></i></a>
-            </div>
-            <div class="lab-card fade-up">
-                <div>
-                    <h3>Market Synthesis Reports & Product Frameworks</h3>
-                    <p>Bespoke executive intelligence deep dives, rigorous competitor indexing, and structural product analytics extracted directly from active regional industry metrics.</p>
+                <div class="project-card fade-up">
+                    <h3>Market Synthesis Reports</h3>
+                    <p>Bespoke executive intelligence deep dives, rigorous competitor indexing, and structural product analytics extracted from active regional industry metrics.</p>
+                    <a href="#" class="project-link">Request Intelligence Portfolios <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <a href="market-synthesis-reports.html" class="lab-link interactive-node">Request Intelligence Portfolios <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="about" class="profile-section">
-    <div class="container">
-        <div class="profile-content fade-up">
-            <span class="section-label">Analyst Profile</span>
-            <h2 class="section-title">Ghulam Farid</h2>
-            <div class="profile-quote">“Data metrics combined with structured strategy analysis are the ultimate catalysts for long-term corporate value definition.”</div>
-            <p class="profile-text">
-                Operating at the intersection of data science frameworks and corporate strategy consultancy, I specialize in engineering data-backed analysis for expansion projects, SaaS frameworks, and digital ecosystems.
-            </p>
-            <p class="profile-text">
-                Leveraging core training in Data Science and structured business advisory experience, I draft precise analysis assets, Business Requirement Documents (BRD), and structural playbooks. I equip organizations with absolute target transparency, functional risk modeling, and a measurable path to scale.
-            </p>
-            <p style="margin-top: 30px; font-weight: 600; color: var(--white); font-size: 0.95rem;">
-                📍 Lahore, Pakistan | Available for institutional consulting briefs and project-based product analysis.
-            </p>
-        </div>
-    </div>
-</section>
-
-<section id="contact" class="contact-section">
-    <div class="container">
-        <div class="contact-grid">
-            <div class="fade-up">
-                <span class="section-label">Institutional Engagement</span>
-                <h2 class="section-title">Initiate a Project</h2>
-                <p style="color: var(--mck-text-muted); margin-bottom: 30px;">
-                    Request a corporate consultancy consultation regarding your product pipeline metrics, digital transition plans, or product strategy challenges.
+    <!-- PROFILE -->
+    <section id="profile" class="profile-section">
+        <div class="container">
+            <div class="profile-content fade-up">
+                <span class="section-label">Executive Profile</span>
+                <h2 class="section-title">Ghulam Farid</h2>
+                <div class="profile-quote">
+                    “Integrating data science mechanics into business management models unlocks real transaction clarity and sustainable market advantages.”
+                </div>
+                <p class="profile-text">
+                    Ghulam Farid is an enterprise management and product analyst operating at the intersection of quantitative data science, functional business positioning, and workflow optimization. He partners with executive teams, investment operators, and corporate boards to provide empirical clarity into asset configuration, operational friction points, and expansion targets.
                 </p>
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <h4>Secure Correspondence</h4>
-                        <p>gf1488360@gmail.com</p>
-                    </div>
-                    <div class="contact-item">
-                        <h4>Direct Access Channel</h4>
-                        <p>+92 308 6007904</p>
-                    </div>
-                    <div class="contact-item">
-                        <h4>Corporate Network</h4>
-                        <p>linkedin.com/in/ghulam-farid-29514a336</p>
-                    </div>
-                </div>
-            </div>
-            <div class="contact-form-wrapper fade-up">
-                <form class="contact-form" action="https://formspree.io/f/mnjvrrvr" method="POST">
-                    <input type="hidden" name="_subject" value="Strategy Inquiry - Farid Advisory">
-                    <input type="text" name="name" placeholder=" Name" required class="interactive-node">
-                    <input type="email" name="_replyto" placeholder=" Email Address" required class="interactive-node">
-                    <input type="text" name="subject" placeholder="Operational Focus Area / Analysis Scope" required class="interactive-node">
-                    <textarea rows="4" name="message" placeholder="Provide an outline of your analysis or strategy requirements..." required class="interactive-node"></textarea>
-                    <button type="submit" class="interactive-node">Submit Consultation Request</button>
-                </form>
+                <p class="profile-text">
+                    Leveraging a technical foundation in Data Science alongside corporate structural frameworks, Ghulam develops predictive financial models, comprehensive target analyses, and structural scaling strategies. This methodology equips modern companies with complete operational transparency and verified risk analytics.
+                </p>
+                <p style="margin-top:30px;font-weight:600;color:var(--white);font-size:0.95rem;">
+                    📍 Lahore, Pakistan | Available for institutional enterprise evaluation briefs and metrics-driven contracts.
+                </p>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<footer>
-    <div class="container">
-        <div class="footer-grid">
-            <div>
-                <h3 style="font-family: 'Playfair Display'; margin-bottom: 12px;">Ghulam Farid</h3>
-                <p style="font-size: 0.8rem; line-height: 1.8; color: var(--mck-text-muted);">Business Strategy & Product Analyst.<br>Data Science Integrated into Corporate Advisory Frameworks.</p>
-            </div>
-            <div style="display: flex; gap: 60px;">
-                <div class="footer-links">
-                    <h4>Practice</h4>
-                    <a href="#competencies" class="interactive-node">Capabilities</a>
-                    <a href="#services" class="interactive-node">Services</a>
-                    <a href="#labs" class="interactive-node">Projects</a>
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="fade-up">
+                    <span class="section-label">Institutional Engagement</span>
+                    <h2 class="section-title">Initiate an Evaluation Profile</h2>
+                    <p style="color:var(--mck-text-muted);margin-bottom:30px;line-height:1.7;">
+                        Request a corporate analytics engagement regarding your product pipeline metrics, ecosystem transformation paths, or operational performance frameworks.
+                    </p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <h4>Secure Correspondence</h4>
+                            <p>gf1488360@gmail.com</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>Direct Access Channel</h4>
+                            <p>+92 308 6007904</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>Corporate Network</h4>
+                            <p>linkedin.com/in/ghulam‑farid‑29514a336</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="footer-links">
-                    <h4>Channels</h4>
-                    <a href="#contact" class="interactive-node">Consultation</a>
-                    <span style="display:block; margin-top:8px; color: var(--white);">gf1488360@gmail.com</span>
+                <div class="contact-form-wrapper fade-up">
+                    <form class="contact-form" action="https://formspree.io/f/mnjvrrvr" method="POST">
+                        <input type="hidden" name="_subject" value="Strategic Analysis Inquiry - Ghulam Farid" />
+                        <input type="text" name="name" placeholder="Full Name" required />
+                        <input type="email" name="_replyto" placeholder="Email Address" required />
+                        <input type="text" name="subject" placeholder="Operational Focus Area / Analysis Scope" required />
+                        <textarea rows="4" name="message" placeholder="Provide an outline of your system analysis or product metrics requirements..." required></textarea>
+                        <button type="submit">Submit Portfolio Request</button>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2026 Ghulam Farid — Business Strategy & Product Analyst | All Rights Reserved.</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 style="font-family:'Playfair Display';margin-bottom:12px;">Ghulam Farid</h3>
+                    <p style="font-size:0.8rem;line-height:1.8;color:var(--mck-text-muted);">
+                        Business Management &amp; Product Analyst<br />Data Science Methodologies Integrated into System Evaluation Frameworks.
+                    </p>
+                </div>
+                <div style="display:flex;gap:60px;">
+                    <div class="footer-links">
+                        <h4 style="color:var(--white);margin-bottom:12px;font-size:0.8rem;letter-spacing:1px;">Practice</h4>
+                        <a href="#competencies">Capabilities</a>
+                        <a href="#services">Services</a>
+                        <a href="#projects">Projects</a>
+                    </div>
+                    <div class="footer-links">
+                        <h4 style="color:var(--white);margin-bottom:12px;font-size:0.8rem;letter-spacing:1px;">Channels</h4>
+                        <a href="#contact">Engagement Profile</a>
+                        <span style="display:block;margin-top:8px;color:var(--white);">gf1488360@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Ghulam Farid — Business Management &amp; Product Analyst | All Rights Reserved.</p>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
-<script>
-    // --- PREMIUM INTERACTIVE CURSOR ENGINE ---
-    const cursor = document.getElementById('customCursor');
-    const ring = document.getElementById('customCursorRing');
-    
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-        
-        setTimeout(() => {
-            ring.style.left = e.clientX + 'px';
-            ring.style.top = e.clientY + 'px';
-        }, 30);
-    });
+    <script>
+        /* ============================================================
+           1. TYPEWRITER ENGINE (Analytical Alignment)
+           ============================================================ */
+        (function initTypewriter() {
+            const heroTitle = document.getElementById('heroTitle');
+            const heroRole = document.getElementById('heroRole');
+            const heroDesc = document.getElementById('heroDesc');
+            const heroBtns = document.getElementById('heroBtns');
 
-    document.querySelectorAll('.interactive-node, a, button, input, textarea, .footprint-card, .service-card, .lab-card, .advantage-card, .chart-box').forEach(node => {
-        node.addEventListener('mouseenter', () => document.body.classList.add('hovered-node'));
-        node.addEventListener('mouseleave', () => document.body.classList.remove('hovered-node'));
-    });
+            const phase1 = 'Systematic Business Evaluation';
+            const phase2 = 'Analytical Rigor. <span class="highlight">Product Optimization.</span> Enterprise Scaling.';
 
-    // --- LIVE BACKGROUND AURA DRIFT ---
-    const aura1 = document.getElementById('aura1');
-    const aura2 = document.getElementById('aura2');
-    window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
-        if(aura1) aura1.style.transform = `translate(${scrolled * 0.1}px, ${scrolled * 0.15}px) rotate(${scrolled * 0.02}deg)`;
-        if(aura2) aura2.style.transform = `translate(${-scrolled * 0.08}px, ${-scrolled * 0.18}px) rotate(${-scrolled * 0.01}deg)`;
-    });
+            let charIndex = 0;
+            let currentPhase = 1;
 
-    // --- SEQUENTIAL TYPEWRITER & HEADLINE INJECTION ENGINE ---
-    const initHeroTypewriter = () => {
-        const headerEl = document.getElementById('typedHeroHeader');
-        const subtextEl = document.getElementById('typedHeroSubtext');
-        const btnGroupEl = document.getElementById('heroBtnGroup');
-        
-        const phase1Text = "Welcome to FaridStrategy";
-        const phase2Text = "Accelerating Growth through Data Realism & Digital Product Analysis";
-        
-        let charIndex = 0;
-        let isDeleting = false;
-        
-        const executeTypingLoop = () => {
-            if (!isDeleting && charIndex <= phase1Text.length) {
-                // Type out Phase 1
-                headerEl.innerHTML = phase1Text.substring(0, charIndex) + '<span class="typing-cursor"></span>';
-                charIndex++;
-                setTimeout(executeTypingLoop, 75);
-            } else if (!isDeleting && charIndex > phase1Text.length) {
-                // Pause at complete Phase 1
-                isDeleting = true;
-                setTimeout(executeTypingLoop, 1200);
-            } else if (isDeleting && charIndex >= 0) {
-                // Delete Phase 1
-                headerEl.innerHTML = phase1Text.substring(0, charIndex) + '<span class="typing-cursor"></span>';
-                charIndex--;
-                setTimeout(executeTypingLoop, 40);
-            } else if (isDeleting && charIndex < 0) {
-                // Shift to absolute final phase Injection
-                headerEl.style.opacity = 0;
+            function typeLoop() {
+                if (currentPhase === 1) {
+                    if (charIndex <= phase1.length) {
+                        heroTitle.innerHTML = phase1.substring(0, charIndex) + '<span class="typing-cursor"></span>';
+                        charIndex++;
+                        setTimeout(typeLoop, 60);
+                    } else {
+                        currentPhase = 2;
+                        setTimeout(typeLoop, 1200);
+                    }
+                } else if (currentPhase === 2) {
+                    if (charIndex >= 0) {
+                        heroTitle.innerHTML = phase1.substring(0, charIndex) + '<span class="typing-cursor"></span>';
+                        charIndex--;
+                        setTimeout(typeLoop, 30);
+                    } else {
+                        currentPhase = 3;
+                        charIndex = 0;
+                        setTimeout(typeLoop, 300);
+                    }
+                } else if (currentPhase === 3) {
+                    const rawText = 'Analytical Rigor. Product Optimization. Enterprise Scaling.';
+                    if (charIndex <= rawText.length) {
+                        const display = rawText.substring(0, charIndex);
+                        const styled = display.replace('Product Optimization.',
+                            '<span class="highlight">Product Optimization.</span>');
+                        heroTitle.innerHTML = styled + '<span class="typing-cursor"></span>';
+                        charIndex++;
+                        setTimeout(typeLoop, 55);
+                    } else {
+                        heroTitle.innerHTML =
+                            'Analytical Rigor. <span class="highlight">Product Optimization.</span> Enterprise Scaling.';
+                        setTimeout(() => {
+                            heroRole.classList.add('visible');
+                            setTimeout(() => {
+                                heroDesc.classList.add('visible');
+                                setTimeout(() => {
+                                    heroBtns.classList.add('visible');
+                                }, 300);
+                            }, 300);
+                        }, 400);
+                    }
+                }
+            }
+            setTimeout(typeLoop, 500);
+        })();
+
+        /* ============================================================
+           2. CUSTOM CURSOR
+           ============================================================ */
+        (function initCursor() {
+            const cursor = document.getElementById('customCursor');
+            const ring = document.getElementById('customCursorRing');
+
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
                 setTimeout(() => {
-                    headerEl.innerHTML = 'Accelerating Growth through Data Realism & Digital Product Analysis</span>';
-                    headerEl.style.transition = 'opacity 0.8s ease';
-                    headerEl.style.opacity = 1;
-                    
-                    // Cascade Subtext and Call to Actions smoothly
-                    setTimeout(() => {
-                        subtextEl.classList.add('visible');
-                        btnGroupEl.style.opacity = 1;
-                    }, 350);
-                }, 300);
-            }
-        };
-        
-        // Start typing script cycle
-        setTimeout(executeTypingLoop, 400);
-    };
-
-    // --- THREE.JS: DIGITAL PRODUCT ANALYTICS GRID SYSTEM (Replaces Loose Particles) ---
-    const initThreeJSGridBlueprint = () => {
-        const container = document.getElementById('threeJsGlobalContainer');
-        if (!container) return;
-
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(0, 20, 50);
-
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        container.appendChild(renderer.domElement);
-
-        // Grid Matrix Wireframe Setup
-        const gridExtent = 120;
-        const gridDivisions = 30;
-        const gridHelper = new THREE.GridHelper(gridExtent, gridDivisions, 0x00a2ff, 0x071328);
-        gridHelper.position.y = -15;
-        gridHelper.material.opacity = 0.22;
-        gridHelper.material.transparent = true;
-        scene.add(gridHelper);
-
-        // Floating Analytical Node Cubes (Matching Image Elements)
-        const nodeGroup = new THREE.Group();
-        const nodeGeometry = new THREE.BoxGeometry(0.7, 0.7, 0.7);
-        const nodeMaterial = new THREE.MeshBasicMaterial({
-            color: 0x00f0ff,
-            transparent: true,
-            opacity: 0.35,
-            wireframe: false
-        });
-
-        const totalNodes = 75;
-        for (let i = 0; i < totalNodes; i++) {
-            const mesh = new THREE.Mesh(nodeGeometry, nodeMaterial);
-            mesh.position.set(
-                (Math.random() - 0.5) * 100,
-                (Math.random() - 0.5) * 40 + 5,
-                (Math.random() - 0.5) * 60
-            );
-            // Stash random speed metrics directly into mesh objects
-            mesh.userData = { 
-                driftSpeed: Math.random() * 0.02 + 0.005,
-                sinOffset: Math.random() * Math.PI 
-            };
-            nodeGroup.add(mesh);
-        }
-        scene.add(nodeGroup);
-
-        let mouseX = 0, mouseY = 0;
-        let targetX = 0, targetY = 0;
-        
-        document.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX - window.innerWidth / 2) * 0.008;
-            mouseY = (e.clientY - window.innerHeight / 2) * 0.008;
-        });
-
-        const animateMatrix = () => {
-            requestAnimationFrame(animateMatrix);
-
-            // Gentle grid animation rotation adjustments
-            gridHelper.rotation.y = Math.sin(performance.now() * 0.0001) * 0.05;
-
-            // Compute data cube floating matrices
-            nodeGroup.children.forEach(node => {
-                node.position.y += Math.sin(performance.now() * 0.001 + node.userData.sinOffset) * 0.006;
-                node.rotation.x += 0.005;
-                node.rotation.y += 0.005;
+                    ring.style.left = e.clientX + 'px';
+                    ring.style.top = e.clientY + 'px';
+                }, 25);
             });
 
-            targetX += (mouseX - targetX) * 0.05;
-            targetY += (mouseY - targetY) * 0.05;
-            
-            camera.position.x = targetX * 3;
-            camera.position.y = 20 - (targetY * 2);
+            document.querySelectorAll(
+                'a, button, input, textarea, .service-card, .project-card, .advantage-card, .stat-card, .matrix-card, .sector-tag'
+            ).forEach(el => {
+                el.addEventListener('mouseenter', () => document.body.classList.add('hovered-node'));
+                el.addEventListener('mouseleave', () => document.body.classList.remove('hovered-node'));
+            });
+        })();
 
-            const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-            nodeGroup.position.y = scrollPercent * 25;
-            gridHelper.position.z = scrollPercent * 15;
+        /* ============================================================
+           3. THREE.JS NETWORK CANVAS
+           ============================================================ */
+        (function initThree() {
+            const container = document.getElementById('three-canvas');
+            if (!container) return;
 
-            camera.lookAt(new THREE.Vector3(0, 0, 0));
-            renderer.render(scene, camera);
-        };
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 18, 45);
+            camera.lookAt(0, 0, 0);
 
-        animateMatrix();
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-    };
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setClearColor(0x000000, 0);
+            container.appendChild(renderer.domElement);
 
-    // --- CHART.JS METRIC MODULE ARCHITECTURE ---
-    const ctxFontConfig = { font: { family: 'Inter', size: 11 }, color: '#7088a8' };
-    
-    new Chart(document.getElementById('kpiBarChart'), { 
-        type: 'bar', 
-        data: { 
-            labels: ['Product Adoption Rate', 'User Retentive LTV', 'Market Positioning'], 
-            datasets: [
-                { label: 'Pre-Advisory Baseline', data: [42, 28, 32], backgroundColor: 'rgba(255,255,255,0.1)', barPercentage: 0.6 }, 
-                { label: 'Optimized Target State', data: [86, 79, 74], backgroundColor: '#00a2ff', barPercentage: 0.6 }
-            ] 
-        }, 
-        options: { 
-            responsive: true, maintainAspectRatio: false, 
-            scales: { 
-                y: { beginAtZero: true, max: 100, ticks: ctxFontConfig, grid: { color: 'rgba(255,255,255,0.05)' } }, 
-                x: { ticks: ctxFontConfig, grid: { display: false } } 
-            },
-            plugins: { legend: { position: 'top', labels: ctxFontConfig } } 
-        } 
-    });
-    
-    new Chart(document.getElementById('growthLineChart'), { 
-        type: 'line', 
-        data: { 
-            labels: ['Alpha Release', 'Year +1 Scale', 'Year +2 Projections'], 
-            datasets: [{ label: 'Gross Product Asset Valuation (PKR Cr)', data: [12, 31, 56], borderColor: '#00f0ff', backgroundColor: 'rgba(0,240,255,0.03)', tension: 0.3, fill: true, lineWidth: 2 }] 
-        }, 
-        options: { 
-            responsive: true, maintainAspectRatio: false,
-            scales: { 
-                y: { ticks: ctxFontConfig, grid: { color: 'rgba(255,255,255,0.05)' } }, 
-                x: { ticks: ctxFontConfig, grid: { display: false } } 
-            },
-            plugins: { legend: { display: false } }
-        } 
-    });
-    
-    new Chart(document.getElementById('roiPieChart'), { 
-        type: 'pie', 
-        data: { 
-            labels: ['Core Optimization', 'Market Segmentation', 'New Feature Pipelines'], 
-            datasets: [{ data: [48, 32, 20], backgroundColor: ['#071328', '#00a2ff', '#00f0ff'], borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }] 
-        }, 
-        options: { 
-            responsive: true, maintainAspectRatio: false, 
-            plugins: { legend: { position: 'bottom', labels: ctxFontConfig } } 
-        } 
-    });
-    
-    // --- ANIMATION INTERSECTION OBSERVERS ---
-    const faders = document.querySelectorAll('.fade-up');
-    const elementObserver = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-            if(e.isIntersecting){
-                e.target.classList.add('visible');
-                const progressFill = e.target.querySelectorAll('.benchmark-bar-fill');
-                progressFill.forEach(bar => bar.style.width = bar.getAttribute('data-width'));
-                elementObserver.unobserve(e.target);
-            }
-        });
-    }, { threshold: 0.05 });
-    faders.forEach(el => elementObserver.observe(el));
+            const grid = new THREE.GridHelper(140, 40, 0x00a2ff, 0x071328);
+            grid.position.y = -16;
+            grid.material.opacity = 0.18;
+            grid.material.transparent = true;
+            scene.add(grid);
 
-    // --- FOOTPRINT COUNTER ACCELERATION CONTROLLER ---
-    const initFootprintModule = () => {
-        const chartOptions = {
-            responsive: true, maintainAspectRatio: false, cutout: '84%',
-            plugins: { legend: { display: false }, tooltip: { enabled: false } },
-            events: []
-        };
+            const nodeGroup = new THREE.Group();
+            const colors = [0x00f0ff, 0x00a2ff, 0x4a8fe0, 0xffffff];
+            const geometries = [
+                new THREE.BoxGeometry(0.6, 0.6, 0.6),
+                new THREE.SphereGeometry(0.45, 6, 6),
+                new THREE.IcosahedronGeometry(0.45, 0),
+                new THREE.OctahedronGeometry(0.45, 0)
+            ];
 
-        const engageChart = new Chart(document.getElementById('engagementsDonut').getContext('2d'), {
-            type: 'doughnut', data: { datasets: [{ data: [0, 100], backgroundColor: ['#00a2ff', 'rgba(255,255,255,0.05)'], borderWidth: 0 }] }, options: chartOptions
-        });
-        const casesChart = new Chart(document.getElementById('casesDonut').getContext('2d'), {
-            type: 'doughnut', data: { datasets: [{ data: [0, 100], backgroundColor: ['#00f0ff', 'rgba(255,255,255,0.05)'], borderWidth: 0 }] }, options: chartOptions
-        });
-        const valuationChart = new Chart(document.getElementById('valuationDonut').getContext('2d'), {
-            type: 'doughnut', data: { datasets: [{ data: [0, 100], backgroundColor: ['#ffffff', 'rgba(255,255,255,0.05)'], borderWidth: 0 }] }, options: chartOptions
-        });
+            const nodes = [];
+            const nodeCount = 150;
 
-        const triggerFootprint = () => {
-            engageChart.data.datasets[0].data = [75, 25]; engageChart.update();
-            casesChart.data.datasets[0].data = [85, 15]; casesChart.update();
-            valuationChart.data.datasets[0].data = [95, 5]; valuationChart.update();
-
-            document.querySelectorAll('.stat-counter').forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const duration = 1500; const startTime = performance.now();
-                const updateNumber = (currentTime) => {
-                    const elapsedTime = currentTime - startTime;
-                    if (elapsedTime < duration) {
-                        counter.innerText = Math.floor((elapsedTime / duration) * target);
-                        requestAnimationFrame(updateNumber);
-                    } else { counter.innerText = target; }
+            for (let i = 0; i < nodeCount; i++) {
+                const geo = geometries[Math.floor(Math.random() * geometries.length)];
+                const mat = new THREE.MeshBasicMaterial({
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    transparent: true,
+                    opacity: 0.2 + Math.random() * 0.3,
+                    wireframe: Math.random() > 0.6
+                });
+                const mesh = new THREE.Mesh(geo, mat);
+                const range = 95;
+                mesh.position.set(
+                    (Math.random() - 0.5) * range,
+                    (Math.random() - 0.5) * 48 + 4,
+                    (Math.random() - 0.5) * 55
+                );
+                mesh.userData = {
+                    driftX: (Math.random() - 0.5) * 0.045,
+                    driftY: (Math.random() - 0.5) * 0.045,
+                    phase: Math.random() * Math.PI * 2,
+                    rotSpeed: (Math.random() - 0.5) * 0.065,
                 };
-                requestAnimationFrame(updateNumber);
+                nodeGroup.add(mesh);
+                nodes.push(mesh);
+            }
+            scene.add(nodeGroup);
+
+            const lineMaterial = new THREE.LineBasicMaterial({
+                color: 0x00a2ff,
+                transparent: true,
+                opacity: 0.08
             });
-        };
+            const lineMesh = new THREE.LineSegments(new THREE.BufferGeometry(), lineMaterial);
+            scene.add(lineMesh);
 
-        const footprintObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) { triggerFootprint(); footprintObserver.unobserve(entry.target); }
+            let mouseX = 0, mouseY = 0;
+            let targetX = 0, targetY = 0;
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+                mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
             });
-        }, { threshold: 0.2 });
-        footprintObserver.observe(document.querySelector('.advisory-footprint'));
-    };
 
-    // --- NAV NAVIGATION HANDLERS & AUTO-CLOSE DISMISSAL ---
-    const toggle = document.getElementById('mobileToggle');
-    const overlay = document.getElementById('mobileMenuOverlay');
-    const closeBtn = document.getElementById('closeMobileMenu');
-    
-    if (toggle) toggle.onclick = () => overlay.classList.add('active');
-    const closeMobileMenuMatrix = () => overlay.classList.remove('active');
-    if (closeBtn) closeBtn.onclick = closeMobileMenuMatrix;
-    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeMobileMenuMatrix(); });
+            function animate() {
+                requestAnimationFrame(animate);
 
-    document.querySelectorAll('.mobile-menu-link').forEach(link => {
-        link.addEventListener('click', () => { setTimeout(closeMobileMenuMatrix, 250); });
-    });
+                grid.rotation.y = Math.sin(performance.now() * 0.00012) * 0.06;
 
-    document.addEventListener('DOMContentLoaded', () => {
-        initThreeJSGridBlueprint();
-        initHeroTypewriter();
-        initFootprintModule();
-    });
-</script>
+                nodes.forEach((node) => {
+                    const ud = node.userData;
+                    node.position.x += Math.sin(performance.now() * 0.0006 + ud.phase) * ud.driftX * 0.35;
+                    node.position.y += Math.sin(performance.now() * 0.0007 + ud.phase * 1.3) * ud.driftY * 0.35;
+                    node.rotation.x += ud.rotSpeed;
+                    node.rotation.y += ud.rotSpeed * 1.3;
+                    if (node.position.x > 50) node.position.x = -50;
+                    if (node.position.x < -50) node.position.x = 50;
+                    if (node.position.y > 30) node.position.y = -10;
+                    if (node.position.y < -10) node.position.y = 30;
+                });
+
+                const positions = [];
+                const threshold = 22;
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const a = nodes[i].position;
+                        const b = nodes[j].position;
+                        const dx = a.x - b.x;
+                        const dy = a.y - b.y;
+                        const dz = a.z - b.z;
+                        const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+                        if (dist < threshold) {
+                            positions.push(a.x, a.y, a.z);
+                            positions.push(b.x, b.y, b.z);
+                        }
+                    }
+                }
+                const lineGeo = new THREE.BufferGeometry();
+                lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+                lineMesh.geometry.dispose();
+                lineMesh.geometry = lineGeo;
+
+                targetX += (mouseX * 3.5 - targetX) * 0.08;
+                targetY += (mouseY * 1.8 - targetY) * 0.08;
+                camera.position.x = targetX;
+                camera.position.y = 18 - targetY * 0.8;
+
+                const scroll = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+                nodeGroup.position.y = scroll * 30;
+                grid.position.z = scroll * 20;
+
+                camera.lookAt(0, 0, 0);
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        })();
+
+        /* ============================================================
+           4. COUNTER ANIMATION
+           ============================================================ */
+        (function initCounters() {
+            const counters = document.querySelectorAll('.counter');
+            let triggered = false;
+
+            const run = () => {
+                if (triggered) return;
+                triggered = true;
+                counters.forEach((el) => {
+                    const target = parseInt(el.getAttribute('data-target'), 10);
+                    const duration = 1600;
+                    const start = performance.now();
+
+                    function update(now) {
+                        const elapsed = now - start;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const eased = 1 - Math.pow(1 - progress, 3);
+                        el.textContent = Math.floor(eased * target);
+                        if (progress < 1) requestAnimationFrame(update);
+                        else el.textContent = target;
+                    }
+                    requestAnimationFrame(update);
+                });
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                if (entries.some(e => e.isIntersecting)) {
+                    run();
+                    observer.disconnect();
+                }
+            }, { threshold: 0.25 });
+            observer.observe(document.querySelector('.stats-section'));
+        })();
+
+        /* ============================================================
+           5. BENCHMARK BARS
+           ============================================================ */
+        (function initBars() {
+            const fills = document.querySelectorAll('.benchmark-fill');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        const fill = e.target;
+                        fill.style.width = fill.getAttribute('data-width');
+                        observer.unobserve(fill);
+                    }
+                });
+            }, { threshold: 0.2 });
+            fills.forEach(f => observer.observe(f));
+        })();
+
+        /* ============================================================
+           6. FADE-UP ON SCROLL
+           ============================================================ */
+        (function initFadeUp() {
+            const els = document.querySelectorAll('.fade-up');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('visible');
+                        observer.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.06 });
+            els.forEach(el => observer.observe(el));
+        })();
+
+        /* ============================================================
+           7. MOBILE MENU
+           ============================================================ */
+        (function initMobile() {
+            const toggle = document.getElementById('mobileToggle');
+            const overlay = document.getElementById('mobileMenuOverlay');
+            const close = document.getElementById('closeMobileMenu');
+
+            const open = () => overlay.classList.add('active');
+            const closeMenu = () => overlay.classList.remove('active');
+
+            if (toggle) toggle.addEventListener('click', open);
+            if (close) close.addEventListener('click', closeMenu);
+            overlay.addEventListener('click', (e) => { if (e.target === overlay) closeMenu(); });
+
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => setTimeout(closeMenu, 250));
+            });
+        })();
+
+        /* ============================================================
+           8. AMBIENT GLOW PARALLAX
+           ============================================================ */
+        (function initGlow() {
+            const g1 = document.getElementById('glow1');
+            const g2 = document.getElementById('glow2');
+            window.addEventListener('scroll', () => {
+                const s = window.scrollY;
+                if (g1) g1.style.transform = `translate(${s * 0.08}px, ${s * 0.12}px) rotate(${s * 0.015}deg)`;
+                if (g2) g2.style.transform = `translate(${-s * 0.06}px, ${-s * 0.14}px) rotate(${-s * 0.01}deg)`;
+            });
+        })();
+
+        /* ============================================================
+           9. DYNAMIC FLOATING ORB PARALLAX
+           ============================================================ */
+        (function initOrbs() {
+            const orbs = document.querySelectorAll('.floating-orb');
+            window.addEventListener('scroll', () => {
+                const s = window.scrollY * 0.04;
+                orbs.forEach((orb, i) => {
+                    const offset = (i + 1) * 12;
+                    orb.style.transform = `translate(${s * (0.6 + i * 0.12)}px, ${s * (0.4 + i * 0.1)}px)`;
+                });
+            });
+        })();
+    </script>
 </body>
 </html>
