@@ -1394,16 +1394,17 @@
         /* ============================================================
            1. TYPEWRITER ENGINE (Analytical Alignment)
            ============================================================ */
-        (function initTypewriter() {
+     (function initTypewriter() {
             const heroTitle = document.getElementById('heroTitle');
             const heroRole = document.getElementById('heroRole');
             const heroDesc = document.getElementById('heroDesc');
             const heroBtns = document.getElementById('heroBtns');
 
-            const phase1 = 'Welcome To FaridStrategy';
-            const phase2 = 'Analytical Rigor. Product Optimization. Enterprise Scaling.';
+            const phase1 = 'Welcome to Farid Analytics';
+            const phase2 = 'Data‑Driven Strategy. <span class="highlight">Operational Clarity.</span> Sustainable Growth.';
 
             let charIndex = 0;
+            let isDeleting = false;
             let currentPhase = 1;
 
             function typeLoop() {
@@ -1427,17 +1428,18 @@
                         setTimeout(typeLoop, 300);
                     }
                 } else if (currentPhase === 3) {
-                    const rawText = 'Analytical Rigor. Product Optimization. Enterprise Scaling.';
+                    const rawText = 'Data‑Driven Strategy. Operational Clarity. Sustainable Growth.';
                     if (charIndex <= rawText.length) {
                         const display = rawText.substring(0, charIndex);
-                        const styled = display.replace('Product Optimization.',
-                            '<span class="highlight">Product Optimization.</span>');
+                        const styled = display.replace('Operational Clarity.',
+                            '<span class="highlight">Operational Clarity.</span>');
                         heroTitle.innerHTML = styled + '<span class="typing-cursor"></span>';
                         charIndex++;
                         setTimeout(typeLoop, 55);
                     } else {
                         heroTitle.innerHTML =
                             'Data‑Driven Strategy. <span class="highlight">Operational Clarity.</span> Sustainable Growth.';
+                        setTimeout(() => {
                             heroRole.classList.add('visible');
                             setTimeout(() => {
                                 heroDesc.classList.add('visible');
@@ -1451,6 +1453,7 @@
             }
             setTimeout(typeLoop, 500);
         })();
+
 
         /* ============================================================
            2. CUSTOM CURSOR
